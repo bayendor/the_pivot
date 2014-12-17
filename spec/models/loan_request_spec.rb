@@ -17,7 +17,7 @@ RSpec.describe LoanRequest do
 
   let(:loan_request) do
       loan_request = LoanRequest.create(user_id: 1,
-                                        category: category,
+                                        categories: [category, category1],
                                         title: "title",
                                         description: "description",
                                         borrowing_amount: 10,
