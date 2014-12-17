@@ -13,6 +13,6 @@ class LoanRequest < ActiveRecord::Base
   validates :amount_funded, presence: true
   validates :requested_by_date, presence: true
   validates :payments_begin_date, presence: true
-  validates :payments_begin_date, presence: true
+  validates :payments_end_date, presence: true
   validates :status, presence: true
 end
