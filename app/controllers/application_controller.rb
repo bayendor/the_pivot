@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def code
-    redirect_to "https://github.com/Tmee/Dinner-Dash"
+    redirect_to "https://github.com/bayendor/the_pivot/"
   end
 
   protected
