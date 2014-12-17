@@ -1,4 +1,4 @@
-class LineItemsController < ApplicationController
+class Tenants::LineItemsController < ApplicationController
 
   def index
     @items    = Item.all

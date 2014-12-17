@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Tenants::UsersController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :set_items
 

@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class Tenants::SessionsController < ApplicationController
   before_action :set_items
 
   def new
