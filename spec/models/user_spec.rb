@@ -66,7 +66,7 @@ RSpec.describe User, :type => :model do
     expect(user2).not_to be_valid
   end
 
-  it "assigns first name to username if username isn't given" do 
+  it "assigns first name to username if username isn't given" do
     user = User.create(first_name: "Jim",
                         last_name: "Jones",
                         email: "test@jones.com",
@@ -79,11 +79,7 @@ RSpec.describe User, :type => :model do
   end
 
   it "is associated with a role" do
-    expect(user).to respond_to(:roles) 
+    expect(user).to respond_to(:roles)
   end
 
-
-  it "is associated with a order" do
-    expect(user).to respond_to(:orders) 
-  end
 end
