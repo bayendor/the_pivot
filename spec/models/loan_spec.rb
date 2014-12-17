@@ -1,28 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe Loan do
+  let(:user) do
+    User.create!(first_name: "Jim",
+                 last_name: "Jones",
+                 email: "jimmy100@jones.com",
+                 username: "JimJones",
+                 password: "password",
+                 password_confirmation: "password"
+                )
+  end
+
   let(:loan) do
-    Loan.create(user_id: 1,
-                loan_request_id: 1,
-                amount: 100,
-                status: "completed"
-               )
+    Loan.create!(user: user,
+                 loan_request_id: 1000,
+                 amount: 100,
+                 status: "completed"
+                )
   end
 
-  it "is valid" do
-    expect(role).to be_valid
+  describe "validations" do
+    it "is valid" do
+      expect(loan).to be_valid
+    end
+
+    it "is invalid without a user_id" do
+      loan.user_id = nil
+      expect(loan).to_not be_valid
+
+      loan.user_id = ""
+      expect(loan).to_not be_valid
+    end
   end
 
-  it "is valid if no role is provided" do
-    role.name = nil
-    expect(role).to be_valid
-
-    role.name = ""
-    expect(role).to be_valid
+  describe "relationships" do
+    it "has a user" do
+      expect(loan.user).to eq(user)
+    end
   end
-
-  it "is associated with a user" do
-    expect(role).to respond_to(:users)
-  end
-
 end
