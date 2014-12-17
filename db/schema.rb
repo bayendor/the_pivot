@@ -11,14 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217002053) do
+ActiveRecord::Schema.define(version: 20141217004005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: true do |t|
-    t.string "name"
-    t.string "description"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "loan_requests", force: true do |t|
@@ -32,13 +34,17 @@ ActiveRecord::Schema.define(version: 20141217002053) do
     t.datetime "payments_begin_date"
     t.datetime "payments_end_date"
     t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "loans", force: true do |t|
-    t.integer "user_id"
-    t.integer "loan_request_id"
-    t.integer "amount"
-    t.string  "status"
+    t.integer  "user_id"
+    t.integer  "loan_request_id"
+    t.integer  "amount"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "roles", force: true do |t|
