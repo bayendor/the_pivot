@@ -6,6 +6,7 @@ class LoanRequest < ActiveRecord::Base
   has_many :loans
 
   validates :user_id, presence: true, uniqueness: true
+  validates :category_id, presence: true, uniqueness: true
   validates :title, presence: true
   validates :description, presence: true
   validates :borrowing_amount, presence: true
