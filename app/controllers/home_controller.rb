@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   layout "application"
 
   def index
-    @items = Item.all.sort
+    # @loans = Loan.all.sort
   end
 
 end
