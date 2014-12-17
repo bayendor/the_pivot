@@ -1,10 +1,10 @@
 class Seed
   def initialize
     generate_users_and_roles
-    generate_items
-    generate_fillings
-    generate_item_fillings
-    generate_orders
+    # generate_items
+    # generate_fillings
+    # generate_item_fillings
+    # generate_orders
   end
 
 

@@ -11,71 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203210927) do
+ActiveRecord::Schema.define(version: 20141217004005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "fillings", force: true do |t|
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "loan_requests", force: true do |t|
+    t.integer  "category_id"
+    t.integer  "user_id"
     t.string   "title"
     t.string   "description"
-    t.integer  "price",              default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "food_group"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.boolean  "retired",            default: false
-  end
-
-  create_table "item_fillings", force: true do |t|
-    t.integer  "item_id"
-    t.integer  "filling_id"
+    t.integer  "borrowing_amount"
+    t.integer  "amount_funded"
+    t.datetime "requested_by_date"
+    t.datetime "payments_begin_date"
+    t.datetime "payments_end_date"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "item_fillings", ["filling_id"], name: "index_item_fillings_on_filling_id", using: :btree
-  add_index "item_fillings", ["item_id"], name: "index_item_fillings_on_item_id", using: :btree
-
-  create_table "items", force: true do |t|
-    t.string   "name"
-    t.integer  "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.string   "description"
-  end
-
-  create_table "line_item_fillings", force: true do |t|
-    t.integer  "line_item_id"
-    t.integer  "filling_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "line_items", force: true do |t|
-    t.integer  "order_id"
-    t.integer  "item_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "quantity"
-  end
-
-  create_table "orders", force: true do |t|
+  create_table "loans", force: true do |t|
     t.integer  "user_id"
-    t.string   "state",           default: "ordered"
+    t.integer  "loan_request_id"
+    t.integer  "amount"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "delivery_method"
   end
-
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
