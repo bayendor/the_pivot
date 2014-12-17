@@ -1,4 +1,4 @@
-class Tenants::CartController < ApplicationController
+class CartController < ApplicationController
 
   def index
     if cart_has_items
