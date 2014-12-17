@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
-  has_many :user_roles
-  has_many :users, through: :user_roles
+  has_many :loan_requests
+  validates :name, presence: true
+  validates :description, presence: true
 end
