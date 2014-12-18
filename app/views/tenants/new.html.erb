@@ -1,6 +1,6 @@
 <div class="">
-  <% unless @user == current_user %>
-    <h3>You must a user to apply as a borrower!</h3></br>
+  <% unless current_user %>
+    <h3>You must be a registered user to apply as a borrower!</h3></br>
   <% else %>
     <%= form_for @tenant do |f| %>
       <% if @tenant.errors.any? %>
