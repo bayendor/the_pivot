@@ -4,15 +4,16 @@
 
 <div class="store">
   <% @loan_requests.each do |lr| %>
-  <p><%= lr.title %></p>
-  <p><%= lr.description %></p>
-  <p><%= lr.borrowing_amount %></p>
-  <p><%= lr.amount_funded %></p>
-  <p><%= lr.requested_by_date %></p>
-  <p><%= lr.payments_begin_date %></p>
-  <p><%= lr.payments_end_date %></p>
-  <p><%= lr.status %></p>
-  <p><%= lr.created_at %></p>
-  <p><%# link_to 'Show', controller: "loan_request", action: "show", id: t %></p>
+    <div class="loan_request">
+      <p><%= lr.title %></p>
+      <p><%= lr.description %></p>
+      <p><%= lr.borrowing_amount %></p>
+      <p><%= lr.amount_funded %></p>
+      <p><%= lr.requested_by_date %></p>
+      <p><%= lr.loan_term %></p>
+      <p><%= lr.status %></p>
+      <p><%= lr.created_at %></p>
+      <p><%# link_to 'Show', controller: "loan_request", action: "show", id: t %></p>
+    </div>
   <%end%>
-</div>
+<div>
