@@ -17,6 +17,10 @@
     <%= link_to "Admin Dashboard", admin_index_path %>
   <% end %>
 
+  <% if current_tenant %>
+    <%= link_to(image_tag("button_mystore.png", :alt => "My Store"), tenant_path) %></div>
+  <% end %>
+
   <% if current_user %>
     <%= link_to "Sign out", logout_path, method: :delete%>
   <% end%>
