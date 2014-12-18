@@ -28,20 +28,11 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :new, :show, :create]
 
     namespace :admin do
-      resources :items, :fillings, :users
+      resources :users
       resources :orders, only: [:index, :show, :update]
     end
 
     put 'admin/remove_item', to: 'admin/orders#remove_item'
     post 'admin/update_quantity', to: 'admin/orders#update_quantity'
-
-
-    get '/menu', to: 'menu#index'
-    resources :menu, only: [:show]
-
-    get '/code', to: 'application#code'
-
-    get  '/build', to: 'line_items#index'
-    get '/build_item/:id', to: 'line_items#build_item'
   end
 end
