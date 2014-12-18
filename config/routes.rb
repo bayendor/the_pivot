@@ -18,11 +18,11 @@ Rails.application.routes.draw do
   post   '/login',  to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  get 'lend', to: 'lend', as: :lend
+  get "tenants", to: "tenants#index"
+  post "tenants", to: "tenants#create"
 
-  resources :tenants, path: '', param: :slug
-
-  namespace :tenants, as: :tenant, path: '/:slug' do
+  resources :tenants, as: :tenant, path: '', param: :slug do
+    resources :lists, only: [:show]
 
     get '/admin', to: 'admin/base_admin#index', as: :admin_index
 
