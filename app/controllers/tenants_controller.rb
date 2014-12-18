@@ -19,7 +19,8 @@ class TenantsController < ApplicationController
   end
 
   def show
-    @tenant = Tenant.find(params[:id])
+    @tenant = Tenant.find_by(slug: params[:slug])
+    @loan_requests = []
   end
 
   private
