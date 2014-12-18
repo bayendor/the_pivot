@@ -1,8 +1,7 @@
-class Tenants::SessionsController < ApplicationController
+class SessionsController < ApplicationController
   before_action :set_items
 
   def new
-    fail
     @tenant = Tenant.find_by(slug: params[:slug])
 
     unless @tenant
@@ -29,4 +28,3 @@ class Tenants::SessionsController < ApplicationController
     redirect_to root_path, notice: 'Logged out'
   end
 end
-
