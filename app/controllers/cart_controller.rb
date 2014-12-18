@@ -8,20 +8,20 @@ class CartController < ApplicationController
       get_cart_items
       get_total_price
     else
-      redirect_to root_path, notice: "Your cart is empty.  Please fill it up and give us money!"
+      redirect_to root_path, notice: "Your cart is empty."
     end
   end
 
   def get_cart_items
     @cart.each do |line_item|
-      cart_line_items = Hash.new
-      cart_line_items[:item] = Item.find(line_item["item_id"])
-      cart_line_items[:fillings] = line_item["filling_ids"].map { |filling_id| Filling.find(filling_id) }
-      cart_line_items[:quantity] = line_item["quantity"]
-      cart_line_items[:id] = line_item["id"]
-      @cart_items << cart_line_items
+      # cart_line_items = Hash.new
+      # cart_line_items[:item] = Item.find(line_item["item_id"])
+      # cart_line_items[:fillings] = line_item["filling_ids"].map { |filling_id| Filling.find(filling_id) }
+      # cart_line_items[:quantity] = line_item["quantity"]
+      # cart_line_items[:id] = line_item["id"]
+      # @cart_items << cart_line_items
     end
-    get_line_item_price
+    # get_line_item_price
   end
 
   def get_line_item_price
@@ -67,22 +67,9 @@ class CartController < ApplicationController
     redirect_to cart_index_path, notice: "Item quantity has been updated."
   end
 
-  def delivery
-    if cart_has_items
-      @items = Item.order(id: :asc)
-      @cart = session[:cart]
-      @cart_items ||= []
-      get_cart_items
-      get_total_price
-    else
-      redirect_to root_path, notice: "Your cart is empty.  Please fill it up and give us money!"
-    end
-  end
-
   private
 
     def check_duplicate(line_item)
        session[:cart].any? {|line| line.include?(line_item["item_id"]) && line.include?(line_item["item"]["filling_ids"]) }
     end
 end
-
