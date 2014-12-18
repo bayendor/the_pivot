@@ -14,4 +14,12 @@ class LoanRequest < ActiveRecord::Base
   validates :payments_begin_date, presence: true
   validates :payments_end_date, presence: true
   validates :status, presence: true
+
+  def loan_term
+    ((payments_end_date - payments_begin_date) / 2_592_000).round
+  end
+
+  def repayment_rate
+    borrowing_amount / loan_term
+  end
 end
