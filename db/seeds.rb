@@ -1,7 +1,7 @@
 class Seed
   def initialize
     generate_users_and_roles
-    # generate_items
+    generate_categories
     # generate_fillings
     # generate_item_fillings
     # generate_orders
@@ -34,6 +34,7 @@ class Seed
                               username:   "josh",
                               password:   "password"
     )
+
     admin_user2 = User.create!(first_name: "Horace",
                               last_name:  "Worace",
                               email:      "demo+horace@jumpstartlab.com",
@@ -49,57 +50,23 @@ class Seed
     )
 
     admin = Role.create!(name: "admin")
-    admin_user.roles      = [admin]
-    admin_user2.roles     = [admin]
-    webmaster_user.roles  = [Role.create!(name: "webmaster"), admin]
+    admin_user.roles, admin_user2.roles = [admin], [admin]
+    webmaster_user.roles                = [Role.create!(name: "webmaster"), admin]
 
     puts "Users generated!"
   end
 
-  def generate_items
-    Item.create!(name:        "Burrito",
-                 price:       500,
-                 description: "It's a bunch of delicious fillings inside a tortilla. Take it with you everywhere.",
-                 image:       File.new("#{Rails.root}/app/assets/images/menu/items/burrito.jpg")
-    )
+  def generate_categories
 
-    Item.create!(name:        "Burrito Bowl",
-                 price:       175,
-                 description: "It's like a burrito, but the fillings are in a bowl. It's not as portable.",
-                 image:       File.new("#{Rails.root}/app/assets/images/menu/items/burrito_bowl.jpg")
-    )
+    categories = %W(Conflict Zones Education Food Men Expiring Soon Africa Green Vulnerable Populations)
 
-    Item.create!(name:        "Torta",
-                 price:       400,
-                 description: "It's a burrito sandwich. What more could you want?",
-                 image:       File.new("#{Rails.root}/app/assets/images/menu/items/torta.jpg")
-    )
+    categories.each do |category|
+      Category.create!(name:        category,
+                       description: Faker::Lorem.sentence
+                      )
+    end
 
-    Item.create!(name:        "Taco",
-                 price:       100,
-                 description: "Put some fillings in it. Turn your head sideways. Eat.",
-                 image:       File.new("#{Rails.root}/app/assets/images/menu/items/taco.jpg")
-    )
-
-    Item.create!(name:        "Quesadilla",
-                 price:       250,
-                 description: "A tortilla cheese sandwich. Other fillings optional.",
-                 image:       File.new("#{Rails.root}/app/assets/images/menu/items/quesadilla.jpg")
-    )
-
-    Item.create!(name:        "Tamale",
-                 price:       200,
-                 description: "Meat, wrapped in corn, wrapped in corn, wrapped in corn.",
-                 image:       File.new("#{Rails.root}/app/assets/images/menu/items/tamale.jpg")
-    )
-
-    Item.create!(name:        "Salad",
-                 price:       300,
-                 description: "Sometimes thought as real food. It's a bowl of leaves, with some meat sometimes.",
-                 image:       File.new("#{Rails.root}/app/assets/images/menu/items/salad.jpg")
-    )
-
-    puts "Items generated!"
+    puts "Categories Created!"
   end
 
   def generate_fillings
