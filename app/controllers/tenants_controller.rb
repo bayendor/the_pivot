@@ -9,7 +9,8 @@ class TenantsController < ApplicationController
 
   def create
     @tenant = Tenant.new(tenant_params)
-    # @tenant.user_id = current_user.id
+    @tenant.user_id = session[:user_id]
+    binding.pry
     if @tenant.save
       session[:tenant_id] = @tenant.id
       redirect_to root_path
