@@ -10,18 +10,14 @@
   <% end %>
 
   <% if current_user %>
-    <%= current_user.first_name %>
+    <%= link_to "My Past Contributions", loans_path %>
   <% end %>
 
-  <%# if current_user %>
-    <%#= link_to "My Past Orders", orders_path %>
-  <%# end %>
+  <% if current_user && current_user.is_admin? %>
+    <%= link_to "Admin Dashboard", admin_index_path %>
+  <% end %>
 
-  <%# if current_user && current_user.is_admin? %>
-    <%#= link_to "Admin Dashboard", admin_index_path %>
-  <%# end %>
-
-  <%# if current_user %>
-    <%# = link_to "Sign out", logout_path, method: :delete%>
-  <%# end%>
+  <% if current_user %>
+    <%= link_to "Sign out", logout_path, method: :delete%>
+  <% end%>
 </subnav>

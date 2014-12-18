@@ -1,0 +1,8 @@
+<h1>Your past contributions are below</h1>
+
+<% @loans.each do |t| %>
+  <div class="borrower">
+    <p><%= t.amount %></p>
+    <p><%= t.status %></p>
+  </div>
+<%end%>
