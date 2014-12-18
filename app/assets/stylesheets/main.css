@@ -76,6 +76,10 @@ nav li {
   width: 80%;
 }
 
+.loan_request {
+  background: #EBE7E0;
+}
+
 footer {
   text-align: center;
   font-size:0.8em;

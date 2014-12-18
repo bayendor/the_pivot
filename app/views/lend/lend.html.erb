@@ -1,10 +1,11 @@
 <h2>Borrowers</h2>
-<p>Browse all open loan requests.</p>
+<p>All Tenants.</p>
 
-<div class="borrower">
 <% @tenants.each do |t| %>
-<p><%= t.name %></p>
-<p><%= t.description %></p>
-<p><%# link_to 'Show', controller: "tenant", action: "show", id: t %></p>
+  <div class="borrower">
+    <p><%= t.name %></p>
+    <p><%= t.description %></p>
+    <p><%# link_to 'Show', controller: "tenant", action: "show", id: t %></p>
+  </div>
+
 <%end%>
-</div>
