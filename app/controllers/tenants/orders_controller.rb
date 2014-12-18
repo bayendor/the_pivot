@@ -1,6 +1,5 @@
 class Tenants::OrdersController < ApplicationController
   protect_from_forgery with: :null_session
-  before_action :set_items
   before_action :require_current_user
 
   def index
@@ -61,4 +60,3 @@ class Tenants::OrdersController < ApplicationController
   end
 
 end
-

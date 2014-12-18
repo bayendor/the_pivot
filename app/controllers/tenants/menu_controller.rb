@@ -1,5 +1,4 @@
 class Tenants::MenuController < ApplicationController
-  before_action :set_items
 
   def show
     @filling = Filling.find(params[:id])
