@@ -1,25 +1,17 @@
 class SessionsController < ApplicationController
-  before_action :set_items
-
-  def new
-    @tenant = Tenant.find_by(slug: params[:slug])
-
-    unless @tenant
-      redirect_to tenants_path, notice: 'That tenant does not exist.'
-    end
-  end
+  # before_action :set_items
 
   def create
-    @tenant = Tenant.find_by(slug: params[:slug])
-    user = @tenant.users.find_by_email(params[:email])
+    user = User.find_by(username: params[:username])
 
     if user && user.authenticate(params[:password])
-      session[:user] = user.id
-      session[:tenant_slug] = @tenant.slug
-      redirect_to tenants_path(@tenant.slug), notice: "Logged in as #{current_user.name}"
+      session[:user_id] = user.id
+      redirect_to root_path
+    elsif user && user.tenant
+      session[:tenant_slug] = user.tenant.slug
+      redirect_to tenants_path(session[:tenant_slug]), notice: "Logged in as #{current_user.name}"
     else
-      flash.now[:notice] = "Your account is invalid. Please Try Again."
-      render :new
+      redirect_to :back, notice: "Your account is invalid. Please Try Again."
     end
   end
 

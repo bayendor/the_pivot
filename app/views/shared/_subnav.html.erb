@@ -1,25 +1,27 @@
 <subnav>
-      <% if !current_user.present? %>
-      <%= form_tag login_path do %>
+  <% unless current_user %>
+    <%= form_tag login_path do %>
         <input type="text" name="username" placeholder="Username" required></li>
         <input type="password" name="password" placeholder="Password"required></li>
         <input type="submit", value="Log In"> or
 
-        <% if !current_user %>
         <%= link_to "Sign Up", register_path %>
-        <% end %>
-        <% end %>
-      <% end %>
+    <% end %>
+  <% end %>
 
-      <% if current_user %>
-        <%= link_to "My Past Orders", orders_path %>
-      <% end %>
+  <% if current_user %>
+    <%= current_user.first_name %>
+  <% end %>
 
-      <% if current_user && current_user.is_admin? %>
-        <%= link_to "Admin Dashboard", admin_index_path %>
-      <% end %>
+  <%# if current_user %>
+    <%#= link_to "My Past Orders", orders_path %>
+  <%# end %>
 
-      <% if current_user %>
-        <%= link_to "Sign out", logout_path, method: :delete%>
-      <%end%>
+  <%# if current_user && current_user.is_admin? %>
+    <%#= link_to "Admin Dashboard", admin_index_path %>
+  <%# end %>
+
+  <%# if current_user %>
+    <%# = link_to "Sign out", logout_path, method: :delete%>
+  <%# end%>
 </subnav>
