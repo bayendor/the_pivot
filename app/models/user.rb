@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  belongs_to :tenant  
+  belongs_to :tenant
   has_secure_password
   has_many :loans
   has_many :loan_requests
