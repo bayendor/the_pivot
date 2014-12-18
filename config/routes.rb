@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   post   '/login',  to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  get 'lend', to: 'undex', as: :lend
 
-
-  resources :tenants, path: '', param: :slug, except: [:index]
+  resources :tenants, path: '', param: :slug
 
   namespace :tenants, as: :tenant, path: '/:slug' do
 
