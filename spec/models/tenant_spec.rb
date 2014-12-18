@@ -19,7 +19,7 @@ RSpec.describe Tenant do
     expect(tenant).to be_valid
   end
 
-  it "can paramterize" do
+  it "can parameterize the slug" do
     tenant.name = "Jorge goes to the bieber concert"
     expect(tenant.slug).to eq("mr-jorge-s-place")
   end
