@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Iteration 1 User Interactions', type: :feature do
-  
+
   context 'a registered user' do
     let(:user) { FactoryGirl.create(:user) }
     before(:each) do
@@ -12,7 +12,11 @@ describe 'Iteration 1 User Interactions', type: :feature do
     end
 
     it 'can register as a borrower' do
-      
+      tenant_count = Tenant.count
+      visit '/new'
+      expect(page).to have_content('Apply to Become a Borrower!')
+      fill_in 'Business Name', with: 'Aperture Labs'
+      expect(page).to have_content('abc') 
     end
   end
 end
