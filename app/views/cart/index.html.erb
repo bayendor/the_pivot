@@ -2,7 +2,7 @@
 
   <div id="h1-box">
     <h1>Your Cart</h1>
-    <% if !current_user.present? %>
+    <% unless current_user %>
       <h3>Please log in above to complete your order</h3>
     <% else %>
       <%= link_to "Continue Order", order_delivery_path, class: "button" %>
@@ -16,7 +16,6 @@
       <tr>
         <th class="text-left"></th>
         <th class="text-left">Item</th>
-        <th class="text-left">Fillings</th>
         <th class="text-left">Quantity</th>
         <th class="text-left">Price</th>
         <th class="text-left"></th>
