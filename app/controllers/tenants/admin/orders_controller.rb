@@ -1,4 +1,4 @@
-class Admin::OrdersController < Admin::BaseAdminController
+class Tenants::Admin::OrdersController < Admin::BaseAdminController
   layout 'admin'
 
   def index

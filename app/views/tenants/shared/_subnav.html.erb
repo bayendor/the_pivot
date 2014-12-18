@@ -1,16 +1,13 @@
 <subnav>
       <% if !current_user.present? %>
-      <!-- <%= link_to "Sign In", login_path %> or -->
       <%= form_tag login_path do %>
-      <form>
         <input type="text" name="username" placeholder="Username" required></li>
         <input type="password" name="password" placeholder="Password"required></li>
         <input type="submit", value="Log In"> or
 
         <% if !current_user %>
-        <%= link_to "Sign Up", register_path %>
+        <%= link_to "Sign Up", login_path %>
         <% end %>
-      </form>
         <% end %>
       <% end %>
 

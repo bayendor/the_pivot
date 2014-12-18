@@ -1,4 +1,4 @@
-class Admin::UsersController < Admin::BaseAdminController
+class Tenants::Admin::UsersController < Admin::BaseAdminController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_webmaster
   layout 'admin'

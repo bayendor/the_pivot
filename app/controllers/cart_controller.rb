@@ -25,7 +25,7 @@ class CartController < ApplicationController
   end
 
   def get_line_item_price
-    @cart_items.each do |line_item| 
+    @cart_items.each do |line_item|
       line_item[:price] = line_item[:fillings].map(&:price).reduce(line_item[:item].price, &:+) * line_item[:quantity].to_i
     end
   end
@@ -50,8 +50,8 @@ class CartController < ApplicationController
   def create
     session[:cart] ||= []
     if params["item"] != nil
-      line_item = {"item_id" => params["item_id"], 
-                   "filling_ids" => params["item"]["filling_ids"], 
+      line_item = {"item_id" => params["item_id"],
+                   "filling_ids" => params["item"]["filling_ids"],
                    "quantity" => params["quantity"],
                    "id" => params["id"]
                   }
@@ -83,6 +83,6 @@ class CartController < ApplicationController
 
     def check_duplicate(line_item)
        session[:cart].any? {|line| line.include?(line_item["item_id"]) && line.include?(line_item["item"]["filling_ids"]) }
-    end 
+    end
 end
 

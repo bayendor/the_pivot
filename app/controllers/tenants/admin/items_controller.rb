@@ -1,4 +1,4 @@
-class Admin::ItemsController < Admin::BaseAdminController
+class Tenants::Admin::ItemsController < Admin::BaseAdminController
 
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   layout 'admin'
@@ -30,7 +30,7 @@ class Admin::ItemsController < Admin::BaseAdminController
         flash.now[:alert] = "Item could not be created. Try again"
         @all_fillings = Filling.all
         render :new
-      end 
+      end
     end
 
     def update

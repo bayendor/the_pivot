@@ -1,4 +1,4 @@
-  class Admin::BaseAdminController < ActionController::Base
+  class Tenants::Admin::BaseAdminController < ActionController::Base
     protect_from_forgery with: :null_session
     before_action :require_admin
     helper_method :current_user

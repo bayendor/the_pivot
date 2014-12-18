@@ -1,4 +1,4 @@
-class Admin::FillingsController < Admin::BaseAdminController
+class Tenants::Admin::FillingsController < Admin::BaseAdminController
 
   before_action :set_filling, only: [:show, :edit, :update, :destroy]
 

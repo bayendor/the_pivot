@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class Tenants::HomeController < ApplicationController
   layout "application"
 
   def index
