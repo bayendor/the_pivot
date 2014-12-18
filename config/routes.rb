@@ -1,21 +1,7 @@
 Rails.application.routes.draw do
-  resources :tenants, path: '', param: :slug
+  root 'home#index'
 
-  namespace :tenants, as: :tenant, path: '/:slug' do
-
-    get '/admin', to: 'admin/base_admin#index', as: :admin_index
-
-    resources :users
-    resources :orders, only: [:index, :new, :show, :create]
-
-    namespace :admin do
-      resources :users
-      resources :orders, only: [:index, :show, :update]
-    end
-
-    put 'admin/remove_item', to: 'admin/orders#remove_item'
-    post 'admin/update_quantity', to: 'admin/orders#update_quantity'
-  end
+  resources :users
 
   post '/build_item', to: 'cart#create'
   post  '/cart', to: 'cart#update_quantity'
@@ -31,5 +17,22 @@ Rails.application.routes.draw do
   post   '/login',  to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  root 'home#index'
+
+
+  resources :tenants, path: '', param: :slug, except: [:index]
+
+  namespace :tenants, as: :tenant, path: '/:slug' do
+
+    get '/admin', to: 'admin/base_admin#index', as: :admin_index
+
+    resources :orders, only: [:index, :new, :show, :create]
+
+    namespace :admin do
+      resources :users
+      resources :orders, only: [:index, :show, :update]
+    end
+
+    put 'admin/remove_item', to: 'admin/orders#remove_item'
+    post 'admin/update_quantity', to: 'admin/orders#update_quantity'
+  end
 end
