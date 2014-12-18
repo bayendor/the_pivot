@@ -30,6 +30,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'launchy'
   gem 'guard-rspec', require: false
+  gem 'factory_girl_rails'
 end
 
 group :production, :staging do
