@@ -16,7 +16,8 @@ describe 'Iteration 1 User Interactions', type: :feature do
       visit '/new'
       expect(page).to have_content('Apply to Become a Borrower!')
       fill_in 'Business Name', with: 'Aperture Labs'
-      expect(page).to have_content('abc') 
+      click_button 'Apply'
+      expect(page).to have_content('Store Page') 
     end
   end
 end
