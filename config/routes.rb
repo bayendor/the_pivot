@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'order/delivery', to: 'cart#delivery'
 
   resources :cart, only: [:index]
+  resources :loans
 
   get  '/register', to: 'users#register'
   post '/register', to: 'users#create'
