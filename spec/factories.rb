@@ -7,4 +7,9 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
   end
+
+  factory :tenant do
+    name        "Mr. Jorge's Place"
+    description "It's filled with beiber!"
+  end
 end

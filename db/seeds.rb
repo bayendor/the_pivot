@@ -70,7 +70,7 @@ class Seed
   def generate_loan_requests
     status = %W(open closed)
     User.all.each do |user|
-      LoanRequest.create(user_id:             user.id,
+      LoanRequest.create!(user_id:             user.id,
                          title:               Faker::Company.bs,
                          description:         Faker::Lorem.sentence,
                          borrowing_amount:    (Faker::Commerce.price * 1000).to_i,
@@ -91,10 +91,11 @@ class Seed
   end
 
   def generate_tenants
-    User.count.times do
-      t = Tenant.create(name:         Faker::App.name,
-                        description:  Faker::Lorem.sentence
-                       )
+    User.all.each do |user|
+      user.tenant = Tenant.create!(name:         "#{Faker::App.name} #{Faker::App.name}",
+                                   description:  Faker::Lorem.sentence
+                                  )
+      user.save!
     end
 
     puts "Tenants generated!"
@@ -103,19 +104,19 @@ class Seed
   def generate_loans
     status = %W(ordered completed canceled paid)
     10.times do
-      n = (Random.rand * 10).to_i
+      n = (Random.rand * 100).to_i
       loan_request = LoanRequest.all.sample
-      user = User.create(first_name: Faker::Name.first_name,
-                          last_name: Faker::Name.last_name,
-                          email:     Faker::Internet.safe_email("#{n} #{Faker::Internet.user_name}"),
-                          password:  "password"
+      user = User.create!(first_name: Faker::Name.first_name,
+                          last_name:  Faker::Name.last_name,
+                          email:      Faker::Internet.safe_email("#{n} #{Faker::Internet.user_name}"),
+                          password:   "password"
                          )
 
-      loan = Loan.create(user:         user,
-                         loan_request: loan_request,
-                         amount:       (Faker::Commerce.price * 100).to_i,
-                         status:       status.sample
-                        )
+      loan = Loan.create!(user:         user,
+                          loan_request: loan_request,
+                          amount:       (Faker::Commerce.price * 100).to_i,
+                          status:       status.sample
+                         )
 
     end
 
