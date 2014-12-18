@@ -1,5 +1,22 @@
-<%= render partial: "shared/subnav" %>
-<div class="cart-corner"><%= link_to(image_tag("cart_icon.png", :alt => "Cart"), cart_index_path) %></div>
-<h1><%= link_to(image_tag("keevahh.jpg", :alt => "Logo"), root_path) %></h1>
-<%= render partial: "shared/nav_bar" %>
 <%= render partial: "shared/flash", id: "flash" %>
+
+<%= render partial: "shared/subnav" %>
+
+  <% if !current_user %>
+  <div class="corner-register">
+  <%= link_to(image_tag("corner_user.png", :alt => "Register"), new_user_path) %></div>
+  <% end %>
+
+  <% if current_user && !current_user.is_a_tenant? %>
+  <div class="corner-register">
+  <%= link_to(image_tag("corner_store.png", :alt => "Borrow"), new_tenant_path) %></div>
+  <% end %>
+
+  <% if current_user && current_user.is_a_tenant? %>
+  <div class="corner-mystore">
+  <%= link_to(image_tag("button_mystore.png", :alt => "My Store"), tenant_path) %></div>
+  <% end %>
+
+<h1><%= link_to(image_tag("keevahh.jpg", :alt => "Logo"), root_path) %></h1>
+
+<%= render partial: "shared/nav_bar" %>
