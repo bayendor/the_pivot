@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     self.roles.any? { |role| role.name == "admin"}
   end
 
+  def is_a_tenant?
+    self.tenant_id != nil
+  end
+
   def is_webmaster?
     self.roles.any? { |role| role.name == "webmaster"}
   end

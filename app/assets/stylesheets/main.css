@@ -35,11 +35,21 @@ a {
   color: #7AB317;
 }
 
-.cart-corner {
+.corner-register {
   float:right;
   margin-top: -32px;
   margin-right: -11px;
 }
+
+.corner-mystore {
+  float:right;
+}
+
+/*.alert {
+  height: 30px;
+  background: #feb751;
+  color: #000;
+}*/
 
 h1 {
   font-size: 3em;
