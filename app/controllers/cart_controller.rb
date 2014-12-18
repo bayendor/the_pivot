@@ -49,16 +49,16 @@ class CartController < ApplicationController
   def create
     session[:cart] ||= []
     # if params["item"] != nil
-      # line_item = {"item_id" => params["item_id"],
-      #              "filling_ids" => params["item"]["filling_ids"],
-      #              "quantity" => params["quantity"],
-      #              "id" => params["id"]
-      #             }
-      # session[:cart] << line_item
-      redirect_to cart_index_path, notice: "Cart created. Please log in."
-    else
-      redirect_to :back, notice: "Please add some loans."
-    end
+    #   line_item = {"item_id" => params["item_id"],
+    #                "filling_ids" => params["item"]["filling_ids"],
+    #                "quantity" => params["quantity"],
+    #                "id" => params["id"]
+    #               }
+    #   session[:cart] << line_item
+    #   redirect_to cart_index_path, notice: "Cart created. Please log in."
+    # else
+    #   redirect_to :back, notice: "Please add some loans."
+    # end
   end
 
   # TODO: Reimplement this method
