@@ -92,7 +92,9 @@ class Seed
 
   def generate_tenants
     User.count.times do
-      t = Tenant.create(name: Faker::App.name)
+      t = Tenant.create(name:         Faker::App.name,
+                        description:  Faker::Lorem.sentence
+                       )
     end
 
     puts "Tenants generated!"
