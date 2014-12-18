@@ -1,2 +1,18 @@
 <h2>Store Page</h2>
 <p>Individual borrower store pages, shown via tenant_id. Coming soon.</p>
+
+
+<div class="store">
+  <% @loan_requests.each do |lr| %>
+  <p><%= lr.title %></p>
+  <p><%= lr.description %></p>
+  <p><%= lr.borrowing_amount %></p>
+  <p><%= lr.amount_funded %></p>
+  <p><%= lr.requested_by_date %></p>
+  <p><%= lr.payments_begin_date %></p>
+  <p><%= lr.payments_end_date %></p>
+  <p><%= lr.status %></p>
+  <p><%= lr.created_at %></p>
+  <p><%# link_to 'Show', controller: "loan_request", action: "show", id: t %></p>
+  <%end%>
+</div>

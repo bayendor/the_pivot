@@ -63,13 +63,18 @@ nav li {
   text-transform: uppercase;
 }
 
-/*.subnav {
-
+.borrower {
+  border: 1px solid #EBE7E0;
+  padding: 10px;
+  width: 30%;
+  margin: 10px;
 }
 
-.subnav li {
-  float: right;
-}*/
+.store {
+  border: 1px solid #EBE7E0;
+  padding: 10px;
+  width: 80%;
+}
 
 footer {
   text-align: center;
