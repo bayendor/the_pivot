@@ -12,7 +12,7 @@ class TenantsController < ApplicationController
     @tenant.user_id = session[:user_id]
     if @tenant.save
       session[:tenant_id] = @tenant.id
-      redirect_to root_path
+      redirect_to register_path
     else
       render :new
     end

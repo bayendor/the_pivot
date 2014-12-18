@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   get "tenants", to: "tenants#index"
+  post "tenants", to: "tenants#create"
+
   resources :tenants, as: :tenant, path: '', param: :slug do
     resources :lists, only: [:show]
 
