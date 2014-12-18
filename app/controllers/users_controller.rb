@@ -3,8 +3,7 @@ class UsersController < ApplicationController
   before_action :set_items
 
   def index
-    @hermano_said = Hermano.say_that_cool_thing
-    render layout: false
+    @users = User.all
   end
 
   def new

@@ -1,9 +1,29 @@
 class TenantsController < ApplicationController
   def index
-    @tenants = Tenant.all 
+    @tenants = Tenant.all
+  end
+
+  def new
+    @tenant = Tenant.new
+  end
+
+  def create
+    @tenant = Tenant.new(tenant_params)
+    @tenant.user_id = current_user.id
+    if @tenant.save
+      session[:tenant_id] = @tenant.id
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def show
 
+  end
+
+  private
+  def tenant_params
+    params.require(:tenant).permit(:name)
   end
 end
