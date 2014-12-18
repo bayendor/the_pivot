@@ -1,66 +1,35 @@
-<div class="row collapse">
-  <div class="panel">
-  <h2>Registration</h2>
-  </div><br/>
-  <div class="large-12 columns">
-    <div class="panel">
+<p>Welcome! By signing up for Keevahh, you are joining a community of global opportunity. Whether you opt to create a store or choose to lend money to an individual across the globe, you are contributing to the Keevahh effort to alleviate poverty through lending. <strong>Once you create a user account, you are eligible to become a borrower.</strong>
+
+<h2>Register as a Keevahh User</h2>
+
       <% if current_user %>
         <h3>Whoops!</h3>
-        <p>Looks like you are already logged in.</p>
+        <p>Looks like you are already logged in. If you're interested in creating a Keevahh store, please [click here] for more info.</p>
         <h5>Not <%=current_user.first_name%>?</h5>
         <p>Please <%= link_to "Sign Out", logout_path, method: :delete %> to log in or register as a new user </p>
         <br/>
       <%else%>
 
-
-
       <%= form_for User.new, :html => {:'data-abide' => true} do |f| %>
-        <div class="row large-12 colums">
-          <div class="large-6 columns">
-            <div class="name-field">
-               <%= label_tag :first_name, "First Name"%>
-              <%= f.text_field :first_name, :required => true, :pattern => '[a-zA-Z]+' %>
-              <small class="error">Please provide a first name.</small>
-            </div>
-          </div>
-          <div class="large-6 columns">
-            <div class="name-field">
-               <%= label_tag :last_name, "Last Name"%>
-              <%= f.text_field :last_name, :required => true, :pattern => '[a-zA-Z]+' %>
-              <small class="error">Please provide a last name.</small>
-            </div>
-          </div>
-          <div class="large-6 columns">
-            <div class="email-field">
-               <%= label_tag :email, "Email"%>
-              <%= f.text_field :email, :required => true, :pattern => 'email' %>
-              <small class="error">An email address is required.</small>
-            </div>
-          </div>
-          <div class="large-6 columns">
-            <div class="username">
-              <%= label_tag :username, "Username"%>
-              <%= f.text_field :username, :required => false %>
-            </div>
-          </div>
-          <div class="large-6 columns">
-            <div class="password-field">
-               <%= label_tag :password, "Password <small>(required)</small>".html_safe %>
-              <%= f.password_field :password, :required => true, :pattern => '[a-zA-Z]+' %>
-              <small class="error">Please provide a password.</small>
-            </div>
-          </div>
-          <div class="large-6 columns">
-            <div class="password-confirmation-field">
-               <%= label_tag :password_confirmation, "Confirm Password <small>(required)</small>".html_safe %>
-              <%= f.password_field :password_confirmation, :required => true, :pattern => '[a-zA-Z]+' %>
-              <small class="error">The passwords do not match.</small>
-            </div>
-          </div>
+          <p>All fields are required</p>
+          <p><%= label_tag :first_name, "First Name"%><br>
+          <%= f.text_field :first_name, :required => true, :pattern => '[a-zA-Z]+' %></p>
+
+          <p><%= label_tag :last_name, "Last Name"%><br>
+          <%= f.text_field :last_name, :required => true, :pattern => '[a-zA-Z]+' %></p>
+
+          <p><%= label_tag :email, "Email"%><br>
+          <%= f.text_field :email, :required => true, :pattern => 'email' %></p>
+
+          <p><%= label_tag :username, "Username"%><br>
+          <%= f.text_field :username, :required => true %></p>
+
+          <p><%= label_tag :password, "Password".html_safe %><br>
+          <%= f.password_field :password, :required => true, :pattern => '[a-zA-Z]+' %></p>
+
+          <p><%= label_tag :password_confirmation, "Confirm Password".html_safe %><br>
+          <%= f.password_field :password_confirmation, :required => true, :pattern => '[a-zA-Z]+' %></p>
+
             <button type="submit">Submit</button>
-          </div>
-      </div>
+      <%end%>
     <%end%>
-    <%end%>
-  </div>
-</div>

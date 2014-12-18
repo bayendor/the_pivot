@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
   protect_from_forgery with: :null_session
-  before_action :set_items
 
   def index
-    @hermano_said = Hermano.say_that_cool_thing
     render layout: false
   end
 
