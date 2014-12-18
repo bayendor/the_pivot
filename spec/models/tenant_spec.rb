@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Tenant do
   let(:tenant) do
-    Tenant.create(name: "Mr. Jorge's Place")
+    Tenant.create(name:        "Mr. Jorge's Place",
+                  description: "It's filled with beiber!"
+                 )
   end
 
   it "is valid" do
@@ -21,6 +23,5 @@ RSpec.describe Tenant do
     tenant.name = "Jorge goes to the bieber concert"
     expect(tenant.slug).to eq("mr-jorge-s-place")
   end
-
 
 end
