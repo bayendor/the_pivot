@@ -14,7 +14,7 @@ gem 'unicorn'
 gem 'pg'
 
 gem 'compass-rails'
-# gem 'foundation-rails', '~> 5.4.5.0'
+gem 'faker'
 gem 'bcrypt', '~> 3.1.7'
 gem 'paperclip'
 
