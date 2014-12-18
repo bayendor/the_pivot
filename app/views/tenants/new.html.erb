@@ -1,0 +1,27 @@
+<div class="">
+  <% unless @user == current_user %>
+    <h3>You must a user to apply as a borrower!</h3></br>
+  <% else %>
+    <%= form_for @tenant do |f| %>
+      <% if @tenant.errors.any? %>
+      <div id="">
+        <h2><%= pluralize(@tenant.errors.count, "error") %> prohibited this item from being saved:</h2>
+        <ul>
+          <% @tenant.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+      <h3>Apply to Become a Borrower!</h3></br>
+        <div class="">
+          <div class="">
+            <%= f.text_field :name, placeholder: "Business Name", class: "" %>
+          </div>
+          <div class="">
+            <%= f.submit "Apply", class: "" %>
+          </div>
+        </div>
+    <% end %>
+  <% end %>
+</div>
