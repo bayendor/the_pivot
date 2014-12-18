@@ -1,11 +1,30 @@
 Rails.application.routes.draw do
-  resources :tenants, path: '', param: :slug
+  root 'home#index'
+
+  resources :users
+
+  post '/build_item', to: 'cart#create'
+  post  '/cart', to: 'cart#update_quantity'
+  delete '/cart', to: 'cart#remove_item'
+  get 'order/delivery', to: 'cart#delivery'
+
+  resources :cart, only: [:index]
+
+  get  '/register', to: 'users#register'
+  post '/register', to: 'users#create'
+
+  get    '/login',  to: 'sessions#new'
+  post   '/login',  to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
+
+
+  resources :tenants, path: '', param: :slug, except: [:index]
 
   namespace :tenants, as: :tenant, path: '/:slug' do
 
     get '/admin', to: 'admin/base_admin#index', as: :admin_index
 
-    resources :users
     resources :orders, only: [:index, :new, :show, :create]
 
     namespace :admin do
@@ -25,20 +44,4 @@ Rails.application.routes.draw do
     get  '/build', to: 'line_items#index'
     get '/build_item/:id', to: 'line_items#build_item'
   end
-
-  post '/build_item', to: 'cart#create'
-  post  '/cart', to: 'cart#update_quantity'
-  delete '/cart', to: 'cart#remove_item'
-  get 'order/delivery', to: 'cart#delivery'
-
-  resources :cart, only: [:index]
-
-  get  '/register', to: 'users#register'
-  post '/register', to: 'users#create'
-
-  get    '/login',  to: 'sessions#new'
-  post   '/login',  to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
-
-  root 'home#index'
 end
