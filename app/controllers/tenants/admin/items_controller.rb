@@ -1,4 +1,4 @@
-class Tenants::Admin::ItemsController < Admin::BaseAdminController
+class Tenants::Admin::ItemsController < Tenants::Admin::BaseAdminController
 
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   layout 'admin'
