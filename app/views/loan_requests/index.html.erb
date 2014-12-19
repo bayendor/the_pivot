@@ -1,0 +1,15 @@
+<h2>Loan Requests</h2>
+
+<% @loan_requests.each do |lr| %>
+  <div class="loan_request">
+    <p><%= lr.title %></p>
+    <p><%= lr.description %></p>
+    <p><%= lr.borrowing_amount %></p>
+    <p><%= lr.amount_funded %></p>
+    <p><%= lr.requested_by_date %></p>
+    <p><%= lr.loan_term %></p>
+    <p><%= lr.status %></p>
+    <p><%= lr.created_at %></p>
+  </div>
+<%end%>
+<div style="clear:both;"></div>
