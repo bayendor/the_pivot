@@ -45,12 +45,6 @@ a {
   float:right;
 }
 
-/*.alert {
-  height: 30px;
-  background: #feb751;
-  color: #000;
-}*/
-
 h1 {
   font-size: 3em;
   color: #7AB317;
@@ -87,7 +81,13 @@ nav li {
 }
 
 .loan_request {
-  background: #EBE7E0;
+  background: #fff;
+  border: 1px solid #EBE7E0;
+  border-radius: 15px;
+  width: 23%;
+  padding: 5px;
+  margin: 5px;
+  float: left;
 }
 
 footer {
