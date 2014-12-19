@@ -1,5 +1,3 @@
-<%= render partial: "shared/flash", id: "flash" %>
-
 <%= render partial: "shared/subnav" %>
 
   <% if !current_user %>
@@ -18,5 +16,7 @@
   <% end %>
 
 <h1><%= link_to(image_tag("keevahh.jpg", :alt => "Logo"), root_path) %></h1>
+
+<%= render partial: "shared/flash", id: "flash" %>
 
 <%= render partial: "shared/nav_bar" %>
