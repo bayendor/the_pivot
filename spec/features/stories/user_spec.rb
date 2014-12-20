@@ -11,13 +11,15 @@ describe 'Iteration 1 User Interactions', type: :feature do
       click_button 'Log In'
     end
 
-    it 'can register as a borrower' do
-      tenant_count = Tenant.count
-      visit '/new'
-      expect(page).to have_content('Apply to Become a Borrower!')
-      fill_in 'Business Name', with: 'Aperture Labs'
-      click_button 'Apply'
-      expect(page).to have_content('Store Page') 
+    context 'can register as a borrower' do
+      it 'and is assigned a business page' do
+        tenant_count = Tenant.count
+        visit '/new'
+        expect(page).to have_content('Apply to Become a Borrower!')
+        fill_in 'Business Name', with: 'Aperture Labs'
+        click_button 'Apply'
+        expect(page).to have_content('Thanks for creating your store') 
+      end
     end
   end
 end
