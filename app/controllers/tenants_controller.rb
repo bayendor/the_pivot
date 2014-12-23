@@ -9,9 +9,9 @@ class TenantsController < ApplicationController
 
   def create
     @tenant = Tenant.new(tenant_params)
-    @tenant.user_id = session[:user_id]
     if @tenant.save
       session[:tenant_id] = @tenant.id
+      current_user.update_attribute(:tenant_id, @tenant.id)
       redirect_to tenant_path(@tenant.slug), notice: "Thanks for creating your store."
     else
       render :new
