@@ -11,12 +11,12 @@ RSpec.describe Tenant do
     expect(tenant).to be_valid
   end
 
-  it "is valid without a name" do
+  it "is invalid without a name" do
     tenant.name = nil
-    expect(tenant).to be_valid
+    expect(tenant).to_not be_valid
 
     tenant.name = ""
-    expect(tenant).to be_valid
+    expect(tenant).to_not be_valid
   end
 
   it "can parameterize the slug" do
@@ -24,4 +24,10 @@ RSpec.describe Tenant do
     expect(tenant.slug).to eq("mr-jorge-s-place")
   end
 
+  it 'is invalid if a name is a reserved route' do
+    tenant.name = 'cart'
+    expect(tenant).to_not be_valid
+    tenant.name = 'loan_requests'
+    expect(tenant).to_not be_valid
+  end
 end
