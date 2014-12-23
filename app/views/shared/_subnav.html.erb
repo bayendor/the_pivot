@@ -17,8 +17,8 @@
     <%= link_to "Admin Dashboard", admin_index_path %>
   <% end %>
 
-  <% if current_tenant %>
-    <%= link_to(image_tag("button_mystore.png", :alt => "My Store"), tenant_path) %></div>
+  <% if current_tenant && current_user.is_a_tenant? %>
+    <%= link_to(image_tag("button_mystore.png", :alt => "My Store"), tenant_path(current_user.tenant.slug)) %></div>
   <% end %>
 
   <% if current_user %>
