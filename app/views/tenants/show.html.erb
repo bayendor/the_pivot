@@ -1,19 +1,28 @@
-<h2>Store Page</h2>
-<p>Individual borrower store pages, shown via tenant_id. Coming soon.</p>
-
+<h2><%= @tenant.name %></h2>
 
 <div class="store">
-  <% @loan_requests.each do |lr| %>
+  <p><%= @tenant.description %></p>
+  <h3>Loan Requests:</h3>
+
+  <% @tenant.loan_requests.each do |lr| %>
     <div class="loan_request">
-      <p><%= lr.title %></p>
-      <p><%= lr.description %></p>
-      <p><%= lr.borrowing_amount %></p>
-      <p><%= lr.amount_funded %></p>
-      <p><%= lr.requested_by_date %></p>
-      <p><%= lr.loan_term %></p>
-      <p><%= lr.status %></p>
-      <p><%= lr.created_at %></p>
-      <p><%# link_to 'Show', controller: "loan_request", action: "show", id: t %></p>
+      <p style="font-weight: bold"><%= "Title: #{lr.title.titleize}" %></p>
+      <p><%= "Description: #{lr.description}" %></p>
+      <p><%= "Borrowing Amount: #{lr.borrowing_amount}" %></p>
+      <p><%= "Amount Funded: #{lr.amount_funded}" %></p>
+      <p><%= "Requested by: #{lr.requested_by_date}" %></p>
+      <p><%= "Loan Term: #{lr.loan_term}" %></p>
+      <p><%= "Status: #{lr.status}" %></p>
+      <p><%= "Created at: #{lr.created_at}" %></p>
+      <p><% if lr.status == 'open' %>
+           <%= check_box_tag "loan_requests[]", lr.id %>
+           <%= label_tag("loan_request_#{lr.id}", "<-- Yes, I want to Loan!") %>
+           <% else %>
+           <p><em>Fully funded!</em></p>
+         <% end %>
     </div>
+    <div style="clear:both"></div>
+    <%= submit_tag "Add selected Loans to Cart" %>
   <%end%>
-<div>
+</div>
+<div style="clear:both"></div>
