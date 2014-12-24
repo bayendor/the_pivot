@@ -2,9 +2,8 @@
 
 <% @tenants.each do |t| %>
 <div class="borrower">
-  <p><%= t.name %></p>
+  <p><%= link_to "#{t.name}", tenant_path(t.slug) %></p>
   <p><%= t.description %></p>
-  <!-- <p><%# link_to 'Show', controller: "tenant", action: "show", id: t %></p> -->
 </div>
 
 <%end%>
