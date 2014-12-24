@@ -1,57 +1,23 @@
-<div class="row">
-
-  <div id="h1-box">
-    <h1>Your Cart</h1>
-    <% unless current_user %>
-      <h3>Please log in above to complete your order</h3>
-    <% else %>
-      <%= link_to "Continue Order", order_delivery_path, class: "button" %>
-    <%end%>
-    <hr id="h1-box">
+<div>
+  <h1>Your Cart</h1>
+  <% unless current_user %>
+    <h3>Please log in above to complete your order.</h3>
+  <% else %>
+    <%= link_to "Continue Order", class: "button" %>
+  <%end%>
 </div>
 
-<div class="row">
-  <table class="table-fill">
-    <thead>
-      <tr>
-        <th class="text-left"></th>
-        <th class="text-left">Item</th>
-        <th class="text-left">Quantity</th>
-        <th class="text-left">Price</th>
-        <th class="text-left"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @cart_items.each do |line_item| %>
-        <tr>
-          <td class="text-left"><%= image_tag line_item[:item].image.url :thumb %></td>
-          <td class="text-left"><h3><%= line_item[:item].name %></h3></td>
-          <td class="text-left"><ul>
-            <% line_item[:fillings].each do |filling| %>
-                <li><%= filling.title %>: <%= number_to_currency(filling.price / 100.0) %> (extra),</li>
-              <% end %> </ul></td>
-          <td class="text-left"><%= form_tag "/cart" do %>
-             <input type="number" name="quantity" id="quantity" min="1" max="30" value="<%= line_item[:quantity] %>"/>
-             <input type="hidden" name="id", value="<%= line_item[:id] %>" />
-             <button type= "submit" class="tiny button" >Update</button>
-           <% end %>
-          </td>
-          <td class="text-left">$ <%= line_item[:price].to_s.insert(-3, ".") %></td>
-          <td class="text-left"><%= link_to "Remove", cart_path(:id => line_item[:id]), method: :delete, class: "button" %>
-          </td>
-        </tr>
-      <% end %>
-       <tr>
-          <td class="text-left"></td>
-          <td class="text-left"></td>
-          <td class="text-left"></td>
-          <td class="text-left">TOTAL:</td>
-          <td class="text-left">$ <%= @total_price.to_s.insert(-3, ".")%></td>
-          <td class="text-left">
-            <% if current_user.present? %>
-              <%= link_to "Continue Order", order_delivery_path, class: "button" %>
-            <%end%>
-        </tr>
-    </tbody>
-  </table>
-</div>
+<% @cart.flatten.each do |lr| %>
+  <div class="loan_request">
+    <p style="font-weight: bold"><%= "Title: #{lr.title.titleize}" %></p>
+    <p><%= "Description: #{lr.description}" %></p>
+    <p><%= "Borrowing Amount: #{lr.borrowing_amount}" %></p>
+    <p><%= "Amount Funded: #{lr.amount_funded}" %></p>
+    <p><%= "Requested by: #{lr.requested_by_date}" %></p>
+    <p><%= "Loan Term: #{lr.loan_term}" %></p>
+    <p><%= "Status: #{lr.status}" %></p>
+    <p><%= "Created at: #{lr.created_at}" %></p>
+  </div>
+<% end %>
+
+<div style="clear:both;"></div>

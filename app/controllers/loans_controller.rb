@@ -1,7 +1,7 @@
 class LoansController < ApplicationController
 
   def index
-    @loans = Loan.find_by(user_id: current_user.id)
+    @loans = Loan.order(id: :asc)
   end
 
 end
