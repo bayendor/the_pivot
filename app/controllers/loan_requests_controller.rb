@@ -2,6 +2,7 @@ class LoanRequestsController < ApplicationController
 
   def index
     @loan_requests = LoanRequest.order(id: :asc)
+    @loan_requests = @loan_requests.status(params[:status]) if params[:status].present?
   end
 
   def new
