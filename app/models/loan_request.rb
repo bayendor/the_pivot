@@ -15,6 +15,8 @@ class LoanRequest < ActiveRecord::Base
   validates :payments_end_date, presence: true
   validates :status, presence: true
 
+  scope :status, -> (status) { where status: status }  
+
   def loan_term
     ((payments_end_date - payments_begin_date) / 2_592_000).round
   end
