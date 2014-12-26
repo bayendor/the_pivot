@@ -1,0 +1,34 @@
+<h2>Edit User Profile</h2>
+ <%= form_for @user, :html => {:'data-abide' => true} do |f| %>
+    <% if @user.errors.any? %>
+      <div id="errors">
+        <h2><%= pluralize(@user.errors.count, "error") %> occurred:</h2>
+
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <p><%= f.label :first_name, "First Name"%><br>
+    <%= f.text_field :first_name %></p>
+
+    <p><%= f.label :last_name, "Last Name"%><br>
+    <%= f.text_field :last_name %></p>
+
+    <p><%= f.label :email, "Email"%><br>
+    <%= f.text_field :email %></p>
+
+    <p><%= f.label :username, "Username"%><br>
+    <%= f.text_field :username %></p>
+
+    <p><%= f.label :password, "Password".html_safe %><br>
+    <%= f.password_field :password %></p>
+
+    <p><%= f.label :password_confirmation, "Confirm Password".html_safe %><br>
+    <%= f.password_field :password_confirmation %></p>
+
+    <button type="submit">Submit</button>
+  <%end%>
+

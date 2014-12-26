@@ -1,16 +1,17 @@
 <subnav>
   <% unless current_user %>
     <%= form_tag login_path do %>
-        <input type="text" name="username" placeholder="Username" required></li>
-        <input type="password" name="password" placeholder="Password"required></li>
-        <input type="submit", value="Log In"> or
+      <input type="text" name="username" placeholder="Username" required></li>
+      <input type="password" name="password" placeholder="Password"required></li>
+      <input type="submit", value="Log In"> or
 
-        <%= link_to "Sign Up", new_user_path %>
+      <%= link_to "Sign Up", new_user_path %>
     <% end %>
-  <% end %>
+  <% end%>
 
   <% if current_user %>
     <%= link_to "My Past Contributions", loans_path %>
+    <%= link_to "My Profile", edit_user_path(current_user) %>
   <% end %>
 
   <% if current_user && current_user.is_admin? %>
@@ -23,5 +24,5 @@
 
   <% if current_user %>
     <%= link_to "Sign out", logout_path, method: :delete%>
-  <% end%>
+  <% end %>
 </subnav>

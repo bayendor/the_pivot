@@ -49,25 +49,6 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
   end
 
-  it 'cannot create a user with the same email' do
-    user1 = User.create(first_name: 'Jim',
-                        last_name: 'Jones',
-                        email: 'test@jones.com',
-                        username: 'Jim',
-                        password: 'password',
-                        password_confirmation: 'password'
-                       )
-    user2 = User.create(first_name: 'Jim',
-                        last_name: 'Jones',
-                        email: 'test@jones.com',
-                        username: 'Jim',
-                        password: 'password',
-                        password_confirmation: 'password'
-                       )
-
-    expect(user2).not_to be_valid
-  end
-
   it 'requires a valid email address' do
     addresses = %w(user@foo,com user_at_foo.org example.user@foo.
                    foo@bar_baz.com foo@bar_baz.com)
