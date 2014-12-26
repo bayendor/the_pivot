@@ -4,21 +4,21 @@
   <% else %>
     <%= form_for @tenant do |f| %>
       <% if @tenant.errors.any? %>
-      <div id="">
-        <h2><%= pluralize(@tenant.errors.count, "error") %> prohibited this item from being saved:</h2>
-        <ul>
-          <% @tenant.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
+        <div id="">
+          <h2><%= pluralize(@tenant.errors.count, "error") %> occurred:</h2>
+          <ul>
+            <% @tenant.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
       <h3>Apply to Become a Borrower!</h3></br>
-          <p><%= f.text_field :name, placeholder: "Business Name" %></p>
-          <p><small>Please enter 1-2 sentences describing your business effort.</small><br>
-          <%= f.text_area :description %></p>
+      <p><%= f.text_field :name, placeholder: "Business Name" %></p>
+      <p><small>Please enter 1-2 sentences describing your business effort.</small><br>
+      <%= f.text_area :description %></p>
 
-          <p><%= f.submit "Apply", class: "" %></p>
+      <p><%= f.submit "Apply", class: "" %></p>
     <% end %>
   <% end %>
 </div>
