@@ -1,5 +1,4 @@
 class LoanRequestsController < ApplicationController
-
   def index
     @loan_requests = LoanRequest.order(id: :asc)
     @loan_requests = @loan_requests.status(params[:status]) if params[:status].present?
@@ -22,18 +21,13 @@ class LoanRequestsController < ApplicationController
     @loan_requests = LoanRequest.find_by(id: params[:id])
   end
 
-private
+  private
 
   def loan_request_params
-    params.require(loan_request).permit(:user_id,
-                                        :title,
-                                        :description,
-                                        :borrowing_amount,
-                                        :amount_funded,
-                                        :requested_by_date,
-                                        :payments_begin_date,
-                                        :payments_end_date
-                                       )
+    params.require(loan_request).permit(:user_id, :title, :description,
+                                        :borrowing_amount, :amount_funded,
+                                        :requested_by_date, 
+                                        :payments_begin_date, 
+                                        :payments_end_date)
   end
-
 end
