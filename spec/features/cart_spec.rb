@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe 'cart' do
-
   before(:each) do
     LoanRequest.create!(user_id:             10101,
                         title:               "Buy Jorge Beiber Tickets",
@@ -43,8 +42,7 @@ describe 'cart' do
     expect(page).to have_content("cart is empty")
   end
 
-  describe "adding items to the cart" do
-
+  context "adding items to the cart" do
     it "has items on the page" do
       expect(page).to have_content("Buy Jorge Beiber Tickets")
     end
@@ -73,4 +71,14 @@ describe 'cart' do
       expect(page).to have_content("Steve broke his phone")
     end
   end
+
+  context "checkout process" do
+    it "has a checkout button" do
+
+    end
+
+  end
+
+
+
 end
