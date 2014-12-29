@@ -29,11 +29,12 @@ describe 'User Interactions', type: :feature do
 
       it 'can navigate to an edit profile page' do
         click_link 'My Profile'
-        expect(page).to have_content('Edit User Profile')
+        expect(page).to have_content('edit')
       end
 
       it 'can change their username' do
         click_link 'My Profile'
+        click_link 'edit'
         fill_in 'Username', with: 'Cavey'
         click_button 'Submit'
         expect(page).to have_content('User was updated.')
@@ -41,6 +42,7 @@ describe 'User Interactions', type: :feature do
 
       it 'can change their email' do
         click_link 'My Profile'
+        click_link 'edit'
         fill_in 'Email', with: 'boss@aperturelabs.com'
         click_button 'Submit'
         expect(page).to have_content('User was updated.')
