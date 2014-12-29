@@ -4,6 +4,7 @@
   <%= link_to 'open', 'loan_requests?status=open' %>,
   <%= link_to 'closed', 'loan_requests?status=closed' %> or
   <%= link_to 'all', loan_requests_path %> loan requests.</p>
+<h3><%= link_to 'Create loan request', new_loan_request_path %></h3>
 
 <%= form_tag '/cart' do |f| %>
   <% @loan_requests.each do |lr| %>
@@ -27,5 +28,6 @@
   <div style="clear:both"></div>
   <%= submit_tag "Add selected Loans to Cart" %>
 <% end %>
+
 
 <div style="clear:both;"></div>
