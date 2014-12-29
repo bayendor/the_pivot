@@ -20,7 +20,7 @@ class TenantsController < ApplicationController
 
   def show
     @tenant = Tenant.find_by(slug: params[:slug])
-    @loan_requests = []
+    # @loan_requests = []
   end
 
   private

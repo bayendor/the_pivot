@@ -4,17 +4,16 @@
   <%= link_to 'open', 'loan_requests?status=open' %>,
   <%= link_to 'closed', 'loan_requests?status=closed' %> or
   <%= link_to 'all', loan_requests_path %> loan requests.</p>
-<h3><%= link_to 'Create loan request', new_loan_request_path %></h3>
 
 <%= form_tag '/cart' do |f| %>
   <% @loan_requests.each do |lr| %>
     <div class="loan_request">
-      <p style="font-weight: bold"><%= "Title: #{lr.title.titleize}" %></p>
+      <p style="font-weight: bold">Title: <%= link_to "#{lr.title.titleize}", loan_request_path(lr) %></p>
       <p><%= "Description: #{lr.description}" %></p>
       <p><%= "Borrowing Amount: #{lr.borrowing_amount}" %></p>
       <p><%= "Amount Funded: #{lr.amount_funded}" %></p>
       <p><%= "Requested by: #{lr.requested_by_date}" %></p>
-      <p><%= "Loan Term: #{lr.loan_term}" %></p>
+      <p><%= "Loan Term: #{lr.loan_term}" %> months</p>
       <p><%= "Status: #{lr.status}" %></p>
       <p><%= "Created at: #{lr.created_at}" %></p>
         <% if lr.status == 'open' %>

@@ -21,7 +21,7 @@ class LoanRequestsController < ApplicationController
   end
 
   def show
-    @loan_requests = LoanRequest.find_by(id: params[:id])
+    @loan_request = LoanRequest.find_by(id: params[:id])
   end
 
   private
@@ -33,4 +33,9 @@ class LoanRequestsController < ApplicationController
                                          :payments_begin_date,
                                          :payments_end_date)
   end
+
+  def set_loan_request
+    @loan_requests = LoanRequest.find_by(id: params[:id])
+  end
+
 end

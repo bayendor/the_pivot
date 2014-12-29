@@ -1,0 +1,7 @@
+<h1>My Profile</h1>
+
+<p>Name: <%= @user.first_name %> <%= @user.last_name %></p>
+<p>Email: <%= @user.email %></p>
+<p>Username: <%= @user.username %></p>
+
+<%= link_to 'EDIT', edit_user_path %>

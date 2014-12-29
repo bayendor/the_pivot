@@ -10,8 +10,7 @@
   <% end%>
 
   <% if current_user %>
-    <%= link_to "My Past Contributions", loans_path %>
-    <%= link_to "My Profile", edit_user_path(current_user) %>
+    <%= link_to "My Profile", user_path(current_user) %>
   <% end %>
 
   <% if current_user && current_user.is_admin? %>
