@@ -1,4 +1,8 @@
 class TenantsController < ApplicationController
+  before_action :set_tenant, only: [:show, :edit, :update, :destroy]
+
+  before_action :current_user, only: [:show, :edit, :update]
+
   def index
     @tenants = Tenant.all
   end
@@ -23,8 +27,27 @@ class TenantsController < ApplicationController
     # @loan_requests = []
   end
 
-  private
-  def tenant_params
-    params.require(:tenant).permit(:name)
+  def edit
   end
+
+  def update
+    respond_to do |format|
+      if current_user.tenant.update(tenant_params)
+        format.html { redirect_to tenant_path(current_user.tenant.slug), notice: 'Your store has been updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
+  private
+
+  def tenant_params
+    params.require(:tenant).permit(:name, :slug, :description)
+  end
+
+  def set_tenant
+    @tenant = Tenant.find_by(slug: params[:slug])
+  end
+
 end
