@@ -57,10 +57,8 @@ describe 'cart' do
       fill_in "username", with: user.username
       fill_in "password", with: user.password
       find('input[value="Log In"]').click
-      expect(page).to have_content("My Past Contributions")
 
       visit "/cart"
-      expect(page).to have_content("My Past Contributions")
       expect(page).to have_content("Buy Jorge Beiber Tickets")
     end
 
