@@ -22,14 +22,16 @@
         </ul>
       </div>
     <% end %>
+
     <p>All fields are required</p>
-    <p><%= label_tag :first_name, "First Name"%><br>
+
+    <p><%= label_tag :first_name, "First Name" %><br>
     <%= f.text_field :first_name %></p>
 
-    <p><%= label_tag :last_name, "Last Name"%><br>
+    <p><%= label_tag :last_name, "Last Name" %><br>
     <%= f.text_field :last_name %></p>
 
-    <p><%= label_tag :email, "Email"%><br>
+    <p><%= label_tag :email, "Email" %><br>
     <%= f.text_field :email %></p>
 
     <p><%= label_tag :username, "Username"%><br>
@@ -42,5 +44,5 @@
     <%= f.password_field :password_confirmation %></p>
 
     <button type="submit">Submit</button>
-  <%end%>
-<%end%>
+  <% end %>
+<% end %>
