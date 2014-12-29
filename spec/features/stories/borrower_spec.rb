@@ -21,6 +21,7 @@ describe 'Borrower Interactions', type: :feature do
       end
 
       it 'has a link to create a new loan request' do
+        visit '/loan_requests'
         expect(page).to have_link 'Create loan request'
       end
     end
