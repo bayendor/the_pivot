@@ -3,6 +3,8 @@
 <div class="store">
   <p><%= @tenant.description %></p>
 
+  <p><%= link_to "edit my store", edit_tenant_path %>
+
   <h3><%= link_to 'Create loan request', new_loan_request_path %></h3>
   <h3><%= link_to "My Past Contributions", loans_path %></h3>
 
