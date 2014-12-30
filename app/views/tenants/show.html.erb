@@ -13,7 +13,7 @@
   <% @tenant.loan_requests.each do |lr| %>
     <div class="loan_request">
       <p style="font-weight: bold"><%= "Title: #{lr.title.titleize}" %></p>
-      <p><%= "Description: #{lr.description}" %></p>
+      <p><%= "Blurb: #{lr.blurb}" %></p>
       <p><%= "Borrowing Amount: #{lr.borrowing_amount}" %></p>
       <p><%= "Amount Funded: #{lr.amount_funded}" %></p>
       <p><%= "Requested by: #{lr.requested_by_date}" %></p>

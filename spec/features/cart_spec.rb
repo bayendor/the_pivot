@@ -5,6 +5,7 @@ describe 'cart' do
   before(:each) do
     LoanRequest.create!(user_id:             10101,
                         title:               "Buy Jorge Beiber Tickets",
+                        blurb:               "Jorge loves Bieber",
                         description:         "Jorge desperately wants to see a concert!",
                         borrowing_amount:    500,
                         amount_funded:       10,
@@ -16,6 +17,7 @@ describe 'cart' do
 
     LoanRequest.create!(user_id:             1337,
                         title:               "Steve needs a new phone.",
+                        blurb:               "Steve is clumsy.",
                         description:         "Steve broke his phone and it doesn't work.",
                         borrowing_amount:    800,
                         amount_funded:       60,
