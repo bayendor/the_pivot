@@ -17,7 +17,7 @@ gem 'compass-rails'
 gem 'faker'
 gem 'bcrypt', '~> 3.1.7'
 gem 'paperclip'
-
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'simplecov', :require => false, :group => :test
