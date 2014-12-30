@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.paperclip_defalts = {
+  config.paperclip_defaults = {
     storage: :s3,
     s3_credentials: {
       bucket: ENV['S3_BUCKET_NAME'],
