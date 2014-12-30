@@ -12,14 +12,14 @@
 
   <% @tenant.loan_requests.each do |lr| %>
     <div class="loan_request">
-      <p style="font-weight: bold"><%= "Title: #{lr.title.titleize}" %></p>
-      <p><%= "Blurb: #{lr.blurb}" %></p>
+      <p style="font-weight: bold">Title: <%= link_to "#{lr.title.titleize}", loan_request_path(lr) %></p>
+      <p><%= image_tag lr.image.url(:thumb) %>
+      <p><%= "Blurb: #{lr.blurb}" %> <%= link_to "Learn more.", loan_request_path(lr) %></p>
       <p><%= "Borrowing Amount: #{lr.borrowing_amount}" %></p>
       <p><%= "Amount Funded: #{lr.amount_funded}" %></p>
       <p><%= "Requested by: #{lr.requested_by_date}" %></p>
-      <p><%= "Loan Term: #{lr.loan_term}" %></p>
+      <p><%= "Loan Term: #{lr.loan_term}" %> months</p>
       <p><%= "Status: #{lr.status}" %></p>
-      <p><%= "Created at: #{lr.created_at}" %></p>
 
       <% if !current_tenant && !current_user %>
       <p><% if lr.status == 'open' %>
@@ -33,7 +33,8 @@
     </div>
     <div style="clear:both"></div>
   <%end%>
-  <%= submit_tag "Add selected Loans to Cart" %>
-
+  <% if !current_tenant && !current_user %>
+    <%= submit_tag "Add selected Loans to Cart" %>
+  <% end %>
 </div>
 <div style="clear:both"></div>
