@@ -9,6 +9,7 @@
   <% @loan_requests.each do |lr| %>
     <div class="loan_request">
       <p style="font-weight: bold">Title: <%= link_to "#{lr.title.titleize}", loan_request_path(lr) %></p>
+      <p><%= image_tag lr.image.url(:thumb) %>
       <p><%= "Description: #{lr.description}" %></p>
       <p><%= "Borrowing Amount: #{lr.borrowing_amount}" %></p>
       <p><%= "Amount Funded: #{lr.amount_funded}" %></p>

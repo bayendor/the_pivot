@@ -1,31 +1,32 @@
 Rails.application.configure do
+  config.paperclip_defalts = {
+    storage: :s3,
+    s3_credentials: {
+      bucket: ENV['S3_BUCKET_NAME'],
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    }
+  }
 
   config.cache_classes = true
 
-
   config.eager_load = true
 
-
   config.consider_all_requests_local       = false
+
   config.action_controller.perform_caching = true
 
-
   config.serve_static_assets = true
-
 
   config.assets.js_compressor = :uglifier
 
   config.assets.compile = true
 
-
   config.assets.digest = true
-
 
   config.log_level = :info
 
   config.force_ssl = true
-
-
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
