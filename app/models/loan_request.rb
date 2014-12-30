@@ -12,6 +12,7 @@ class LoanRequest < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates :user_id, presence: true
   validates :title, presence: true
+  validates :blurb, presence: true
   validates :description, presence: true
   validates :borrowing_amount, presence: true
   validates :amount_funded, presence: true
@@ -20,7 +21,7 @@ class LoanRequest < ActiveRecord::Base
   validates :payments_end_date, presence: true
   validates :status, presence: true
 
-  scope :status, -> (status) { where status: status }  
+  scope :status, -> (status) { where status: status }
 
   def loan_term
     ((payments_end_date - payments_begin_date) / 2_592_000).round

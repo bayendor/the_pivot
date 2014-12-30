@@ -27,7 +27,7 @@ class LoanRequestsController < ApplicationController
   private
 
   def loan_request_params
-    params.require(:loan_request).permit(:user_id, :title, :description,
+    params.require(:loan_request).permit(:user_id, :title, :description, :blurb, 
                                          :borrowing_amount, :amount_funded,
                                          :requested_by_date,
                                          :payments_begin_date,

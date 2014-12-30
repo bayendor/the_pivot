@@ -72,6 +72,7 @@ class Seed
     User.all.each do |user|
       LoanRequest.create!(user_id:             user.id,
                           title:               Faker::Company.bs,
+                          blurb:               "This is a blurb.", 
                           description:         Faker::Lorem.sentence,
                           borrowing_amount:    (Faker::Commerce.price * 1000).to_i,
                           amount_funded:       (Faker::Commerce.price * 100).to_i,

@@ -17,7 +17,12 @@
     <p><%= label_tag :title, 'Title' %></br>
     <%= f.text_field :title %></p>
 
+    <p><%= label_tag :blurb, 'Blurb' %></br>
+    <p><small>Please enter a brief description of your loan request.</small><br>
+    <%= f.text_field :blurb %></p>
+
     <p><%= label_tag :description, 'Description' %></br>
+    <p><small>Please enter a continued description of your loan request.</small><br>
     <%= f.text_field :description %></p>
 
     <p><%= label_tag :borrowing_amount, 'Loan Amount' %></br>
