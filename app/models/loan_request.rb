@@ -30,4 +30,8 @@ class LoanRequest < ActiveRecord::Base
   def repayment_rate
     borrowing_amount / loan_term
   end
+
+  def remaining_amount
+    borrowing_amount - amount_funded
+  end
 end

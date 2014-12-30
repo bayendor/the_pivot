@@ -17,6 +17,11 @@
       <p><%= "Loan Term: #{lr.loan_term}" %> months</p>
       <p><%= "Status: #{lr.status}" %></p>
         <% if lr.status == 'open' %>
+          <% if lr.remaining_amount < 500 %>
+            <%= select_tag("amount_option_#{lr.id}", options_for_select((25..lr.remaining_amount).step(25).to_a)) %>
+          <% else %>
+            <%= select_tag("amount_option_#{lr.id}", options_for_select((25..500).step(25).to_a)) %>
+          <% end %>
         <%= check_box_tag "loan_requests[]", lr.id %>
         <%= label_tag("loan_request_#{lr.id}", "<-- Yes, I want to Loan!") %>
         <% else %>
