@@ -8,3 +8,11 @@
 <p>Requested by: <%= @loan_request.requested_by_date %></p>
 <p>Payment Start Date: <%= @loan_request.payments_begin_date %></p>
 <p>Payment End Date: <%= @loan_request.payments_end_date %></p>
+  <% if !current_tenant && !current_user %>
+  <p><% if @loan_request.status == 'open' %>
+      <%= check_box_tag "loan_requests[]", @loan_request.id %>
+      <%= label_tag("loan_request_#{@loan_request.id}", "<-- Yes, I want to Loan!") %>
+    <% else %>
+    <p><em>Fully funded!</em></p>
+  <% end %>
+<% end %>
