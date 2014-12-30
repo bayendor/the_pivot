@@ -7,7 +7,7 @@
   <%end%>
 </div>
 
-<% @cart.flatten.each do |lr| %>
+<% cart.find_loan_request.each do |lr| %>
   <div class="loan_request">
     <p style="font-weight: bold"><%= "Title: #{lr.title.titleize}" %></p>
     <p><%= "Description: #{lr.description}" %></p>
