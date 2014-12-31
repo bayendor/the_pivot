@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :cart, only: [:index]
   resources :loans
-  resources :loan_requests, only: [:index, :new, :show, :create]
+  resources :loan_requests, only: [:index, :new, :show, :create, :update]
 
   get  '/register', to: 'users#register'
   post '/register', to: 'users#create'
