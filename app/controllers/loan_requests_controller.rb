@@ -23,8 +23,11 @@ class LoanRequestsController < ApplicationController
   def update
     session["cart"]["loans"].each do |key, value|
       LoanRequest.find_by(id: key).increment!(:amount_funded, value.to_i)
+      Loan.create(user_id: current_user.id, loan_request_id: key, amount: value)
     end
-    redirect_to root_path
+    session["cart"] = nil
+    flash[:notice] = "Thanks for your order."
+    redirect_to loans_path
   end
 
   def show

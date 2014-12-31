@@ -1,8 +1,16 @@
 <h1>Your past contributions are below</h1>
 
-<% @loans.each do |t| %>
+<% @loans.reverse.each do |t| %>
   <div class="borrower">
-    <p><%= t.amount %></p>
-    <p><%= t.status %></p>
+    <p><%= image_tag t.loan_request.image.url(:main) %></p>
+    <p><%= "Your Order Number: " %><%= t.id %></p>
+    <p><%= "Amount You Funded This Order: " %><%= number_to_currency(t.amount, precision: 0) %></p>
+    <p><%= "Loan Request Title: " %><%= t.loan_request.title %></p>
+    <p><%= "Loan Request Description: " %><%= t.loan_request.description %></p>
+    <p><%= "Total Loan Request Amount: " %><%= number_to_currency(t.loan_request.borrowing_amount, percision: 0) %></p>
+    <p><%= "Total Amount Funded To Date: " %><%= number_to_currency(t.loan_request.amount_funded, precision: 0) %></p>
+    <p><%= "Loan Request Status: " %><%= t.loan_request.status %></p>
+    <p><%= "Payments Begin Date: " %><%= t.loan_request.payments_begin_date.strftime('%m/%d/%Y') %></p>
+    <p><%= "Payments End Date: " %><%= t.loan_request.payments_end_date.strftime('%m/%d/%Y') %></p>
   </div>
 <%end%>
