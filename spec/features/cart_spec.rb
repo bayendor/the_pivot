@@ -1,8 +1,8 @@
 require "rails_helper"
 
-describe 'cart' do
+describe 'Cart' do
   before(:each) do
-    LoanRequest.create!(user_id:             10101,
+    LoanRequest.create!(user:                user,
                         title:               "Buy Jorge Beiber Tickets",
                         blurb:               "Jorge loves Bieber",
                         description:         "Jorge desperately wants to see a concert!",
@@ -14,7 +14,7 @@ describe 'cart' do
                         status:              "open"
                        )
 
-    LoanRequest.create!(user_id:             1337,
+    LoanRequest.create!(user:               user,
                         title:               "Steve needs a new phone.",
                         blurb:               "Steve is clumsy.",
                         description:         "Steve broke his phone and it doesn't work.",
@@ -26,6 +26,7 @@ describe 'cart' do
                         status:              "open"
                        )
 
+    tenant.users << user
     visit "/loan_requests"
   end
 
@@ -35,6 +36,10 @@ describe 'cart' do
                  username:   "tom foolery",
                  password:   "password"
                 )
+  end
+
+  let(:tenant) do
+    Tenant.create!(name: "Fantastico")
   end
 
   it "can't visit the cart page without items in the cart" do
@@ -48,6 +53,7 @@ describe 'cart' do
     end
 
     it "can add items and they persist after logging in" do
+      save_and_open_page
       find(:css, "#loan_requests_[value='#{LoanRequest.first.id}']").set(true)
       find('input[value="Add selected Loans to Cart"]').click
       expect(current_path).to eq("/cart")
