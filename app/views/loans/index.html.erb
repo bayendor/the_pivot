@@ -1,6 +1,6 @@
 <h1>Your past contributions are below</h1>
 
-<% @loans.reverse.each do |t| %>
+<% @loans.reverse_each do |t| %>
   <div class="borrower">
     <p><%= image_tag t.loan_request.image.url(:main) %></p>
     <p><%= "Your Order Number: " %><%= t.id %></p>
