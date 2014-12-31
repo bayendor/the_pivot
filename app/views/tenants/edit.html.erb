@@ -11,11 +11,12 @@
     </ul>
   </div>
   <% end %>
-<p> <%= f.label :name, "Store Name" %><br>
-    <%= f.text_field :name %></p>
+<p> <%= f.label :name, "My Store Name" %><br>
+    <%= f.text_field :name, :style => "width:300px"%></p>
 
-<p> <%= f.label :description, "Description" %><br>
-    <%= f.text_field :description %></p>
+<p> <%= f.label :description, "My Story" %><br>
+    <small>Please tell visitors a little about yourself. Who are you? What are you hoping to accomplish through Keevahh? How will the support of lenders change your life?</small><br>
+    <%= f.text_field :description, :size => "200" %></p>
 
     <button type="submit">Submit</button>
 <%end%>

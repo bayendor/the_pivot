@@ -3,5 +3,6 @@
 <p>Name: <%= @user.first_name %> <%= @user.last_name %></p>
 <p>Email: <%= @user.email %></p>
 <p>Username: <%= @user.username %></p>
+<h3><%= link_to "My Past Contributions", loans_path %></h3>
 
 <%= link_to 'edit', edit_user_path %>
