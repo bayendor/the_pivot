@@ -67,11 +67,27 @@ nav li {
   text-transform: uppercase;
 }
 
+subnav {
+  color: #858585;
+}
+
+.showcase {
+  background: #fff;
+  border: 1px solid #EBE7E0;
+  border-radius: 15px;
+  width: 23%;
+  padding: 6px;
+  margin: 5px 5px 20px 5px;
+  float: left;
+}
+
 .borrower {
   border: 1px solid #EBE7E0;
+  border-radius: 15px;
   padding: 10px;
   width: 30%;
   margin: 10px;
+  float: left;
 }
 
 .store {

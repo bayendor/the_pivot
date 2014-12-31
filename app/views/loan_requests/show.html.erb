@@ -1,6 +1,9 @@
-<h2>Loan Requests</h2>
+<h2>Loan Request</h2>
 
 <p>Title: <%= "#{@loan_request.title.titleize}" %></p>
+
+<p>Borrower: <%= @loan_request.user.tenant.name %>
+
 <p><%= image_tag @loan_request.image.url(:main) %>
 <p><%= @loan_request.blurb %>
 <p><%= @loan_request.description %></p>
@@ -15,4 +18,6 @@
     <% else %>
     <p><em>Fully funded!</em></p>
   <% end %>
+  <div style="clear:both;"></div>
+  <%= submit_tag "Add selected Loans to Cart" %>
 <% end %>

@@ -10,7 +10,7 @@
   <% end%>
 
   <% if current_user %>
-    <%= link_to "My Profile", user_path(current_user) %>
+    <%= link_to "My Profile", user_path(current_user) %> &bull;
   <% end %>
 
   <% if current_user && current_user.is_admin? %>
