@@ -14,11 +14,11 @@
         </div>
       <% end %>
       <h3>Apply to Become a Borrower!</h3></br>
-      <p><%= f.text_field :name, placeholder: "Business Name" %></p>
+      <p><%= f.text_field :name, placeholder: "Business Name", :style => "width:300px" %></p>
       <p><small>Please enter a brief description of your business effort.</small><br>
-      <%= f.text_area :description %></p>
+      <%= f.text_field :description, :size => "200" %></p>
 
-      <p><%= f.submit "Apply", class: "" %></p>
+      <p><%= f.submit "Apply" %></p>
     <% end %>
   <% end %>
 </div>

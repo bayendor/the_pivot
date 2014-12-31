@@ -10,6 +10,7 @@
   <% end%>
 
   <% if current_user %>
+    Signed in as <strong><%= current_user.username %></strong> &bull;
     <%= link_to "My Profile", user_path(current_user) %> &bull;
   <% end %>
 
