@@ -20,6 +20,13 @@ class LoanRequestsController < ApplicationController
     end
   end
 
+  def update
+    session["cart"]["loans"].each do |key, value|
+      LoanRequest.find_by(id: key).increment!(:amount_funded, value.to_i)
+    end
+    redirect_to root_path
+  end
+
   def show
     @loan_request = LoanRequest.find_by(id: params[:id])
   end
@@ -27,7 +34,7 @@ class LoanRequestsController < ApplicationController
   private
 
   def loan_request_params
-    params.require(:loan_request).permit(:user_id, :title, :description, :blurb, 
+    params.require(:loan_request).permit(:user_id, :title, :description, :blurb,
                                          :borrowing_amount, :amount_funded,
                                          :requested_by_date,
                                          :payments_begin_date,

@@ -3,7 +3,7 @@
   <% unless current_user %>
     <h3>Please log in above to complete your order.</h3>
   <% else %>
-    <%= link_to "Continue Order", class: "button" %>
+    <%= link_to "Checkout", loan_request_path(cart.find_loan_request), method: :put, class: "button" %>
   <%end%>
 </div>
 
@@ -17,6 +17,8 @@
     <p><%= "Loan Term: #{lr.loan_term}" %></p>
     <p><%= "Status: #{lr.status}" %></p>
     <p><%= "Created at: #{lr.created_at}" %></p>
+    </br>
+    <p><%= "Amount Loaned: #{cart.loans[lr.id.to_s]}" %></p>
   </div>
 <% end %>
 
