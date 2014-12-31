@@ -53,7 +53,6 @@ describe 'Cart' do
     end
 
     it "can add items and they persist after logging in" do
-      save_and_open_page
       find(:css, "#loan_requests_[value='#{LoanRequest.first.id}']").set(true)
       find('input[value="Add selected Loans to Cart"]').click
       expect(current_path).to eq("/cart")
