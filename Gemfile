@@ -31,6 +31,7 @@ group :development, :test do
   gem 'launchy'
   gem 'guard-rspec', require: false
   gem 'factory_girl_rails'
+  gem 'traceroute'
 end
 
 group :production, :staging do
