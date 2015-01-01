@@ -36,7 +36,6 @@ describe "checkout" do
       within("nav") do
         click_link_or_button "Make A Loan"
       end
-      save_and_open_page
       expect(page).to have_content("Loan Requests")
 
       find("input[type='checkbox']").set(true)
