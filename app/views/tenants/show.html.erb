@@ -3,10 +3,12 @@
 <div class="store">
   <p><%= @tenant.description %></p>
 
-  <p><%= link_to "edit my store", edit_tenant_path %>
+  <!-- needs to display for both the tenant and their sub-admins -->
+    <p><%= link_to "edit my store", edit_tenant_path %>
 
   <h3>Loan Requests:</h3>
-  <h3><%= link_to 'Create new loan request', new_loan_request_path %></h3>
+  <!-- needs to display for both the tenant and their sub-admins -->
+    <h3><%= link_to 'Create new loan request', new_loan_request_path %></h3>
 
   <% @tenant.loan_requests.each do |lr| %>
     <div class="loan_request">
@@ -32,7 +34,11 @@
     <div style="clear:both"></div>
   <%end%>
   <% if !current_tenant && !current_user %>
-    <%= submit_tag "Add selected Loans to Cart" %>
+    <% @tenant.loan_requests.each do |lr| %>
+      <% if lr.status == 'open' %>
+        <%= submit_tag "Add selected Loans to Cart" %>
+        <% end %>
+      <% end %>
   <% end %>
 </div>
 <div style="clear:both"></div>

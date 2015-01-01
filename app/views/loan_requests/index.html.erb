@@ -10,11 +10,13 @@
     <div class="loan_request">
       <p style="font-weight: bold">Title: <%= link_to "#{lr.title.titleize}", loan_request_path(lr) %></p>
       <p><%= image_tag lr.image.url(:thumb) %>
+      <p>Borrower: <%= lr.user.tenant.name %>
       <p><%= "Blurb: #{lr.blurb}" %> <%= link_to "Learn more.", loan_request_path(lr) %></p>
       <p><%= "Borrowing Amount: #{number_to_currency(lr.borrowing_amount, precision: 0)}" %></p>
       <p><%= "Amount Funded: #{number_to_currency(lr.amount_funded, precision: 0)}" %></p>
       <p><%= "Requested by: #{lr.requested_by_date.strftime('%m/%d/%Y')}" %></p>
       <p><%= "Loan Term: #{lr.loan_term}" %> months</p>
+      <p><%= "Repayment Rate: #{number_to_currency(lr.repayment_rate, precision: 0)}" %> / month</p>
       <p><%= "Status: #{lr.status}" %></p>
         <% if lr.status == 'open' %>
           <% if lr.remaining_amount < 500 %>

@@ -2,7 +2,7 @@ class LoanRequestsController < ApplicationController
   before_action :set_loan_request, only: [:show, :edit, :update]
 
   def index
-    @loan_requests = LoanRequest.order(id: :asc)
+    @loan_requests = LoanRequest.all
     @loan_requests = @loan_requests.status(params[:status]) if params[:status].present?
   end
 
@@ -21,12 +21,12 @@ class LoanRequestsController < ApplicationController
   end
 
   def update
-    session["cart"]["loans"].each do |key, value|
+    session['cart']['loans'].each do |key, value|
       LoanRequest.find_by(id: key).increment!(:amount_funded, value.to_i)
       Loan.create(user_id: current_user.id, loan_request_id: key, amount: value)
     end
-    session["cart"] = nil
-    flash[:notice] = "Thanks for your order."
+    session['cart'] = nil
+    flash[:notice] = 'Thanks for your order.'
     redirect_to loans_path
   end
 
@@ -47,5 +47,4 @@ class LoanRequestsController < ApplicationController
   def set_loan_request
     @loan_requests = LoanRequest.find_by(id: params[:id])
   end
-
 end

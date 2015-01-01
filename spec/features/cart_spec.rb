@@ -1,8 +1,8 @@
 require "rails_helper"
 
-describe 'cart' do
+describe 'Cart' do
   before(:each) do
-    LoanRequest.create!(user_id:             10101,
+    LoanRequest.create!(user:                user,
                         title:               "Buy Jorge Beiber Tickets",
                         blurb:               "Jorge loves Bieber",
                         description:         "Jorge desperately wants to see a concert!",
@@ -14,7 +14,7 @@ describe 'cart' do
                         status:              "open"
                        )
 
-    LoanRequest.create!(user_id:             1337,
+    LoanRequest.create!(user:               user,
                         title:               "Steve needs a new phone.",
                         blurb:               "Steve is clumsy.",
                         description:         "Steve broke his phone and it doesn't work.",
@@ -26,6 +26,7 @@ describe 'cart' do
                         status:              "open"
                        )
 
+    tenant.users << user
     visit "/loan_requests"
   end
 
@@ -35,6 +36,10 @@ describe 'cart' do
                  username:   "tom foolery",
                  password:   "password"
                 )
+  end
+
+  let(:tenant) do
+    Tenant.create!(name: "Fantastico")
   end
 
   it "can't visit the cart page without items in the cart" do
@@ -52,14 +57,14 @@ describe 'cart' do
       find('input[value="Add selected Loans to Cart"]').click
       expect(current_path).to eq("/cart")
       expect(page).to have_content("Your Cart")
-      expect(page).to have_content("Buy Jorge Beiber Tickets")
+      expect(page).to have_content("Steve Needs A New Phone.")
 
       fill_in "username", with: user.username
       fill_in "password", with: user.password
       find('input[value="Log In"]').click
 
       visit "/cart"
-      expect(page).to have_content("Buy Jorge Beiber Tickets")
+      expect(page).to have_content("Steve Needs A New Phone.")
     end
 
     it "can add items from multiple borrowers" do
@@ -67,8 +72,8 @@ describe 'cart' do
       find(:css, "#loan_requests_[value='#{LoanRequest.second.id}']").set(true)
       find('input[value="Add selected Loans to Cart"]').click
 
+      expect(page).to have_content("Steve Needs A New Phone.")
       expect(page).to have_content("Buy Jorge Beiber Tickets")
-      expect(page).to have_content("Steve broke his phone")
     end
   end
 
