@@ -1,5 +1,6 @@
 class LoanRequest < ActiveRecord::Base
   belongs_to :user
+  default_scope { order('updated_at DESC') }
 
   has_many :loan_request_categories
   has_many :categories, through: :loan_request_categories
