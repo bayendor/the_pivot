@@ -28,14 +28,15 @@ describe "checkout" do
       fill_in 'loan_request[blurb]', with: "I need more money"
       fill_in 'loan_request[description]', with: "I need lots of  money"
       fill_in 'loan_request[borrowing_amount]', with: "5000"
-      fill_in 'loan_request[requested_by_date]', with: "01/01/2015"
-      fill_in 'loan_request[payments_begin_date]', with: "02/01/2015"
-      fill_in 'loan_request[payments_end_date]', with: "03/01/2015"
+      fill_in 'loan_request[requested_by_date]', with: DateTime.new(2015, 01, 01)
+      fill_in 'loan_request[payments_begin_date]', with: DateTime.new(2015, 01, 28)
+      fill_in 'loan_request[payments_end_date]', with: DateTime.new(2015, 12, 28)
       click_link_or_button "Submit"
 
       within("nav") do
         click_link_or_button "Make A Loan"
       end
+      save_and_open_page
       expect(page).to have_content("Loan Requests")
 
       find("input[type='checkbox']").set(true)
@@ -72,9 +73,9 @@ describe "checkout" do
       fill_in 'loan_request[blurb]', with: "I need more money"
       fill_in 'loan_request[description]', with: "I need lots of  money"
       fill_in 'loan_request[borrowing_amount]', with: "5000"
-      fill_in 'loan_request[requested_by_date]', with: "01/01/2015"
-      fill_in 'loan_request[payments_begin_date]', with: "02/01/2015"
-      fill_in 'loan_request[payments_end_date]', with: "03/01/2015"
+      fill_in 'loan_request[requested_by_date]', with: DateTime.new(2015, 01, 01)
+      fill_in 'loan_request[payments_begin_date]', with: DateTime.new(2015, 01, 28)
+      fill_in 'loan_request[payments_end_date]', with: DateTime.new(2015, 12, 28)
       click_link_or_button "Submit"
       expect(page).to have_content("Create New Loan Request")
       expect(page).to have_content("error occurred")
