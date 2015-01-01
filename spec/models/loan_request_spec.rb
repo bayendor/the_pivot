@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe LoanRequest do
-  let(:category) do
-    Category.create(name: 'name', description: 'description')
+
+  let(:category_1) do
+    FactoryGirl.create(:category_1)
   end
 
-  let(:category1) do
-    Category.create(name: 'name', description: 'description')
+  let(:category_2) do
+    FactoryGirl.create(:category_2)
   end
 
   let(:loan_request) do
@@ -25,7 +26,7 @@ RSpec.describe LoanRequest do
 
   describe 'relationships' do
     it 'has many categories' do
-      expect(loan_request.categories).to eq([category, category1])
+      expect(loan_request.categories).to eq([category_1, category_2])
     end
   end
 

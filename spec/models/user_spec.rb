@@ -2,13 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let!(:user) do
-    User.create(first_name: 'Jim',
-                last_name: 'Jones',
-                email: 'jimmy@jones.com',
-                username: 'JimJones',
-                password: 'password',
-                password_confirmation: 'password'
-               )
+    FactoryGirl.create(:user)
   end
 
   it 'is valid' do
