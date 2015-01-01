@@ -57,14 +57,14 @@ describe 'Cart' do
       find('input[value="Add selected Loans to Cart"]').click
       expect(current_path).to eq("/cart")
       expect(page).to have_content("Your Cart")
-      expect(page).to have_content("Buy Jorge Beiber Tickets")
+      expect(page).to have_content("Steve Needs A New Phone.")
 
       fill_in "username", with: user.username
       fill_in "password", with: user.password
       find('input[value="Log In"]').click
 
       visit "/cart"
-      expect(page).to have_content("Buy Jorge Beiber Tickets")
+      expect(page).to have_content("Steve Needs A New Phone.")
     end
 
     it "can add items from multiple borrowers" do
@@ -72,8 +72,8 @@ describe 'Cart' do
       find(:css, "#loan_requests_[value='#{LoanRequest.second.id}']").set(true)
       find('input[value="Add selected Loans to Cart"]').click
 
+      expect(page).to have_content("Steve Needs A New Phone.")
       expect(page).to have_content("Buy Jorge Beiber Tickets")
-      expect(page).to have_content("Steve broke his phone")
     end
   end
 
