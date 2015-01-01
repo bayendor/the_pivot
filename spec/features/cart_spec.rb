@@ -31,11 +31,7 @@ describe 'Cart' do
   end
 
   let(:user) do
-    User.create!(first_name: "tom",
-                 email:      "example@example.com",
-                 username:   "tom foolery",
-                 password:   "password"
-                )
+    FactoryGirl.create(:user)
   end
 
   let(:tenant) do
@@ -78,12 +74,9 @@ describe 'Cart' do
   end
 
   context "checkout process" do
-    it "has a checkout button" do
+    xit "has a checkout button" do
 
     end
-
   end
-
-
 
 end
