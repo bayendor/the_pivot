@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   def create
     user = User.find_by(username: params[:username])
 
@@ -8,9 +7,10 @@ class SessionsController < ApplicationController
       redirect_to :back
     elsif user && user.tenant
       session[:tenant_slug] = user.tenant.slug
-      redirect_to tenants_path(session[:tenant_slug]), notice: "Logged in as #{current_user.name}"
+      redirect_to tenants_path(session[:tenant_slug]),
+                  notice: "Logged in as #{current_user.name}"
     else
-      redirect_to :back, notice: "Your account is invalid. Please Try Again."
+      redirect_to :back, notice: 'Your account is invalid. Please Try Again.'
     end
   end
 

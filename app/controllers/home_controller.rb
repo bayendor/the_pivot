@@ -1,8 +1,6 @@
 class HomeController < ApplicationController
-  layout "application"
+  layout 'application'
 
   def index
-    # @loans = Loan.all.sort
   end
-
 end

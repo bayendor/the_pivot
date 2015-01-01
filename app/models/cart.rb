@@ -1,19 +1,18 @@
 class Cart
-
   attr_reader :session
 
   def initialize(session)
     @session = session
-    session["cart"] ||= {}
-    session["cart"]["loans"] ||= {}
+    session['cart'] ||= {}
+    session['cart']['loans'] ||= {}
   end
 
   def session_cart
-    session["cart"]
+    session['cart']
   end
 
   def loans
-    session["cart"]["loans"]
+    session['cart']['loans']
   end
 
   def find_loan_request
@@ -30,6 +29,4 @@ class Cart
   # def remove_item
   #
   # end
-
-
 end

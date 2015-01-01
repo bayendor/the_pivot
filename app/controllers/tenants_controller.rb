@@ -16,7 +16,7 @@ class TenantsController < ApplicationController
     if @tenant.save
       session[:tenant_id] = @tenant.id
       current_user.update_attribute(:tenant_id, @tenant.id)
-      redirect_to tenant_path(@tenant.slug), notice: "Thanks for creating your store."
+      redirect_to tenant_path(@tenant.slug), notice: 'Thanks for creating your store.'
     else
       render :new
     end
@@ -49,5 +49,4 @@ class TenantsController < ApplicationController
   def set_tenant
     @tenant = Tenant.find_by(slug: params[:slug])
   end
-
 end
