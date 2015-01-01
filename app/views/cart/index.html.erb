@@ -10,13 +10,14 @@
 <% cart.find_loan_request.each do |lr| %>
   <div class="loan_request">
     <p style="font-weight: bold"><%= "Title: #{lr.title.titleize}" %></p>
-    <p><%= "Description: #{lr.description}" %></p>
-    <p><%= "Borrowing Amount: #{lr.borrowing_amount}" %></p>
-    <p><%= "Amount Funded: #{lr.amount_funded}" %></p>
-    <p><%= "Requested by: #{lr.requested_by_date}" %></p>
-    <p><%= "Loan Term: #{lr.loan_term}" %></p>
+    <p><%= image_tag lr.image.url(:thumb) %>
+    <p><%= "Blurb: #{lr.blurb}" %></p>
+    <p><%= "Borrowing Amount: #{number_to_currency(lr.borrowing_amount, precision: 0)}" %></p>
+    <p><%= "Amount Funded: #{number_to_currency(lr.amount_funded, precision: 0)}" %></p>
+    <p><%= "Requested by: #{lr.requested_by_date.strftime('%m/%d/%Y')}" %></p>
+    <p><%= "Loan Term: #{lr.loan_term}" %> months</p>
     <p><%= "Status: #{lr.status}" %></p>
-    <p><%= "Created at: #{lr.created_at}" %></p>
+    <p><%= "Created at: #{lr.created_at.strftime('%m/%d/%Y')}" %></p>
     </br>
     <p><%= "Amount Loaned: #{cart.loans[lr.id.to_s]}" %></p>
   </div>
