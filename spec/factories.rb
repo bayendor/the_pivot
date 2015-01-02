@@ -29,9 +29,9 @@ FactoryGirl.define do
     description         'Jorge desperately wants to see a concert!'
     borrowing_amount    500
     amount_funded       10
-    requested_by_date   DateTime.new(2015, 3, 25)
-    payments_begin_date DateTime.new(2015, 7, 25)
-    payments_end_date   DateTime.new(2015, 10, 25)
+    requested_by_date   DateTime.now
+    payments_begin_date DateTime.now.months_since(1)
+    payments_end_date   DateTime.now.months_since(7)
     status             'open'
   end
 
