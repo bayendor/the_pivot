@@ -24,13 +24,9 @@ describe 'Cart' do
   end
 
   let(:tenant) do
-<<<<<<< HEAD
-    Tenant.create!(name: 'Fantastico')
-=======
     FactoryGirl.create(:tenant) do |tenant|
       tenant.users << user
     end
->>>>>>> 5aa67cd... updated the before(:each) to use factory girl to
   end
 
   it "can't visit the cart page without items in the cart" do
@@ -38,16 +34,9 @@ describe 'Cart' do
     expect(page).to have_content('cart is empty')
   end
 
-<<<<<<< HEAD
   context 'adding items to the cart' do
     it 'has items on the page' do
       expect(page).to have_content('Buy Jorge Beiber Tickets')
-=======
-  context "adding items to the cart" do
-    it "has items on the page" do
-
-      expect(page).to have_content("Buy Jorge Beiber Tickets")
->>>>>>> 5aa67cd... updated the before(:each) to use factory girl to
     end
 
     it 'can add items and they persist after logging in' do
@@ -75,20 +64,4 @@ describe 'Cart' do
     end
   end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  context 'checkout process' do
-    it 'has a checkout button' do
-    end
-  end
-=======
-  context "checkout process" do
-    xit "has a checkout button" do
-
-    end
-  end
-
->>>>>>> 762001e... replaced data being created with factories
-=======
->>>>>>> 5aa67cd... updated the before(:each) to use factory girl to
 end
