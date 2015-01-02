@@ -17,7 +17,8 @@ class LoanRequest < ActiveRecord::Base
   validates :title, presence: true
   validates :blurb, presence: true
   validates :description, presence: true
-  validates :borrowing_amount, presence: true
+  validates :borrowing_amount, presence: true,
+                               numericality: { only_integer: true }
   validates :amount_funded, presence: true
   validates :requested_by_date, presence: true
   validates :payments_begin_date, presence: true
