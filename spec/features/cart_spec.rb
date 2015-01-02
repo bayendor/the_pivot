@@ -1,42 +1,32 @@
 require 'rails_helper'
 
 describe 'Cart' do
+
   before(:each) do
-    LoanRequest.create!(user: user,
-                        title: 'Buy Jorge Beiber Tickets',
-                        blurb: 'Jorge loves Bieber',
-                        description: 'Jorge desperately wants to see a concert!',
-                        borrowing_amount: 500,
-                        amount_funded: 10,
-                        requested_by_date: DateTime.now,
-                        payments_begin_date: DateTime.now.months_since(1),
-                        payments_end_date: DateTime.now.months_since(7),
-                        status: 'open')
+    loan_request_1
+    loan_request_2
+    user
+    tenant
 
-    LoanRequest.create!(user: user,
-                        title: 'Steve needs a new phone.',
-                        blurb: 'Steve is clumsy.',
-                        description: "Steve broke his phone and it doesn't work.",
-                        borrowing_amount: 800,
-                        amount_funded: 60,
-                        requested_by_date: DateTime.now,
-                        payments_begin_date: DateTime.now.months_since(1),
-                        payments_end_date: DateTime.now.months_since(7),
-                        status: 'open')
+    visit "/loan_requests"
+  end
 
-    tenant.users << user
-    visit '/loan_requests'
+  let(:loan_request_1) do
+    FactoryGirl.create(:loan_request_1, user: user)
+  end
+
+  let(:loan_request_2) do
+    FactoryGirl.create(:loan_request_2, user: user)
   end
 
   let(:user) do
-    User.create!(first_name: 'tom',
-                 email:      'example@example.com',
-                 username:   'tom foolery',
-                 password:   'password')
+    FactoryGirl.create(:user)
   end
 
   let(:tenant) do
-    Tenant.create!(name: 'Fantastico')
+    FactoryGirl.create(:tenant) do |tenant|
+      tenant.users << user
+    end
   end
 
   it "can't visit the cart page without items in the cart" do
@@ -74,8 +64,4 @@ describe 'Cart' do
     end
   end
 
-  context 'checkout process' do
-    it 'has a checkout button' do
-    end
-  end
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Role, :type => :model do
   let(:role) do
-    Role.create(name: "completed")
+    FactoryGirl.create(:role)
   end
 
   it "is valid" do

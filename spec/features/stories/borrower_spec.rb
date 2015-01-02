@@ -9,7 +9,7 @@ describe 'Borrower Interactions', type: :feature do
       fill_in 'Username', with: borrower.username
       fill_in 'Password', with: borrower.password
       click_button 'Log In'
-      visit '/new'
+      visit new_tenant_path
       fill_in 'Business Name', with: 'Aperture Labs'
       click_button 'Apply'
     end

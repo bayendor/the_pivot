@@ -1,22 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Loan do
-  let(:user) do
-    User.create!(first_name: "Jim",
-                 last_name: "Jones",
-                 email: "jimmy100@jones.com",
-                 username: "JimJones",
-                 password: "password",
-                 password_confirmation: "password"
-                )
-  end
 
   let(:loan) do
-    Loan.create!(user: user,
-                 loan_request_id: 1000,
-                 amount: 100,
-                 status: "completed"
-                )
+    FactoryGirl.create(:loan)
   end
 
   describe "validations" do
@@ -35,7 +22,7 @@ RSpec.describe Loan do
 
   describe "relationships" do
     it "has a user" do
-      expect(loan.user).to eq(user)
+      expect(loan.user.first_name).to eq("Cave")
     end
   end
 end

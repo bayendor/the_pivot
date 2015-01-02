@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Tenant do
   let(:tenant) do
-    Tenant.create(name:        "Mr. Jorge's Place",
-                  description: "It's filled with beiber!"
-                 )
+    FactoryGirl.create(:tenant)
   end
 
   it "is valid" do
