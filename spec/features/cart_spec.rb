@@ -1,33 +1,22 @@
 require "rails_helper"
 
 describe 'Cart' do
+
   before(:each) do
-    LoanRequest.create!(user:                user,
-                        title:               "Buy Jorge Beiber Tickets",
-                        blurb:               "Jorge loves Bieber",
-                        description:         "Jorge desperately wants to see a concert!",
-                        borrowing_amount:    500,
-                        amount_funded:       10,
-                        requested_by_date:   DateTime.new(2015, 3, 25),
-                        payments_begin_date: DateTime.new(2015, 7, 25),
-                        payments_end_date:   DateTime.new(2015, 10, 25),
-                        status:              "open"
-                       )
+    loan_request_1
+    loan_request_2
+    user
+    tenant
 
-    LoanRequest.create!(user:               user,
-                        title:               "Steve needs a new phone.",
-                        blurb:               "Steve is clumsy.",
-                        description:         "Steve broke his phone and it doesn't work.",
-                        borrowing_amount:    800,
-                        amount_funded:       60,
-                        requested_by_date:   DateTime.new(2014, 12, 28),
-                        payments_begin_date: DateTime.new(2015, 3, 30),
-                        payments_end_date:   DateTime.new(2015, 8, 17),
-                        status:              "open"
-                       )
-
-    tenant.users << user
     visit "/loan_requests"
+  end
+
+  let(:loan_request_1) do
+    FactoryGirl.create(:loan_request_1, user_id: user.id)
+  end
+
+  let(:loan_request_2) do
+    FactoryGirl.create(:loan_request_2, user_id: user.id)
   end
 
   let(:user) do
@@ -35,7 +24,9 @@ describe 'Cart' do
   end
 
   let(:tenant) do
-    Tenant.create!(name: "Fantastico")
+    FactoryGirl.create(:tenant) do |tenant|
+      tenant.users << user
+    end
   end
 
   it "can't visit the cart page without items in the cart" do
@@ -45,6 +36,7 @@ describe 'Cart' do
 
   context "adding items to the cart" do
     it "has items on the page" do
+
       expect(page).to have_content("Buy Jorge Beiber Tickets")
     end
 
@@ -70,12 +62,6 @@ describe 'Cart' do
 
       expect(page).to have_content("Steve Needs A New Phone.")
       expect(page).to have_content("Buy Jorge Beiber Tickets")
-    end
-  end
-
-  context "checkout process" do
-    xit "has a checkout button" do
-
     end
   end
 
