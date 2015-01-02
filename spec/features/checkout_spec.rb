@@ -1,7 +1,7 @@
 require "rails_helper"
 
-describe "checkout" do
-  context "checkout process" do
+describe "Checkout" do
+  context "process" do
     it "can go through a whole process" do
       visit root_path
       click_link_or_button "Sign Up"
