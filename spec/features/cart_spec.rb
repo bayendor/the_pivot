@@ -12,11 +12,11 @@ describe 'Cart' do
   end
 
   let(:loan_request_1) do
-    FactoryGirl.create(:loan_request_1, user_id: user.id)
+    FactoryGirl.create(:loan_request_1, user: user)
   end
 
   let(:loan_request_2) do
-    FactoryGirl.create(:loan_request_2, user_id: user.id)
+    FactoryGirl.create(:loan_request_2, user: user)
   end
 
   let(:user) do

@@ -16,7 +16,6 @@ describe "Checkout" do
       fill_in 'user_password_confirmation', with: "password"
       click_button 'Submit'
 
-
       click_link "Borrow"
       expect(page).to have_content("Apply to Become a Borrower!")
 
@@ -28,14 +27,13 @@ describe "Checkout" do
       click_link_or_button "Create new loan request"
       expect(page).to have_content("Create New Loan Request")
 
-
       fill_in 'loan_request_title',               with: "I need money"
       fill_in 'loan_request_blurb',               with: "I need more money"
       fill_in 'loan_request_description',         with: "I need lots of  money"
       fill_in 'loan_request_borrowing_amount',    with: "5000"
-      fill_in 'loan_request_requested_by_date',   with: DateTime.new(2015, 01, 01)
-      fill_in 'loan_request_payments_begin_date', with: DateTime.new(2015, 01, 28)
-      fill_in 'loan_request_payments_end_date',   with: DateTime.new(2015, 12, 28)
+      fill_in 'loan_request_requested_by_date',   with: DateTime.now
+      fill_in 'loan_request_payments_begin_date', with: DateTime.now.months_since(1)
+      fill_in 'loan_request_payments_end_date',   with: DateTime.now.months_since(7)
       click_link_or_button "Submit"
 
       within("nav") do
@@ -77,9 +75,9 @@ describe "Checkout" do
       fill_in 'loan_request_blurb',               with: "I need more money"
       fill_in 'loan_request_description',         with: "I need lots of  money"
       fill_in 'loan_request_borrowing_amount',    with: "5000"
-      fill_in 'loan_request_requested_by_date',   with: DateTime.new(2015, 01, 01)
-      fill_in 'loan_request_payments_begin_date', with: DateTime.new(2015, 01, 28)
-      fill_in 'loan_request_payments_end_date',   with: DateTime.new(2015, 12, 28)
+      fill_in 'loan_request_requested_by_date',   with: DateTime.now
+      fill_in 'loan_request_payments_begin_date', with: DateTime.now.months_since(1)
+      fill_in 'loan_request_payments_end_date',   with: DateTime.now.months_since(7)
       click_link_or_button "Submit"
 
       expect(page).to have_content("Create New Loan Request")

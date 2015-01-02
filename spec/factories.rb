@@ -42,9 +42,9 @@ FactoryGirl.define do
     description         "Steve broke his phone and it doesn't work."
     borrowing_amount    800
     amount_funded       60
-    requested_by_date   DateTime.new(2014, 12, 28)
-    payments_begin_date DateTime.new(2015, 3, 30)
-    payments_end_date   DateTime.new(2015, 8, 17)
+    requested_by_date   DateTime.now
+    payments_begin_date DateTime.now.months_since(1)
+    payments_end_date   DateTime.now.months_since(7)
     status             'open'
   end
 

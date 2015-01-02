@@ -11,17 +11,11 @@ RSpec.describe LoanRequest do
   end
 
   let(:loan_request) do
-    LoanRequest.create(user_id: 1,
-                       categories: [category, category1],
-                       title: 'title',
-                       blurb: 'blurb',
-                       description: 'description',
+    FactoryGirl.create(:loan_request_1,
                        borrowing_amount: 10_000,
-                       amount_funded: 0,
-                       requested_by_date: DateTime.now,
-                       payments_begin_date: DateTime.now.months_since(1),
-                       payments_end_date: DateTime.now.months_since(7),
-                       status: true)
+                       amount_funded:    0,
+                       categories: [category_1, category_2]
+                      )
   end
 
   describe 'relationships' do
