@@ -12,6 +12,7 @@ RSpec.describe LoanRequest do
 
   let(:loan_request) do
     FactoryGirl.create(:loan_request_1,
+                       user_id:          1,
                        borrowing_amount: 10_000,
                        amount_funded:    0,
                        categories: [category_1, category_2]
@@ -22,11 +23,25 @@ RSpec.describe LoanRequest do
     it 'has many categories' do
       expect(loan_request.categories).to eq([category_1, category_2])
     end
+
+    it 'belongs to a user' do
+      expect(loan_request.user_id).to eq(1)
+    end
   end
 
-  describe 'blurb' do
+  describe 'loan request information' do
+    it 'must have a title' do
+      loan_request.title = nil
+      expect(loan_request).to_not be_valid
+    end
+
     it 'must have a short description' do
       loan_request.blurb = nil
+      expect(loan_request).to_not be_valid
+    end
+
+    it 'must have a regular description' do
+      loan_request.description = nil
       expect(loan_request).to_not be_valid
     end
   end
@@ -53,6 +68,21 @@ RSpec.describe LoanRequest do
     it 'the payment end date is at least three months from the request' do
       loan_request.payments_end_date = DateTime.now.months_since(5)
       expect(loan_request).to be_valid
+    end
+  end
+
+  describe 'funded status' do
+    it 'must have a status' do
+      loan_request.status = nil
+      expect(loan_request).to_not be_valid
+    end
+
+    it 'can change the status to closed' do
+      expect(loan_request.status).to eq("open")
+      loan_request.amount_funded = 10_000
+      expect(loan_request.is_funded?).to eq(true)
+      loan_request.funded!
+      expect(loan_request.status).to eq("closed")
     end
   end
 end

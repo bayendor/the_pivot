@@ -58,10 +58,17 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def get_categories(loan_request)
-    category_names = []
-    loan_request.categories.each do |category|
-      category_names << category.name
+    loan_request.categories.map do |category|
+      category.name
     end
-    category_names
+  end
+
+  def is_funded?
+    amount_funded == borrowing_amount
+  end
+
+  def funded!
+    self.status = "closed"
+    save!
   end
 end

@@ -5,7 +5,6 @@ describe 'Cart' do
   before(:each) do
     loan_request_1
     loan_request_2
-    user
     tenant
 
     visit "/loan_requests"
@@ -29,17 +28,20 @@ describe 'Cart' do
     end
   end
 
-  it "can't visit the cart page without items in the cart" do
-    visit '/cart'
-    expect(page).to have_content('cart is empty')
-  end
+  context 'visiting the cart page' do
+    it "can't happen without items in the cart" do
+      visit '/cart'
+      expect(page).to have_content('cart is empty')
+    end
 
-  context 'adding items to the cart' do
     it 'has items on the page' do
       expect(page).to have_content('Buy Jorge Beiber Tickets')
     end
+  end
 
-    it 'can add items and they persist after logging in' do
+  context 'adding items to the cart' do
+
+    it 'get added and they persist after logging in' do
       find(:css, "#loan_requests_[value='#{LoanRequest.first.id}']").set(true)
       find('input[value="Add selected Loans to Cart"]').click
       expect(current_path).to eq('/cart')
@@ -54,7 +56,7 @@ describe 'Cart' do
       expect(page).to have_content('Steve Needs A New Phone.')
     end
 
-    it 'can add items from multiple borrowers' do
+    it 'can be from multiple borrowers' do
       find(:css, "#loan_requests_[value='#{LoanRequest.first.id}']").set(true)
       find(:css, "#loan_requests_[value='#{LoanRequest.second.id}']").set(true)
       find('input[value="Add selected Loans to Cart"]').click
@@ -63,5 +65,4 @@ describe 'Cart' do
       expect(page).to have_content('Buy Jorge Beiber Tickets')
     end
   end
-
 end

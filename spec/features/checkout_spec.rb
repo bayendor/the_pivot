@@ -54,7 +54,7 @@ describe "Checkout" do
       expect(page).to have_content("Amount You Funded This Order: $25")
     end
 
-    it "can't make loan request without title" do
+    it "can't make loan request without a title" do
       visit root_path
       click_link_or_button 'Sign Up'
       expect(page).to have_content('Register as a Keevahh User')
@@ -71,8 +71,8 @@ describe "Checkout" do
       click_link "Borrow"
       expect(page).to have_content("Apply to Become a Borrower!")
 
-      fill_in 'tenant[name]', with: 'Chase Business'
-      fill_in 'tenant[description]', with: 'This good description'
+      fill_in 'tenant_name', with: 'Chase Business'
+      fill_in 'tenant_description', with: 'This good description'
       click_link_or_button 'Apply'
       expect(page).to have_content("Chase Business")
 
