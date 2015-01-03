@@ -32,7 +32,6 @@ FactoryGirl.define do
     requested_by_date   DateTime.now
     payments_begin_date DateTime.now.months_since(1)
     payments_end_date   DateTime.now.months_since(7)
-    status             'open'
   end
 
   factory :loan_request_2, class: LoanRequest do
@@ -45,7 +44,6 @@ FactoryGirl.define do
     requested_by_date   DateTime.now
     payments_begin_date DateTime.now.months_since(1)
     payments_end_date   DateTime.now.months_since(7)
-    status             'open'
   end
 
   factory :category_1, class: Category do
