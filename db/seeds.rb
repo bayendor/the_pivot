@@ -74,17 +74,6 @@ class Seed
       while amount_funded > borrowing_amount
         amount_funded = rand(40) * 25.to_i
       end
-      LoanRequest.create!(user_id:             user.id,
-                          title:               Faker::Company.bs,
-                          blurb:               "This is a blurb.",
-                          description:         Faker::Lorem.sentence,
-                          borrowing_amount:    borrowing_amount,
-                          amount_funded:       amount_funded,
-                          requested_by_date:   date.next_month,
-                          payments_begin_date: date.next_month(3),
-                          payments_end_date:   date.next_year,
-                          status:              status.sample
-                         )
       2.times do
         LoanRequest.create!(user_id:             user.id,
                             title:               Faker::Company.bs,
