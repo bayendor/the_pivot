@@ -28,7 +28,7 @@ FactoryGirl.define do
     blurb               'Jorge loves Bieber'
     description         'Jorge desperately wants to see a concert!'
     borrowing_amount    500
-    amount_funded       10
+    amount_funded       25
     requested_by_date   DateTime.now
     payments_begin_date DateTime.now.months_since(1)
     payments_end_date   DateTime.now.months_since(7)
@@ -40,7 +40,7 @@ FactoryGirl.define do
     blurb               'Steve is clumsy.'
     description         "Steve broke his phone and it doesn't work."
     borrowing_amount    800
-    amount_funded       60
+    amount_funded       50
     requested_by_date   DateTime.now
     payments_begin_date DateTime.now.months_since(1)
     payments_end_date   DateTime.now.months_since(7)
