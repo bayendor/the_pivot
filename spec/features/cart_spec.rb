@@ -5,7 +5,6 @@ describe 'Cart' do
   before(:each) do
     loan_request_1
     loan_request_2
-    user
     tenant
 
     visit "/loan_requests"
