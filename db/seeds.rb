@@ -56,7 +56,9 @@ class Seed
   end
 
   def generate_categories
-    categories = ["Conflict Zones", "Education", "Food", "Men", "Expiring Soon", "Africa", "Green", "Vulnerable Populations"]
+    categories = ["Conflict Zones", "Education", "Food",
+                  "Men", "Expiring Soon", "Africa",
+                  "Green", "Vulnerable Populations"]
     categories.each do |category|
       Category.create!(name:        category,
                        description: Faker::Lorem.sentence
@@ -67,12 +69,9 @@ class Seed
   end
 
   def generate_loan_requests
-
     User.all.each do |user|
-
       borrowing_amount = rand(40..60) * 25.to_i
       amount_funded = rand(20..30) * 25.to_i
-
      2.times do
         LoanRequest.create!(user_id:             user.id,
                             title:               Faker::Company.bs,
