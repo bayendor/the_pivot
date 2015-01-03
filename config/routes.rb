@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :cart, only: [:index]
   resources :loans, only: [:index]
-  resources :loan_requests, only: [:index, :new, :show, :create, :update]
+  resources :loan_requests, only: [:index, :new, :show, :create, :update, :edit]
 
   get '/login',  to: 'sessions#new'
   post '/login',  to: 'sessions#create'
