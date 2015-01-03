@@ -69,12 +69,11 @@ class Seed
   def generate_loan_requests
 
     User.all.each do |user|
-      borrowing_amount = rand(200) * 50.to_i
-      amount_funded = rand(40) * 25.to_i
-      while amount_funded > borrowing_amount
-        amount_funded = rand(40) * 25.to_i
-      end
-      2.times do
+
+      borrowing_amount = rand(40..60) * 25.to_i
+      amount_funded = rand(20..30) * 25.to_i
+
+     2.times do
         LoanRequest.create!(user_id:             user.id,
                             title:               Faker::Company.bs,
                             blurb:               'This is a blurb.',
