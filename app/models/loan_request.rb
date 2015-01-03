@@ -66,10 +66,11 @@ class LoanRequest < ActiveRecord::Base
   end
 
   def is_funded?
-    status == "closed"
+    amount_funded == borrowing_amount
   end
 
   def funded!
-    self.status = "closed" if amount_funded == borrowing_amount
+    self.status = "closed"
+    save!
   end
 end
