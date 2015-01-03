@@ -37,6 +37,9 @@
     <p><%= label_tag :payments_end_date, 'Payment End Date' %></br>
     <%= f.date_field :payments_end_date %></p>
 
+    <p>Categories</p>
+    <p><%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %></p>
+
     <p><%= label_tag :image %></br>
     <%= f.file_field :image %></p>
 

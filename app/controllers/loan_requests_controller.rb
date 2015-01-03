@@ -41,7 +41,8 @@ class LoanRequestsController < ApplicationController
                                          :borrowing_amount, :amount_funded,
                                          :requested_by_date,
                                          :payments_begin_date,
-                                         :payments_end_date, :image)
+                                         :payments_end_date, :image,
+                                         category_ids: [])
   end
 
   def set_loan_request
