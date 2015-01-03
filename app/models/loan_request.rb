@@ -56,4 +56,12 @@ class LoanRequest < ActiveRecord::Base
   def remaining_amount
     borrowing_amount - amount_funded
   end
+
+  def get_categories(loan_request)
+    category_names = []
+    loan_request.categories.each do |category|
+      category_names << category.name
+    end
+    category_names
+  end
 end
