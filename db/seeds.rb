@@ -56,7 +56,7 @@ class Seed
   end
 
   def generate_categories
-    categories = %w(Conflict Zones Education Food Men Expiring Soon Africa Green Vulnerable Populations)
+    categories = ["Conflict Zones", "Education", "Food", "Men", "Expiring Soon", "Africa", "Green", "Vulnerable Populations"]
     categories.each do |category|
       Category.create!(name:        category,
                        description: Faker::Lorem.sentence
@@ -77,7 +77,7 @@ class Seed
       end
       LoanRequest.create!(user_id:             user.id,
                           title:               Faker::Company.bs,
-                          blurb:               "This is a blurb.", 
+                          blurb:               "This is a blurb.",
                           description:         Faker::Lorem.sentence,
                           borrowing_amount:    borrowing_amount,
                           amount_funded:       amount_funded,
