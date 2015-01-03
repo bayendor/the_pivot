@@ -24,6 +24,10 @@ describe "Checkout" do
       click_link_or_button 'Apply'
       expect(page).to have_content("Chase Business")
 
+      agriculture = Category.create!(name: "Agriculture", description: "farming")
+      women = Category.create!(name: "Women", description: "hello friend")
+      healthcare = Category.create!(name: "Healthcare", description: "saving lives")
+
       click_link_or_button "Create new loan request"
       expect(page).to have_content("Create New Loan Request")
 
@@ -34,7 +38,10 @@ describe "Checkout" do
       fill_in 'loan_request_requested_by_date',   with: DateTime.now
       fill_in 'loan_request_payments_begin_date', with: DateTime.now.months_since(1)
       fill_in 'loan_request_payments_end_date',   with: DateTime.now.months_since(7)
+      find("#loan_request_category_ids_#{agriculture.id}").set(true)
+      find("#loan_request_category_ids_#{healthcare.id}").set(true)
       click_link_or_button "Submit"
+      expect(page).to have_content("Categories: Agriculture Healthcare")
 
       within("nav") do
         click_link_or_button "Make A Loan"

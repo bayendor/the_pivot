@@ -56,7 +56,7 @@ class Seed
   end
 
   def generate_categories
-    categories = %w(Conflict Zones Education Food Men Expiring Soon Africa Green Vulnerable Populations)
+    categories = ["Conflict Zones", "Education", "Food", "Men", "Expiring Soon", "Africa", "Green", "Vulnerable Populations"]
     categories.each do |category|
       Category.create!(name:        category,
                        description: Faker::Lorem.sentence
