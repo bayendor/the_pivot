@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :current_tenant
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, notice: 'Unauthorized'
+  end
+
   protected
 
   def current_user
