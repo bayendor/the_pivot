@@ -1,0 +1,8 @@
+<h2>Loan Categories</h2>
+
+<% @categories.each do |c| %>
+  <div class="c">
+    <p><strong><%= link_to "#{c.name}", category_path(c) %></strong>
+    <%= LoanRequestCategory.where(category_id: c).count %></p>
+  </div>
+<% end %>
