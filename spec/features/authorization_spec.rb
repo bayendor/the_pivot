@@ -3,9 +3,11 @@ require 'capybara/rails'
 require 'capybara/rspec'
 
 describe 'Authorizations', type: :feature do
+  let(:user) { FactoryGirl.create(:user) }
+  let(:tenant) { FactoryGirl.create(:tenant) }
+  let(:wrong_user) { FactoryGirl.create(:borrower) }
+
   context 'when logged out' do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:tenant) { FactoryGirl.create(:tenant) }
     before(:each) do
       visit root_path
     end
@@ -22,9 +24,6 @@ describe 'Authorizations', type: :feature do
   end
 
   context 'when logged in as a non-tenant' do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:tenant) { FactoryGirl.create(:tenant) }
-
     before(:each) do
       visit root_path
       fill_in 'Username', with: user.username
@@ -39,9 +38,6 @@ describe 'Authorizations', type: :feature do
   end
 
   context 'as wrong user' do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:wrong_user) { FactoryGirl.create(:borrower) }
-
     it 'cannot visit another users profile page' do
       visit root_path
       fill_in 'Username', with: user.username
