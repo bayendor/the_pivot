@@ -4,7 +4,7 @@ class Tenant < ActiveRecord::Base
 
   RESERVED_NAMES = %w(users build_item cart order loans loan_requests
                       register login logout tenants new)
-  
+
   validate :name_cannot_be_a_route
   validates :name, uniqueness: true, presence: true
   validates :slug, uniqueness: true

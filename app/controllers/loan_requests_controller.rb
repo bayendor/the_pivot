@@ -1,5 +1,6 @@
 class LoanRequestsController < ApplicationController
   before_action :set_loan_request, only: [:show, :edit, :update]
+  load_and_authorize_resource
 
   def index
     @loan_requests = LoanRequest.all
@@ -36,6 +37,9 @@ class LoanRequestsController < ApplicationController
     @loan_request = LoanRequest.find_by(id: params[:id])
   end
 
+  def edit
+  end
+
   private
 
   def loan_request_params
@@ -50,5 +54,4 @@ class LoanRequestsController < ApplicationController
   def set_loan_request
     @loan_requests = LoanRequest.find_by(id: params[:id])
   end
-
 end

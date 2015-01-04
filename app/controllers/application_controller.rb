@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :current_tenant
 
-  def code
-    redirect_to "https://github.com/bayendor/the_pivot/"
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, notice: 'Unauthorized'
   end
 
   protected
@@ -19,8 +19,7 @@ class ApplicationController < ActionController::Base
 
   def require_webmaster
     unless current_user && current_user.is_webmaster?
-      redirect_to root_path, notice: "Unauthorized"
+      redirect_to root_path, notice: 'Unauthorized'
     end
   end
-
 end
