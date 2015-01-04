@@ -1,45 +1,45 @@
 <h2><%= @tenant.name %></h2>
 
+<% if can? :update, @tenant %>
+  <p><%= link_to "edit my store", edit_tenant_path %></p>
+  <h3><%= link_to 'Create new loan request', new_loan_request_path %></h3>
+<% end %>
+
 <div class="store">
-  <p><%= @tenant.description %></p>
-
-  <!-- needs to display for both the tenant and their sub-admins -->
-    <p><%= link_to "edit my store", edit_tenant_path %>
-
   <h3>Loan Requests:</h3>
-  <!-- needs to display for both the tenant and their sub-admins -->
-    <h3><%= link_to 'Create new loan request', new_loan_request_path %></h3>
+
+  <p><%= @tenant.description %></p>
 
   <% @tenant.loan_requests.each do |lr| %>
     <div class="loan_request">
       <p style="font-weight: bold">Title: <%= link_to "#{lr.title.titleize}", loan_request_path(lr) %></p>
       <p><%= image_tag lr.image.url(:thumb) %>
-      <p><%= "Blurb: #{lr.blurb}" %> <%= link_to "Learn more.", loan_request_path(lr) %></p>
-      <p><%= "Borrowing Amount: #{number_to_currency(lr.borrowing_amount, precision: 0)}" %></p>
-      <p><%= "Amount Funded: #{number_to_currency(lr.amount_funded, precision: 0)}" %></p>
-      <p><%= "Requested by: #{lr.requested_by_date.strftime('%m/%d/%Y')}" %></p>
-      <p><%= "Loan Term: #{lr.loan_term}" %> months</p>
-      <p>     Categories: <% lr.get_categories(lr).each do |name| %><%= "#{name } " %><% end %></p>
-      <p><%= "Status: #{lr.status}" %></p>
+    <p><%= "Blurb: #{lr.blurb}" %> <%= link_to "Learn more.", loan_request_path(lr) %></p>
+    <p><%= "Borrowing Amount: #{number_to_currency(lr.borrowing_amount, precision: 0)}" %></p>
+    <p><%= "Amount Funded: #{number_to_currency(lr.amount_funded, precision: 0)}" %></p>
+    <p><%= "Requested by: #{lr.requested_by_date.strftime('%m/%d/%Y')}" %></p>
+    <p><%= "Loan Term: #{lr.loan_term}" %> months</p>
+    <p>     Categories: <% lr.get_categories(lr).each do |name| %><%= "#{name } " %><% end %></p>
+    <p><%= "Status: #{lr.status}" %></p>
 
-      <% if !current_tenant && !current_user %>
+    <% if !current_tenant && !current_user %>
       <p><% if lr.status == 'open' %>
-           <%= check_box_tag "loan_requests[]", lr.id %>
-           <%= label_tag("loan_request_#{lr.id}", "<-- Yes, I want to Loan!") %>
-           <% else %>
-           <p><em>Fully funded!</em></p>
-         <% end %>
-      <% end %>
+      <%= check_box_tag "loan_requests[]", lr.id %>
+      <%= label_tag("loan_request_#{lr.id}", "<-- Yes, I want to Loan!") %>
+    <% else %>
+      <p><em>Fully funded!</em></p>
+    <% end %>
+  <% end %>
 
-    </div>
-    <div style="clear:both"></div>
+</div>
+<div style="clear:both"></div>
   <%end%>
   <% if !current_tenant && !current_user %>
     <% @tenant.loan_requests.each do |lr| %>
       <% if lr.status == 'open' %>
         <%= submit_tag "Add selected Loans to Cart" %>
-        <% end %>
       <% end %>
+    <% end %>
   <% end %>
 </div>
 <div style="clear:both"></div>

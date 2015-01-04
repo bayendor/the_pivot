@@ -1,18 +1,19 @@
 class TenantsController < ApplicationController
-  before_action :set_tenant, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
+  before_action :set_tenant, only: [:show, :edit, :update, :destroy]
   before_action :current_user, only: [:show, :edit, :update]
 
   def index
-    @tenants = Tenant.all
+    # @tenants = Tenant.all
   end
 
   def new
-    @tenant = Tenant.new
+    # @tenant = Tenant.new
   end
 
   def create
-    @tenant = Tenant.new(tenant_params)
+    # @tenant = Tenant.new(tenant_params)
     if @tenant.save
       session[:tenant_id] = @tenant.id
       current_user.update_attribute(:tenant_id, @tenant.id)
@@ -28,6 +29,9 @@ class TenantsController < ApplicationController
   end
 
   def edit
+    unless current_user.tenant_id == @tenant.id
+      redirect_to root_path, notice: 'You are not the owner of this store'
+    end
   end
 
   def update
