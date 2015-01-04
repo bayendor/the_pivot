@@ -1,17 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Category do
-  # describe "validations" do
-  #   it "validates name" do
-  #     category = Category.create
-  #     expect(category).to_not be_valid
-  #
-  #     category  = Category.create(name: "nice name")
-  #     category2 = Category.create(name: "nice name")
-  #     expect(category).to be_valid
-  #     expect(category2).to_not be_valid
-  #   end
-  # end
+  describe 'validations' do
+    it 'validates name and description' do
+      category = Category.create
+      expect(category).to_not be_valid
+      category  = Category.create(name: 'testing', description: 'never ends')
+      category2 = Category.create(name: 'testing', description: 'never ends')
+      expect(category).to be_valid
+      expect(category2).to_not be_valid
+    end
+  end
 
   describe 'relationships' do
     it 'has many loan requests' do
