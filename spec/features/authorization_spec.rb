@@ -1,6 +1,4 @@
 require 'rails_helper'
-require 'capybara/rails'
-require 'capybara/rspec'
 
 describe 'Authorizations', type: :feature do
   let(:user) { FactoryGirl.create(:user) }

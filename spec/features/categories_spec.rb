@@ -1,20 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe Category do
-  describe 'validations' do
-    it 'validates name and description' do
-      category = Category.create
-      expect(category).to_not be_valid
-      category  = Category.create(name: 'testing', description: 'never ends')
-      # category2 = Category.create(name: 'testing', description: 'never ends')
-      expect(category).to be_valid
-      # expect(category2).to_not be_valid
-    end
-  end
+describe 'Category Views', type: :feature do
 
-  describe 'relationships' do
-    it 'has many loan requests' do
-      category = Category.create(name: 'name', description: 'description')
+
+  describe 'when a user visits /categories' do
+    before(:each) do
+      category_1 = Category.create(name: 'Reptiles', description: 'description')
+      category_2 = Category.create(name: 'Mammals', description: 'description')
+
       loan_request = LoanRequest.create(user_id: 1, title: 'title',
                                         blurb: 'blurb',
                                         description: 'description',
@@ -23,7 +16,7 @@ RSpec.describe Category do
                                         requested_by_date: DateTime.now,
                                         payments_begin_date: DateTime.now.months_since(1),
                                         payments_end_date: DateTime.now.months_since(7),
-                                        status: true, categories: [category])
+                                        status: true, categories: [category_1])
 
       loan_request1 = LoanRequest.create(user_id: 2, title: 'title1',
                                          blurb: 'blurb',
@@ -33,9 +26,20 @@ RSpec.describe Category do
                                          requested_by_date: DateTime.now,
                                          payments_begin_date: DateTime.now.months_since(1),
                                          payments_end_date: DateTime.now.months_since(7),
-                                         status: true, categories: [category])
+                                         status: true, categories: [category_2])
 
-      expect(category.loan_requests).to eq([loan_request1, loan_request])
+      visit '/categories'
+    end
+
+    it 'a list of categories is displayed' do
+      expect(page).to have_content('Loan Categories')
+      expect(page).to have_link('Reptiles')
+      expect(page).to have_link('Mammals')
+    end
+
+    it 'and the number of loans in each category is displayed' do
+      expect(page).to have_content('Reptiles 1')
+      expect(page).to have_content('Mammals 1')
     end
   end
 end
