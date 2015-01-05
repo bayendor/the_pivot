@@ -2,8 +2,8 @@ class Tenant < ActiveRecord::Base
   has_many :users
   has_many :loan_requests, through: :users
 
-  RESERVED_NAMES = %w(users build_item cart order loans loan_requests
-                      register login logout tenants new)
+  RESERVED_NAMES = %w(users cart loans loan_requests login logout tenants new
+                      categories)
 
   validate :name_cannot_be_a_route
   validates :name, uniqueness: true, presence: true
