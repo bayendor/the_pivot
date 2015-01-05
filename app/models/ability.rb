@@ -11,6 +11,7 @@ class Ability
       can :update, LoanRequest #, :user_id => user.id
       can :create, LoanRequest, :user_id => user.id
       can :manage, User, :id => user.id
+      can :read, Category
     else
       can :create, Tenant
       can :read, Tenant
