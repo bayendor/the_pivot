@@ -33,13 +33,13 @@ describe 'Category Views', type: :feature do
 
     it 'a list of categories is displayed' do
       expect(page).to have_content('Loan Categories')
-      expect(page).to have_link('Pig Farmers')
-      expect(page).to have_link('Dinosaurs')
+      expect(page).to have_link('Reptiles')
+      expect(page).to have_link('Mammals')
     end
 
     it 'and the number of loans in each category is displayed' do
-      expect(page).to have_content('Pig Farmers 1')
-      expect(page).to have_content('Dinosaurs 1')
+      expect(page).to have_content('Reptiles 1')
+      expect(page).to have_content('Mammals 1')
     end
   end
 end
