@@ -2,7 +2,7 @@
 
 <% if can? :update, @tenant %>
   <p><%= link_to "edit my store", edit_tenant_path %></p>
-  <h3><%= link_to 'Create new loan request', new_loan_request_path %></h3>
+  <p><%= link_to 'Create new loan request', new_loan_request_path %></p>
 <% end %>
 <p><%= @tenant.description %></p>
 
