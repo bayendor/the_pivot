@@ -8,10 +8,9 @@ class Ability
     if user.is_a_tenant?
       can :manage, Tenant, id: user.tenant_id
       can :read, LoanRequest
-      can :update, LoanRequest, user_id: user.id
-      can :create, LoanRequest, user_id: user.id
-      can :manage, User, id: user.id
-      can :read, Category
+      can :update, LoanRequest #, :user_id => user.id
+      can :create, LoanRequest, :user_id => user.id
+      can :manage, User, :id => user.id
     else
       can :create, Tenant
       can :read, Tenant

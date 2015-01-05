@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_tenant
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, notice: 'Unauthorized'
+    redirect_to root_url, notice: 'Access Denied'
   end
 
   protected
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def require_webmaster
     unless current_user && current_user.is_webmaster?
-      redirect_to root_path, notice: 'Unauthorized'
+      redirect_to root_path, notice: 'Webmaster Only'
     end
   end
 end
