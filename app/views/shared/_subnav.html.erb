@@ -23,6 +23,7 @@
   <% end %>
 
   <% if current_user %>
-    <%= link_to "Sign out", logout_path, method: :delete%>
+    <%= link_to "Sign out", logout_path, method: :delete%> &bull;
+    <%= link_to "Cart", cart_path %>
   <% end %>
 </subnav>
