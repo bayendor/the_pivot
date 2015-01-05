@@ -41,7 +41,7 @@ describe "Checkout" do
       find("#loan_request_category_ids_#{agriculture.id}").set(true)
       find("#loan_request_category_ids_#{healthcare.id}").set(true)
       click_link_or_button "Submit"
-      expect(page).to have_content("Categories: Agriculture Healthcare")
+      expect(page).to have_content("Categories: Agriculture | Healthcare")
 
       within("nav") do
         click_link_or_button "Make A Loan"
