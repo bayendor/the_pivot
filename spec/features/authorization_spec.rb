@@ -17,7 +17,7 @@ describe 'Authorizations', type: :feature do
 
     it 'cannot access the tenant edit page' do
       visit edit_tenant_path(tenant.id)
-      expect(page).to have_content('Unauthorized')
+      expect(page).to have_content('Access Denied')
     end
   end
 
@@ -31,7 +31,7 @@ describe 'Authorizations', type: :feature do
 
     it 'cannot access the tenant edit page' do
       visit edit_tenant_path(tenant.id)
-      expect(page).to have_content('Unauthorized')
+      expect(page).to have_content('Access Denied')
     end
   end
 
@@ -42,7 +42,7 @@ describe 'Authorizations', type: :feature do
       fill_in 'Password', with: user.password
       click_button 'Log In'
       visit edit_user_path(wrong_user.id)
-      expect(page).to have_content('Unauthorized')
+      expect(page).to have_content('Access Denied')
     end
   end
 end

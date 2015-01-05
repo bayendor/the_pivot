@@ -38,6 +38,9 @@ class LoanRequestsController < ApplicationController
   end
 
   def edit
+    unless current_user.id == @loan_request.user_id
+      redirect_to root_path, notice: 'You are not the owner of this loan'
+    end
   end
 
   private
