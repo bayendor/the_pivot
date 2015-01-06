@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module DinnerDash
+module Keevahh
   class Application < Rails::Application
     config.serve_static_assets = true
     config.assets.version = '1.1'
