@@ -49,7 +49,7 @@ describe "Checkout" do
       expect(page).to have_content('Loan Requests')
 
       find("input[type='checkbox']").set(true)
-      click_link_or_button "Add selected Loans to Cart"
+      click_link_or_button "Take me to my cart!"
       click_link_or_button "Checkout"
       expect(page).to have_content("Amount You Funded This Order: $25")
     end

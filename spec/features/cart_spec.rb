@@ -43,7 +43,7 @@ describe 'Cart' do
 
     it 'get added and they persist after logging in' do
       find(:css, "#loan_requests_[value='#{LoanRequest.first.id}']").set(true)
-      find('input[value="Add selected Loans to Cart"]').click
+      find('input[value="Take me to my cart!"]').click
       expect(current_path).to eq('/cart')
       expect(page).to have_content('Your Cart')
       expect(page).to have_content('Steve Needs A New Phone.')
@@ -59,7 +59,7 @@ describe 'Cart' do
     it 'can be from multiple borrowers' do
       find(:css, "#loan_requests_[value='#{LoanRequest.first.id}']").set(true)
       find(:css, "#loan_requests_[value='#{LoanRequest.second.id}']").set(true)
-      find('input[value="Add selected Loans to Cart"]').click
+      find('input[value="Take me to my cart!"]').click
 
       expect(page).to have_content('Steve Needs A New Phone.')
       expect(page).to have_content('Buy Jorge Beiber Tickets')
