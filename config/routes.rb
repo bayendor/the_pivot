@@ -3,14 +3,15 @@ Rails.application.routes.draw do
 
   resources :users
 
-  post '/cart',          to: 'cart#create'
-  delete '/cart',          to: 'cart#remove_item'
-  post '/cart_update',   to: 'cart#update_quantity'
+  post '/cart',         to: 'cart#create'
+  delete '/cart',       to: 'cart#remove_item'
+  post '/cart_update',  to: 'cart#update_quantity'
 
   resources :cart, only: [:index]
   resources :loans, only: [:index]
   resources :loan_requests, only: [:index, :new, :show, :create, :update, :edit]
-  resources :categories, only: [:index, :show]
+
+  resources :categories, as: :category, path: 'categories', param: :slug
 
   get '/login',  to: 'sessions#new'
   post '/login',  to: 'sessions#create'
