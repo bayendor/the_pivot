@@ -19,6 +19,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'cancancan', '~> 1.9'
+gem 'codeclimate-test-reporter', group: :test, require: nil
 
 group :development, :test do
   gem 'simplecov', :require => false, :group => :test
