@@ -2,8 +2,8 @@ class Seed
   def initialize
     generate_users_and_roles
     generate_categories
-    generate_loan_requests
     generate_tenants
+    generate_loan_requests
     generate_loans
   end
 
@@ -224,21 +224,11 @@ class Seed
     puts 'Categories added to loan requests!'
   end
 
-  def generate_tenants
-    User.all.each do |user|
-      user.tenant = Tenant.create!(name:         "#{Faker::App.name} #{Faker::App.name}",
-                                   description:  Faker::Lorem.sentence
-                                  )
-      user.save!
-    end
-
-    puts 'Tenants generated!'
-  end
-
   def generate_loans
     status = %w(ordered completed canceled paid)
-    10.times do |i|
+    5.times do |i|
       loan_request = LoanRequest.all.sample
+      User.all.each do |user|
       user = User.create!(first_name: Faker::Name.first_name,
                           last_name:  Faker::Name.last_name,
                           email:      Faker::Internet.safe_email("#{i} #{Faker::Internet.user_name}"),
