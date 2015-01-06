@@ -11,8 +11,6 @@ module DinnerDash
     config.serve_static_assets = true
     config.assets.version = '1.1'
 
-    password: ENV['MANDRIL_API_KEY']
-
     config.action_mailer.delivery_method = :smtp
 
     config.action_mailer.smtp_settings = {
@@ -20,7 +18,7 @@ module DinnerDash
       port:                 "587",
       domain:               "gmail.com",
       user_name:            "cvh1717@gmail.com",
-      password:             :password,
+      password:             ENV['MANDRIL_API_KEY'],
       authentication:       "plain",
       enable_starttls_auto: true
     }
