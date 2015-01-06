@@ -32,8 +32,8 @@ class LoanRequestsController < ApplicationController
       loan_request.funded! if loan_request.is_funded?
       Loan.create!(user_id: current_user.id, loan_request_id: lr_id, amount: funding)
     end
+    LoanMailer.send_email.deliver
     LoanMailer.lent_money(current_user, checkout_loans, checkout_amounts).deliver
-    binding.pry
     session['cart'] = nil
     flash[:notice] = 'Thanks for your order.'
     redirect_to loans_path
