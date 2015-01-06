@@ -1,20 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe Category do
+  let(:category) { FactoryGirl.create(:category_1) }
+
   describe 'validations' do
     it 'validates name and description' do
-      category = Category.create
-      expect(category).to_not be_valid
-      category  = Category.create(name: 'testing', description: 'never ends')
-      # category2 = Category.create(name: 'testing', description: 'never ends')
       expect(category).to be_valid
-      # expect(category2).to_not be_valid
+    end
+
+    it 'is invalid without a name' do
+      category.name = nil
+      expect(category).to_not be_valid
+
+      category.name = ''
+      expect(category).to_not be_valid
     end
   end
 
   describe 'relationships' do
     it 'has many loan requests' do
-      category = Category.create(name: 'name', description: 'description')
       loan_request = LoanRequest.create(user_id: 1, title: 'title',
                                         blurb: 'blurb',
                                         description: 'description',
@@ -36,6 +40,17 @@ RSpec.describe Category do
                                          status: true, categories: [category])
 
       expect(category.loan_requests).to eq([loan_request1, loan_request])
+    end
+  end
+
+  describe 'creating friendly URLs' do
+    it 'can parameterize the slug' do
+      expect(category.slug).to eq('pig-farmers')
+    end
+
+    it 'is invalid if a category name is a reserved route' do
+      category.name = 'cart'
+      expect(category).to_not be_valid
     end
   end
 end

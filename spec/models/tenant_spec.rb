@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Tenant do
-  let(:tenant) do
-    FactoryGirl.create(:tenant)
-  end
+  let(:tenant)  { FactoryGirl.create(:tenant) }
 
   it "is valid" do
     expect(tenant).to be_valid
