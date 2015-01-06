@@ -22,20 +22,7 @@ class LoanRequestsController < ApplicationController
   end
 
   def update
-    checkout_loans = []
-    checkout_amounts = []
-    session['cart']['loans'].each do |lr_id, funding|
-      loan_request = LoanRequest.find_by(id: lr_id)
-      loan_request.increment!(:amount_funded, funding.to_i)
-      checkout_amounts << funding
-      checkout_loans << loan_request
-      loan_request.funded! if loan_request.is_funded?
-      Loan.create!(user_id: current_user.id, loan_request_id: lr_id, amount: funding)
-    end
-    LoanMailer.lent_money(current_user, checkout_loans, checkout_amounts).deliver
-    session['cart'] = nil
-    flash[:notice] = 'Thanks for your order.'
-    redirect_to loans_path
+
   end
 
   def show
