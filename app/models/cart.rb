@@ -7,10 +7,6 @@ class Cart
     session['cart']['loans'] ||= {}
   end
 
-  def session_cart
-    session['cart']
-  end
-
   def loans
     session['cart']['loans']
   end
