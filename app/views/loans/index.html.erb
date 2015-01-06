@@ -1,7 +1,7 @@
 <h2>Your past contributions:</h2>
 
 <% @loans.reverse_each do |t| %>
-  <div class="borrower">
+  <div class="loan">
     <p><%= image_tag t.loan_request.image.url(:main) %></p>
     <p>Your Order Number: <%= t.id %></p>
     <p>Amount You Funded This Order: <%= number_to_currency(t.amount, precision: 0) %></p>
