@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe 'Category Views', type: :feature do
-
-
   describe 'when a user visits /categories' do
     before(:each) do
       category_1 = Category.create(name: 'Reptiles', description: 'description')
@@ -40,6 +38,11 @@ describe 'Category Views', type: :feature do
     it 'and the number of loans in each category is displayed' do
       expect(page).to have_content('Reptiles 1')
       expect(page).to have_content('Mammals 1')
+    end
+
+    it 'can follow a category link to a named URL' do
+      click_link 'Reptiles'
+      expect(page.current_url).to eq('http://www.example.com/categories/reptiles')
     end
   end
 end
