@@ -101,12 +101,20 @@ RSpec.describe LoanMailer, :type => :mailer do
     checkout_loans << loan_request1
     checkout_loans << loan_request2
 
-    LoanMailer.received_money(current_user2, checkout_loans, checkout_amounts).deliver
-    result = ActionMailer::Base.deliveries.last
+    checkout_loans.each_with_index do |loan, index|
+      LoanMailer.received_money(current_user, loan, checkout_amounts[index]).deliver
+    end
+    result = ActionMailer::Base.deliveries.first
+    result2 = ActionMailer::Base.deliveries.last
 
     expect(result).not_to be_nil
     expect(result.to).to include("bruce_wayne@waynewnterprises.com")
     expect(result.from).to include("chase@example.com")
     expect(result.subject).to eq("You have received funding.")
+
+    expect(result2).not_to be_nil
+    expect(result2.to).to include("bruce_wayne@waynewnterprises.com")
+    expect(result2.from).to include("chase@example.com")
+    expect(result2.subject).to eq("You have received funding.")
   end
 end
