@@ -1,26 +1,40 @@
 <div>
   <h1>Your Cart</h1>
-  <% unless current_user %>
-    <h3>Please log in above to complete your order.</h3>
-  <% else %>
-    <%= link_to "Checkout", loan_request_path(cart.find_loan_request), method: :put, class: "button" %>
-  <%end%>
+
+  <%# link_to "Checkout", loan_request_path(cart.find_loan_request), method: :put, class: "button" %>
+
+  <%= form_tag '/cart_update' do |f| %>
+    <% cart.find_loan_request.each do |lr| %>
+      <div class="loan_request">
+        <p style="font-weight: bold"><%= "Title: #{lr.title.titleize}" %></p>
+        <p><%= image_tag lr.image.url(:thumb) %>
+        <p><%= "Blurb: #{lr.blurb}" %></p>
+        <p><%= "Borrowing Amount: #{number_to_currency(lr.borrowing_amount, precision: 0)}" %></p>
+        <p><%= "Amount Funded: #{number_to_currency(lr.amount_funded, precision: 0)}" %></p>
+        <p><%= "Requested by: #{lr.requested_by_date.strftime('%m/%d/%Y')}" %></p>
+        <p><%= "Loan Term: #{lr.loan_term}" %> months</p>
+        <p><%= "Status: #{lr.status}" %></p>
+        <p><%= "Created at: #{lr.created_at.strftime('%m/%d/%Y')}" %></p>
+        </br>
+
+        <p> Amount to loan:
+          <% if lr.remaining_amount < 500 %>
+          <%= select_tag("amounts[]", options_for_select((25..lr.remaining_amount).step(25).to_a)) %>
+          <% else %>
+          <%= select_tag("amounts[]", options_for_select((25..500).step(25).to_a)) %>
+          <% end %>
+        </p>
+      </div>
+    <% end %>
+
+    <div style="clear:both"></div>
+    <% unless current_user %>
+      <h3>Please log in above to complete your order.</h3>
+    <% else %>
+      <%= submit_tag "Checkout" %>
+    <%end%>
+  <% end %>
 </div>
 
-<% cart.find_loan_request.each do |lr| %>
-  <div class="loan_request">
-    <p style="font-weight: bold"><%= "Title: #{lr.title.titleize}" %></p>
-    <p><%= image_tag lr.image.url(:thumb) %>
-    <p><%= "Blurb: #{lr.blurb}" %></p>
-    <p><%= "Borrowing Amount: #{number_to_currency(lr.borrowing_amount, precision: 0)}" %></p>
-    <p><%= "Amount Funded: #{number_to_currency(lr.amount_funded, precision: 0)}" %></p>
-    <p><%= "Requested by: #{lr.requested_by_date.strftime('%m/%d/%Y')}" %></p>
-    <p><%= "Loan Term: #{lr.loan_term}" %> months</p>
-    <p><%= "Status: #{lr.status}" %></p>
-    <p><%= "Created at: #{lr.created_at.strftime('%m/%d/%Y')}" %></p>
-    </br>
-    <p><%= "Amount Loaned: #{cart.loans[lr.id.to_s]}" %></p>
-  </div>
-<% end %>
 
 <div style="clear:both;"></div>
