@@ -4,12 +4,8 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
   </head>
   <body>
-    <% @loans.each_with_index do |loan, index| %>
-      <% if loan.user.email == @recipient %>
-        <p>You have received funding for your loan request from <%= @user.first_name %>.</p>
-        <p>The amount is <%= number_to_currency(@amounts[index], precision: 0) %> </p>
-        <p>The loan request title is <%= loan.title %>.</p>
-      <% end %>
-    <% end %>
+    <p>You have received funding for your loan request from <%= @user.first_name %>.</p>
+    <p>The amount is <%= number_to_currency(@amount, precision: 0) %> </p>
+    <p>The loan request title is <%= @loan.title %>.</p>
   </body>
 </html>
