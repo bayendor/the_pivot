@@ -23,9 +23,7 @@ class CartController < ApplicationController
   def update
     cart.add_amounts_to_loans(params["amounts"])
     cart.loans.each do |lr_id, funding|
-      loan_request = LoanRequest.find_by(id: lr_id)
-      loan_request.increment!(:amount_funded, funding.to_i)
-      loan_request.funded! if loan_request.is_funded?
+      assign_funding(lr_id, funding)
       Loan.create!(user_id: current_user.id, loan_request_id: lr_id, amount: funding)
     end
     session['cart'] = nil
@@ -34,6 +32,12 @@ class CartController < ApplicationController
   end
 
   private
+
+  def assign_funding(lr_id, funding)
+    loan_request = LoanRequest.find_by(id: lr_id)
+    loan_request.increment!(:amount_funded, funding.to_i)
+    loan_request.funded! if loan_request.is_funded?
+  end
 
   def cart
     @cart ||= Cart.new(session)
