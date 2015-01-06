@@ -4,6 +4,13 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
   </head>
   <body>
-
+    <h3>Hello <%= @user.first_name %></h3>
+    <p>
+      Your order has been completed.
+    </p>
+    <% @loans.each_with_index do |loan, index| %>
+      <% binding.pry %>
+      <p>You gave <%= loan.user.tenant.name %> <%= number_to_currency(@amounts[index], precision: 0) %> for <%= loan.title %></p>
+    <% end %>
   </body>
 </html>

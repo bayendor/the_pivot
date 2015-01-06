@@ -17,7 +17,7 @@ module DinnerDash
       address:              "smtp.mandrillapp.com",
       port:                 "587",
       domain:               "gmail.com",
-      user_name:            "cvh1717@gmail.com",
+      user_name:            ENV['MANDRIL_USERNAME'],
       password:             ENV['MANDRIL_API_KEY'],
       authentication:       "plain",
       enable_starttls_auto: true
