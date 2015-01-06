@@ -1,19 +1,10 @@
 class Seed
   def initialize
-    puts 'STEP 1'
     generate_users_and_roles
-    puts 'STEP 2'
-
     generate_tenants
-    puts 'STEP 3'
-
     generate_categories
-    puts 'STEP 4'
-
     generate_loan_requests
-    puts 'STEP 5'
-
-    # generate_loans
+    generate_loans
   end
 
   def generate_users_and_roles
@@ -204,14 +195,11 @@ class Seed
   end
 
   def generate_loan_requests
-    puts "*** START GENERATE LOAN REQUEST *****"
     users = User.where.not(tenant_id: nil)
     users.each do |user|
-      puts "generating loan requests for user #{user.id}"
       borrowing_amount = rand(40..60) * 25.to_i
       amount_funded = rand(20..30) * 25.to_i
-        3.times do |i|
-          puts "generating #{i} of 3 LR for user #{user.id}"
+        20.times do |i|
           LoanRequest.create!(
           user_id:             user.id,
           title:               Faker::Company.bs,
@@ -227,18 +215,12 @@ class Seed
         end
     end
 
-    puts "will generate categories. #{LoanRequest.count} #{Category.count}"
     LoanRequest.all.each do |lr|
-      puts "ITERATING THROUGH LOAN REQUESTS #{lr.id}"
-      # lr.categories << Category.all.sample
       category = Category.all.sample
       lr.categories << category
-      puts "#{lr.title} category"
     end
 
-    puts 'Loan requests generated!'
     puts 'Categories added to loan requests!'
-    puts "*** FINISH GENERATE LOAN REQUEST *****"
 
   end
 
