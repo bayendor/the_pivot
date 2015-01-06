@@ -1,0 +1,47 @@
+<h2>Edit Loan Request</h2>
+
+<%= form_for @loan_request do |f| %>
+<% if @loan_request.errors.any? %>
+<div id="errors">
+  <h2><%= pluralize(@loan_request.errors.count, 'error') %> occurred:</h2>
+  <ul>
+    <% @loan_request.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<p>All fields are required</p>
+
+<p><%= label_tag :title, 'Title' %></br>
+  <%= f.text_field :title %></p>
+
+  <p><%= label_tag :blurb, 'Blurb' %></br>
+    <p><small>Please enter a brief description of your loan request.</small><br>
+      <%= f.text_field :blurb %></p>
+
+      <p><%= label_tag :description, 'Description' %></br>
+        <p><small>Please enter a continued description of your loan request.</small><br>
+          <%= f.text_field :description %></p>
+
+          <p><%= label_tag :borrowing_amount, 'Loan Amount' %></br>
+            <%= f.text_field :borrowing_amount %></p>
+
+            <p><%= label_tag :requested_by_date, 'Requested by' %></br>
+              <%= f.date_field :requested_by_date %></p>
+
+              <p><%= label_tag :payments_begin_date, 'Payment Start Date' %></br>
+                <%= f.date_field :payments_begin_date %></p>
+
+                <p><%= label_tag :payments_end_date, 'Payment End Date' %></br>
+                  <%= f.date_field :payments_end_date %></p>
+
+                  <p>Categories</p>
+                  <p><%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %></p>
+
+                  <p><%= label_tag :image %></br>
+                    <%= f.file_field :image %></p>
+
+                    <button type="submit">Submit</button>
+                    <% end %>

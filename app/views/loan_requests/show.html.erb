@@ -13,7 +13,7 @@
 <p>Payment Start Date: <%= @loan_request.payments_begin_date.strftime('%m/%d/%Y') %></p>
 <p>Payment End Date: <%= @loan_request.payments_end_date.strftime('%m/%d/%Y') %></p>
 <p>Repayment Rate: <%= number_to_currency(@loan_request.repayment_rate, precision: 0) %> / month</p>
-<p>Categories: <% lr.get_categories(lr).each do |name| %><%= "#{name } " %> | <% end %></p>
+<p>Categories: <% @loan_request.get_categories(@loan_request).each do |name| %><%= "#{name } " %> | <% end %></p>
 <% if !current_tenant && !current_user %>
   <p><% if @loan_request.status == 'open' %>
   <%= check_box_tag "loan_requests[]", @loan_request.id %>

@@ -57,7 +57,7 @@ class Seed
 
   def generate_categories
     categories = ["Conflict Zones", "Education", "Food",
-                  "Men", "Expiring Soon", "Africa",
+                  "Men", "Women", "Agriculture",
                   "Green", "Vulnerable Populations"]
     categories.each do |category|
       Category.create!(name:        category,
