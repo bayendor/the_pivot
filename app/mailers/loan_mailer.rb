@@ -12,9 +12,5 @@ class LoanMailer < ActionMailer::Base
 
   end
 
-  def send_email(user = "cvh1717@gmail.com")
-    @user = user
-    mail(to: @user, subject: "Your order has been processed.")
-  end
 end
 
