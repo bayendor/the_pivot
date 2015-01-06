@@ -5,7 +5,7 @@
 <%= link_to 'closed', 'loan_requests?status=closed' %> or
 <%= link_to 'all', loan_requests_path %> loan requests.</p>
 
-<%= form_tag '/cart' do %>
+<%= form_for '/cart', do %>
   <% @loan_requests.each do |lr| %>
     <div class="loan_request">
       <p style="font-weight: bold">Title: <%= link_to "#{lr.title.titleize}", loan_request_path(lr) %></p>
@@ -17,18 +17,17 @@
       <p><%= "Requested by: #{lr.requested_by_date.strftime('%m/%d/%Y')}" %></p>
       <p><%= "Loan Term: #{lr.loan_term}" %> months</p>
       <p><%= "Repayment Rate: #{number_to_currency(lr.repayment_rate, precision: 0)}" %> / month</p>
-      <p>Categories: <% lr.get_categories(lr).each do |name| %><%= "#{name } " %> | <% end %></p>
+      <p>Categories: <%= lr.get_categories.join(" | ") %></p>
       <p><%= "Status: #{lr.status}" %></p>
-      <% if lr.status == 'open' %>
-        <%= check_box_tag "loan_requests[]", lr.id %>
-        <%= label_tag("loan_request_#{lr.id}", "<-- Yes, I want to Loan!") %>
-      <% else %>
-        <p><em>Fully funded!</em></p>
-      <% end %>
-  </div>
+        <% if lr.status == 'open' %>
+          <button name="loan_25">Loan $25</button>
+        <% else %>
+          <p><em>Fully funded!</em></p>
+        <% end %>
+    </div>
   <% end %>
   <div style="clear:both"></div>
-  <%= submit_tag "Add selected Loans to Cart" %>
+  <%= submit_tag "Take me to my cart!" %>
 <% end %>
 </div>
 <div style="clear:both;"></div>

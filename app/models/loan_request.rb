@@ -57,8 +57,8 @@ class LoanRequest < ActiveRecord::Base
     borrowing_amount - amount_funded
   end
 
-  def get_categories(loan_request)
-    loan_request.categories.map do |category|
+  def get_categories
+    self.categories.map do |category|
       category.name
     end
   end
