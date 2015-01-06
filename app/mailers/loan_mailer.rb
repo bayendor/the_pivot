@@ -8,8 +8,11 @@ class LoanMailer < ActionMailer::Base
     mail(to: @user.email, subject: "Your order has been processed.")
   end
 
-  def received_money
-
+  def received_money(user, loan_request, checkout_amount)
+    @user = user
+    @loan = loan_request
+    @amount = checkout_amount
+      mail(to: @loan.user.email, subject: "You have received funding.")
   end
 
 end

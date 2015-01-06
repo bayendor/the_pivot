@@ -29,6 +29,9 @@ class CartController < ApplicationController
       Loan.create!(user_id: current_user.id, loan_request_id: lr_id, amount: funding)
     end
     LoanMailer.lent_money(current_user, @checkout_loans, @checkout_amounts).deliver
+    @checkout_loans.each_with_index do |loan, index|
+      LoanMailer.received_money(current_user, loan, @checkout_amounts[index]).deliver
+    end
     session['cart'] = nil
     flash[:notice] = 'Thanks for your order.'
     redirect_to loans_path
