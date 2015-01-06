@@ -19,9 +19,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'cancancan', '~> 1.9'
+gem 'rails_admin', '~> 0.6.6'
 
 group :development, :test do
-  gem 'simplecov', :require => false, :group => :test
+  gem 'simplecov', require: false, group: :test
   gem 'nokogiri'
   gem 'rspec-rails'
   gem 'better_errors'

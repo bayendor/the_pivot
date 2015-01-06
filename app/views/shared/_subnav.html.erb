@@ -15,7 +15,7 @@
   <% end %>
 
   <% if current_user && current_user.is_admin? %>
-    <%= link_to "Admin Dashboard", admin_index_path %>
+    <%= link_to "Admin Dashboard", rails_admin_path %> &bull;
   <% end %>
 
   <% if current_tenant && current_user.is_a_tenant? %>
