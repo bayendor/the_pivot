@@ -1,10 +1,19 @@
 class Seed
   def initialize
+    puts 'STEP 1'
     generate_users_and_roles
-    generate_categories
+    puts 'STEP 2'
+
     generate_tenants
+    puts 'STEP 3'
+
+    generate_categories
+    puts 'STEP 4'
+
     generate_loan_requests
-    generate_loans
+    puts 'STEP 5'
+
+    # generate_loans
   end
 
   def generate_users_and_roles
@@ -195,11 +204,14 @@ class Seed
   end
 
   def generate_loan_requests
+    puts "*** START GENERATE LOAN REQUEST *****"
     users = User.where.not(tenant_id: nil)
     users.each do |user|
+      puts "generating loan requests for user #{user.id}"
       borrowing_amount = rand(40..60) * 25.to_i
       amount_funded = rand(20..30) * 25.to_i
-        20.times do
+        3.times do |i|
+          puts "generating #{i} of 3 LR for user #{user.id}"
           LoanRequest.create!(
           user_id:             user.id,
           title:               Faker::Company.bs,
@@ -213,15 +225,21 @@ class Seed
           status:              'open'
           )
         end
-      end
     end
 
+    puts "will generate categories. #{LoanRequest.count} #{Category.count}"
     LoanRequest.all.each do |lr|
-      lr.categories << Category.all.sample
+      puts "ITERATING THROUGH LOAN REQUESTS #{lr.id}"
+      # lr.categories << Category.all.sample
+      category = Category.all.sample
+      lr.categories << category
+      puts "#{lr.title} category"
     end
 
     puts 'Loan requests generated!'
     puts 'Categories added to loan requests!'
+    puts "*** FINISH GENERATE LOAN REQUEST *****"
+
   end
 
   def generate_loans
@@ -229,17 +247,18 @@ class Seed
     5.times do |i|
       loan_request = LoanRequest.all.sample
       User.all.each do |user|
-      user = User.create!(first_name: Faker::Name.first_name,
-                          last_name:  Faker::Name.last_name,
-                          email:      Faker::Internet.safe_email("#{i} #{Faker::Internet.user_name}"),
-                          password:   'password'
-                         )
+        user = User.create!(first_name: Faker::Name.first_name,
+                            last_name:  Faker::Name.last_name,
+                            email:      Faker::Internet.safe_email("#{i} #{Faker::Internet.user_name}"),
+                            password:   'password'
+                           )
 
-      loan = Loan.create!(user:         user,
-                          loan_request: loan_request,
-                          amount:       (Faker::Commerce.price * 100).to_i,
-                          status:       status.sample
-                         )
+        loan = Loan.create!(user:         user,
+                            loan_request: loan_request,
+                            amount:       (Faker::Commerce.price * 100).to_i,
+                            status:       status.sample
+                           )
+      end
     end
 
     puts 'Users with loans generated!'
