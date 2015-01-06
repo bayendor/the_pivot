@@ -14,7 +14,9 @@ class LoanMailer < ActionMailer::Base
     @amounts = checkout_amounts
     @loans.each do |loan|
       @recipient = loan.user.email
+      binding.pry
       mail(to: loan.user.email, subject: "You have received funding.")
+      sleep(10)
     end
   end
 
