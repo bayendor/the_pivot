@@ -21,11 +21,14 @@ class CartController < ApplicationController
   end
 
   def update
+    @checkout_loans = []
+    @checkout_amounts = []
     cart.add_amounts_to_loans(params["amounts"])
     cart.loans.each do |lr_id, funding|
       assign_funding(lr_id, funding)
       Loan.create!(user_id: current_user.id, loan_request_id: lr_id, amount: funding)
     end
+    LoanMailer.lent_money(current_user, @checkout_loans, @checkout_amounts).deliver
     session['cart'] = nil
     flash[:notice] = 'Thanks for your order.'
     redirect_to loans_path
@@ -37,6 +40,8 @@ class CartController < ApplicationController
     loan_request = LoanRequest.find_by(id: lr_id)
     loan_request.increment!(:amount_funded, funding.to_i)
     loan_request.funded! if loan_request.is_funded?
+    @checkout_amounts << funding
+    @checkout_loans << loan_request
   end
 
   def cart

@@ -22,7 +22,7 @@ class LoanRequestsController < ApplicationController
   end
 
   def update
-    redirect_to loans_path
+
   end
 
   def show
