@@ -6,8 +6,8 @@ RSpec.describe LoanMailer, :type => :mailer do
 
     current_tenant = Tenant.create!( name: 'My Store',
                                      description: 'Good Stuff',
-                                     blurb: 'blurb'
                                     )
+
     current_user = User.create!(  first_name: 'Bruce',
                                   last_name:  'Wayne',
                                   email:      'bruce_wayne@waynewnterprises.com',
@@ -18,7 +18,7 @@ RSpec.describe LoanMailer, :type => :mailer do
 
     loan_request1 = LoanRequest.create!(user_id:             current_user.id,
                                         title:               "Hello",
-                                        blurb:               'This is a blurb.',
+                                        blurb:               'This is a blurb turtles.',
                                         description:         "nice",
                                         borrowing_amount:    100,
                                         amount_funded:       0,
@@ -29,7 +29,7 @@ RSpec.describe LoanMailer, :type => :mailer do
                            )
     loan_request2 = LoanRequest.create!(user_id:             current_user.id,
                                         title:               "Goodbye",
-                                        blurb:               'This is a blurb.',
+                                        blurb:               'This is a blurb blurb.',
                                         description:         "bad",
                                         borrowing_amount:    1000,
                                         amount_funded:       0,
@@ -76,7 +76,7 @@ RSpec.describe LoanMailer, :type => :mailer do
 
     loan_request1 = LoanRequest.create!(user_id:             current_user.id,
                                         title:               "Hello",
-                                        blurb:               'This is a blurb.',
+                                        blurb:               'This is a blurbasdf.',
                                         description:         "nice",
                                         borrowing_amount:    100,
                                         amount_funded:       0,
@@ -87,7 +87,7 @@ RSpec.describe LoanMailer, :type => :mailer do
                            )
     loan_request2 = LoanRequest.create!(user_id:             current_user.id,
                                         title:               "Goodbye",
-                                        blurb:               'This is a blurb.',
+                                        blurb:               'This is a blurb 123.',
                                         description:         "bad",
                                         borrowing_amount:    1000,
                                         amount_funded:       0,
