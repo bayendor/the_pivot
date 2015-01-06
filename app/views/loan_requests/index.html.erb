@@ -5,7 +5,7 @@
   <%= link_to 'closed', 'loan_requests?status=closed' %> or
   <%= link_to 'all', loan_requests_path %> loan requests.</p>
 
-<%= form_tag '/cart' do |f| %>
+<%= form_tag '/cart' do %>
   <% @loan_requests.each do |lr| %>
     <div class="loan_request">
       <p style="font-weight: bold">Title: <%= link_to "#{lr.title.titleize}", loan_request_path(lr) %></p>
@@ -20,15 +20,10 @@
       <p>Categories: <% lr.get_categories(lr).each do |name| %><%= "#{name } " %> | <% end %></p>
       <p><%= "Status: #{lr.status}" %></p>
         <% if lr.status == 'open' %>
-          <% if lr.remaining_amount < 500 %>
-            <%= select_tag("amount_option_#{lr.id}", options_for_select((25..lr.remaining_amount).step(25).to_a)) %>
-          <% else %>
-            <%= select_tag("amount_option_#{lr.id}", options_for_select((25..500).step(25).to_a)) %>
-          <% end %>
-        <%= check_box_tag "loan_requests[]", lr.id %>
-        <%= label_tag("loan_request_#{lr.id}", "<-- Yes, I want to Loan!") %>
+          <%= check_box_tag "loan_requests[]", lr.id %>
+          <%= label_tag("loan_request_#{lr.id}", "<-- Yes, I want to Loan!") %>
         <% else %>
-        <p><em>Fully funded!</em></p>
+          <p><em>Fully funded!</em></p>
         <% end %>
     </div>
   <% end %>
