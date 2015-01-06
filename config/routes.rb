@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   post 'tenants', to: 'tenants#create'
 
   resources :tenants, as: :tenant, path: '', param: :slug
+
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 end
