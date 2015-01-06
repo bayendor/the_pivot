@@ -30,6 +30,7 @@ class CartController < ApplicationController
     end
     session['cart'] = nil
     flash[:notice] = 'Thanks for your order.'
+    redirect_to loans_path
   end
 
   private
