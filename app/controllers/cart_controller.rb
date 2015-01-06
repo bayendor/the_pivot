@@ -8,14 +8,20 @@ class CartController < ApplicationController
   end
 
   def create
-    if params[:loan_requests] != nil
-      params[:loan_requests].each do |lr_id|
-        cart.add_loan(lr_id, params["amount_option_#{lr_id}"])
+    if params["loan_requests"] != nil
+      params["loan_requests"].each { |lr_id| cart.add_loan(lr_id) }
+      if current_user
+        redirect_to cart_index_path
+      else
+        redirect_to cart_index_path, notice: "Cart created. Please log in."
       end
-      redirect_to cart_index_path, notice: "Cart created. Please log in."
     else
       redirect_to :back, notice: "Please add some loans."
     end
+  end
+
+  def update
+    cart.add_amounts_to_loans(params["amounts"])
   end
 
   private

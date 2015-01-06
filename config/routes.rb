@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
   resources :users
 
-  post '/cart',         to: 'cart#create'
-  delete '/cart',       to: 'cart#remove_item'
-  post '/cart_update',  to: 'cart#update_quantity'
+  post '/cart',          to: 'cart#create'
+  post '/cart_update',   to: 'cart#update'
+  delete '/cart',        to: 'cart#remove_item'
 
   resources :cart, only: [:index]
   resources :loans, only: [:index]
