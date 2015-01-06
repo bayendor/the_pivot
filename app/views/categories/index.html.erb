@@ -2,7 +2,7 @@
 
 <% @categories.each do |c| %>
   <div class="c">
-    <p><strong><%= link_to "#{c.name}", category_path(c) %></strong>
+    <p><strong><%= link_to "#{c.name}", category_path(c.slug) %></strong>
     <%= LoanRequestCategory.where(category_id: c).count %></p>
   </div>
 <% end %>
