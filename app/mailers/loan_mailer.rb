@@ -6,7 +6,6 @@ class LoanMailer < ActionMailer::Base
     @loans = loan_request_ids.map do |loan_request_id|
       get_loan_request_object_from_id(loan_request_id)
     end
-    binding.pry
     @amounts = checkout_amounts
     mail(to: @user.email, subject: "Your order has been processed.")
   end
