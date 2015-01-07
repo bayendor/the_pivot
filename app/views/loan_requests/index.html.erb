@@ -1,3 +1,5 @@
+<%= javascript_include_tag "loan_handler" %>
+
 <h2>Loan Requests</h2>
 
 <p>Show
@@ -9,7 +11,7 @@
   <%= link_to 'Take me to my cart!', cart_path %>
 
 <% @loan_requests.each do |loan_request| %>
-  <%= form_tag '/cart' do %>
+  <%= form_tag '/cart', remote: true do %>
     <div class="loan_request">
       <p style="font-weight: bold">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
       <p><%= image_tag loan_request.image.url(:thumb) %>
@@ -25,7 +27,7 @@
         <% if loan_request.status == 'open' %>
 
           <%= hidden_field_tag "loan_request", loan_request.id %>
-          <%= submit_tag "Loan $25", name: "loan_request_#{loan_request.id}" %>
+          <%= submit_tag "Loan $25", name: "loan_request_#{loan_request.id}", onclick: "loanClicked();" %>
         <% else %>
           <p><em>Fully funded!</em></p>
         <% end %>
@@ -33,5 +35,6 @@
   <% end %>
   <div style="clear:both"></div>
 <% end %>
+<div style="clear:both;"></div>
 </div>
 <div style="clear:both;"></div>
