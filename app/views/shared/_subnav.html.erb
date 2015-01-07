@@ -14,11 +14,11 @@
     <%= link_to "My Profile", user_path(current_user) %> &bull;
   <% end %>
 
-  <% if current_user && current_user.is_admin? %>
+  <% if current_user && current_user.admin? %>
     <%= link_to "Admin Dashboard", rails_admin_path %> &bull;
   <% end %>
 
-  <% if current_tenant && current_user.is_a_tenant? %>
+  <% if current_tenant && current_user.tenant? %>
     <%= link_to(image_tag("button_mystore.png", :alt => "My Store"), tenant_path(current_user.tenant.slug)) %></div>
   <% end %>
 

@@ -9,9 +9,10 @@ class LoanRequest < ActiveRecord::Base
   has_attached_file :image, styles: { thumb: '100x100>', main: '300x300>' },
                             default_url: 'missing.png'
 
-  validate :request_date
-  validate :begin_date
-  validate :end_date
+  validate :ensure_request_date_not_in_past
+  validate :ensure_begin_date_is_after_request_date
+  validate :ensure_end_date_is_after_begin_date
+
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates :user_id, presence: true
   validates :title, presence: true
@@ -25,28 +26,21 @@ class LoanRequest < ActiveRecord::Base
   validates :payments_end_date, presence: true
   validates :status, presence: true
 
-  def request_date
-    if requested_by_date.present? && requested_by_date < Date.today
-      errors.add(:requested_by_date, 'cannot be in the past')
-    end
+  def category_names
+    categories.map(&:name)
   end
 
-  def begin_date
-    if payments_begin_date.present? &&
-       payments_begin_date < requested_by_date.months_since(1)
-      errors.add(:payments_begin_date, 'must be at least one month from today')
-    end
+  def is_funded?
+    amount_funded == borrowing_amount
   end
 
-  def end_date
-    if payments_end_date.present? &&
-       payments_end_date < requested_by_date.months_since(3)
-      errors.add(:payments_end_date, 'must be at least three months from today')
-    end
+  def funded!
+    self.status = 'closed'
+    save!
   end
 
   def loan_term
-    ((payments_end_date - payments_begin_date) / 2_592_000).round
+    ((payments_end_date - payments_begin_date) / SECONDS_IN_MONTH).round
   end
 
   def repayment_rate
@@ -57,16 +51,39 @@ class LoanRequest < ActiveRecord::Base
     borrowing_amount - amount_funded
   end
 
-  def category_names
-    categories.map(&:name)
+  private
+
+  SECONDS_IN_MONTH =  2_592_000
+
+  def ensure_request_date_not_in_past
+    if request_date_is_in_past?
+      errors.add(:requested_by_date, 'cannot be in the past')
+    end
   end
 
-  def is_funded?
-    amount_funded == borrowing_amount
+  def request_date_is_in_past?
+    requested_by_date.present? && requested_by_date < Date.today
   end
 
-  def funded!
-    self.status = "closed"
-    save!
+  def ensure_begin_date_is_after_request_date
+    if date_less_than_one_month_from_request_date
+      errors.add(:payments_begin_date, 'must be at least one month from today')
+    end
+  end
+
+  def ensure_end_date_is_after_begin_date
+    if date_less_than_three_months_from_request_date
+      errors.add(:payments_end_date, 'must be at least three months from today')
+    end
+  end
+
+  def date_less_than_one_month_from_request_date
+    payments_begin_date.present? &&
+      payments_begin_date < requested_by_date.months_since(1)
+  end
+
+  def date_less_than_three_months_from_request_date
+    payments_end_date.present? &&
+      payments_end_date < requested_by_date.months_since(3)
   end
 end

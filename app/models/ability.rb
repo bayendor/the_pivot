@@ -4,11 +4,11 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    if user && user.is_admin?
+    if user && user.admin?
       can :access, :rails_admin
       can :dashboard
       can :manage, :all
-    elsif user.is_a_tenant?
+    elsif user.tenant?
       can :manage, Tenant, id: user.tenant_id
       can :read, Tenant
       can :read, LoanRequest
