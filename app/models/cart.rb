@@ -26,4 +26,8 @@ class Cart
       loans[key] = amounts[index]
     end
   end
+
+  def remove_loan(id)
+    loans.delete(id)
+  end
 end
