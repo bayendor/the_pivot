@@ -1,5 +1,3 @@
-<%= javascript_include_tag "loan_handler" %>
-
 <h2>Loan Requests</h2>
 
 <p>Show
@@ -25,9 +23,8 @@
       <p><%= "Categories: #{loan_request.category_names.join(" | ")}" %></p>
       <p><%= "Status: #{loan_request.status}" %></p>
         <% if loan_request.status == 'open' %>
-
           <%= hidden_field_tag "loan_request", loan_request.id %>
-          <%= submit_tag "Loan $25", name: "loan_request_#{loan_request.id}", onclick: "loanClicked();" %>
+          <%= submit_tag "Loan $25", name: "loan_request_#{loan_request.id}", class: 'loan-button' %>
         <% else %>
           <p><em>Fully funded!</em></p>
         <% end %>
