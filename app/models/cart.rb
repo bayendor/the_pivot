@@ -18,7 +18,7 @@ class Cart
   end
 
   def add_loan(id)
-    loans[id] = nil
+    loans[id] = "0"
   end
 
   def add_amounts_to_loans(amounts)
@@ -26,9 +26,4 @@ class Cart
       loans[key] = amounts[index]
     end
   end
-
-  # TODO: implement removing items
-  # def remove_item
-  #
-  # end
 end
