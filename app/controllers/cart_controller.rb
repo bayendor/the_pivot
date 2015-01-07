@@ -28,6 +28,11 @@ class CartController < ApplicationController
     redirect_to loans_path, notice: 'Thanks for your order.'
   end
 
+  def remove_loan_request
+    cart.remove_loan(params[:id])
+    render :json => {:success => true}
+  end
+
   private
 
   def assign_funding(lr_id, funding)

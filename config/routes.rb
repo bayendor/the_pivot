@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   resources :users
 
   post '/cart',          to: 'cart#create'
-  post '/cart_update',   to: 'cart#update'
+  put '/cart_update',   to: 'cart#update'
   delete '/cart',        to: 'cart#remove_item'
 
   resources :cart, only: [:index]
   resources :loans, only: [:index]
   resources :loan_requests, only: [:index, :new, :show, :create, :update, :edit]
+
+  delete "loan_requests/:id/cart", to: 'cart#remove_loan_request', as: :cart_item
 
   resources :categories, as: :category, path: 'categories', param: :slug
 

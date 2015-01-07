@@ -38,4 +38,14 @@ RSpec.describe Cart do
     expect(cart.session).to eq("cart" => {"loans"=>{1=>50, 2=>500}})
   end
 
+  context "#remove_loan" do
+    it "deletes the provided id from the cart" do
+      cart.add_loan(loan_1)
+      cart.add_loan(loan_2)
+
+      expect(cart.session).to eq("cart" => {"loans"=>{1=>"0", 2 => "0"}})
+      cart.remove_loan(loan_1)
+      expect(cart.session).to eq("cart" => {"loans"=>{2 => "0"}})
+    end
+  end
 end
