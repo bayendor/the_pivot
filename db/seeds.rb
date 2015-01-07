@@ -4,7 +4,6 @@ class Seed
     generate_tenants
     generate_categories
     generate_loan_requests
-    # generate_images
     generate_loans
   end
 
@@ -497,28 +496,22 @@ class Seed
           )
     amigos.save!
 
-    LoanRequest.all.each do |lr|
-      category = Category.all.sample
+    amigos.loan_requests.each do |lr|
+      category = Category.find(3, 4, 7)
       lr.categories << category
+
     end
 
     puts 'Categories added to loan requests!'
 
   end
 
-  # def generate_images
-  #   lag_pic1 = LoanRequest.find_by(title: 'Truck Purchase')
-  #   lag_pic1.image = File.open('#{Rails.root}/app/assets/images/los_amigos_gordos/amigos.jpg')
-  #   lag_pic1.save!
-  # end
-
-  # puts 'Images seeded!'
 
   def generate_loans
     status = %w(ordered completed canceled paid)
-    5.times do |i|
+    Tenant.all.each do |tenant|
+      2.times do |i|
       loan_request = LoanRequest.all.sample
-      User.all.each do |user|
         user = User.create!(first_name: Faker::Name.first_name,
                             last_name:  Faker::Name.last_name,
                             email:      Faker::Internet.safe_email("#{i} #{Faker::Internet.user_name}"),
