@@ -123,3 +123,8 @@ footer {
   font-size:0.8em;
   font-style: italic;
 }
+
+.loan-clicked {
+  background-color: lime;
+  margin-bottom: -5px;
+}
