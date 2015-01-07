@@ -9,9 +9,8 @@
 
 <div class="store">
   <h3>Loan Requests:</h3>
-
-  <%= form_tag '/cart', remote: true do %>
     <% @tenant.loan_requests.each do |loan_request| %>
+      <%= form_tag '/cart', remote: true do %>
       <div class="loan_request">
         <p style="font-weight: bold">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
         <p><%= image_tag loan_request.image.url(:thumb) %>
@@ -33,7 +32,7 @@
         <% end %>
       </div>
     <% end %>
-    <div style="clear:both"></div>
 <% end %>
+    <div style="clear:both"></div>
 </div>
 <div style="clear:both"></div>
