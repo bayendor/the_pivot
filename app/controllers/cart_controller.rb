@@ -20,7 +20,8 @@ class CartController < ApplicationController
     cart.add_amounts_to_loans(params['amounts'])
     cart.loans.each do |lr_id, funding|
       assign_funding(lr_id, funding)
-      Loan.create!(user_id: current_user.id, loan_request_id: lr_id, amount: funding)
+      Loan.create!(user_id: current_user.id, loan_request_id: lr_id,
+                   amount: funding)
     end
     send_emails_to_lenders_and_borrowers
     session['cart'] = nil
@@ -40,6 +41,7 @@ class CartController < ApplicationController
   end
 
   def send_emails_to_lenders_and_borrowers
-    SendEmailJob.new.async.perform(current_user, cart.loans.keys, cart.loans.values)
+    SendEmailJob.new.async.perform(current_user, cart.loans.keys,
+                                   cart.loans.values)
   end
 end
