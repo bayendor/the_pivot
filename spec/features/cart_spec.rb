@@ -42,24 +42,25 @@ describe 'Cart' do
   context 'adding items to the cart' do
 
     it 'get added and they persist after logging in' do
-      find(:css, "#loan_requests_[value='#{LoanRequest.first.id}']").set(true)
-      find('input[value="Take me to my cart!"]').click
+      find("input[name='loan_request_#{LoanRequest.first.id}']").click
+      fill_in 'username', with: user.username
+      fill_in 'password', with: user.password
+      find('input[value="Log In"]').click
+
+      click_link 'Take me to my cart!'
       expect(current_path).to eq('/cart')
       expect(page).to have_content('Your Cart')
       expect(page).to have_content('Steve Needs A New Phone.')
 
-      fill_in 'username', with: user.username
-      fill_in 'password', with: user.password
-      find('input[value="Log In"]').click
 
       visit '/cart'
       expect(page).to have_content('Steve Needs A New Phone.')
     end
 
     it 'can be from multiple borrowers' do
-      find(:css, "#loan_requests_[value='#{LoanRequest.first.id}']").set(true)
-      find(:css, "#loan_requests_[value='#{LoanRequest.second.id}']").set(true)
-      find('input[value="Take me to my cart!"]').click
+      find("input[name='loan_request_#{LoanRequest.first.id}']").click
+      find("input[name='loan_request_#{LoanRequest.second.id}']").click
+      click_link 'Take me to my cart!'
 
       expect(page).to have_content('Steve Needs A New Phone.')
       expect(page).to have_content('Buy Jorge Beiber Tickets')

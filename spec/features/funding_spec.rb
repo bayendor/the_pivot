@@ -36,8 +36,8 @@ describe "Funding" do
     end
 
     it "is closed when fully funded" do
-      find(:css, "#loan_requests_[value='#{LoanRequest.first.id}']").set(true)
-      find('input[value="Take me to my cart!"]').click
+      find("input[name='loan_request_#{LoanRequest.first.id}']").click
+      click_link 'Take me to my cart!'
       expect(current_path).to eq('/cart')
 
       select "475", from: "amounts_"

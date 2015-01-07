@@ -10,7 +10,7 @@ class CartController < ApplicationController
   def create
     if params['loan_request']
       cart.add_loan(params['loan_request'])
-      redirect_to :back if current_user
+      redirect_to :back
     else
       redirect_to :back, notice: 'Please add some loans.'
     end

@@ -25,7 +25,7 @@
         <% if loan_request.status == 'open' %>
 
           <%= hidden_field_tag "loan_request", loan_request.id %>
-          <%= submit_tag "Loan $25" %>
+          <%= submit_tag "Loan $25", name: "loan_request_#{loan_request.id}" %>
         <% else %>
           <p><em>Fully funded!</em></p>
         <% end %>
