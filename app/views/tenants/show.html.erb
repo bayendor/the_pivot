@@ -10,35 +10,28 @@
 <div class="store">
   <h3>Loan Requests:</h3>
 
-  <% @tenant.loan_requests.each do |loan_request| %>
-    <div class="loan_request">
-      <p style="font-weight: bold">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
-      <p><%= image_tag loan_request.image.url(:thumb) %>
-    <p><%= "#{loan_request.blurb}" %> <%= link_to "Learn more.", loan_request_path(loan_request) %></p>
-    <p><%= "Borrowing Amount: #{number_to_currency(loan_request.borrowing_amount, precision: 0)}" %></p>
-    <p><%= "Amount Funded: #{number_to_currency(loan_request.amount_funded, precision: 0)}" %></p>
-    <p><%= "Requested by: #{loan_request.requested_by_date.strftime('%m/%d/%Y')}" %></p>
-    <p><%= "Loan Term: #{loan_request.loan_term}" %> months</p>
-    <p><%= "Categories: #{loan_request.category_names.join(" | ")}" %></p>
-    <p><%= "Status: #{loan_request.status}" %></p>
-
-    <% if !current_tenant && !current_user %>
-      <p><% if loan_request.status == 'open' %>
-      <%= check_box_tag "loan_requests[]", loan_request.id %>
-      <%= label_tag("loan_request_#{loan_request.id}", "<-- Yes, I want to Loan!") %>
-    <% else %>
-      <p><em>Fully funded!</em></p>
-    <% end %>
-  <% end %>
-
-</div>
-<div style="clear:both"></div>
-  <%end%>
-  <% if !current_tenant && !current_user %>
+  <%= form_tag '/cart' do %>
     <% @tenant.loan_requests.each do |loan_request| %>
-      <% if loan_request.status == 'open' %>
-        <%= submit_tag "Add selected Loans to Cart" %>
-      <% end %>
+      <div class="loan_request">
+        <p style="font-weight: bold">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
+        <p><%= image_tag loan_request.image.url(:thumb) %>
+        <p><%= "#{loan_request.blurb}" %> <%= link_to "Learn more.", loan_request_path(loan_request) %></p>
+        <p><%= "Borrowing Amount: #{number_to_currency(loan_request.borrowing_amount, precision: 0)}" %></p>
+        <p><%= "Amount Funded: #{number_to_currency(loan_request.amount_funded, precision: 0)}" %></p>
+        <p><%= "Requested by: #{loan_request.requested_by_date.strftime('%m/%d/%Y')}" %></p>
+        <p><%= "Loan Term: #{loan_request.loan_term}" %> months</p>
+        <p><%= "Categories: #{loan_request.category_names.join(' | ')}" %></p>
+        <p><%= "Status: #{loan_request.status}" %></p>
+
+        <% if !current_tenant  %>
+          <% if loan_request.status == 'open' %>
+            <%= check_box_tag "loan_requests[]", loan_request.id %>
+            <%= label_tag("loan_request_#{loan_request.id}", "<-- Yes, I want to Loan!") %>
+          <% else %>
+            <p><em>Fully funded!</em></p>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
     <div style="clear:both"></div>
   <% if !current_tenant %>
