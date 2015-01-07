@@ -19,12 +19,6 @@ class ApplicationController < ActionController::Base
     @current_tenant ||= Tenant.find(session[:tenant_id]) if session[:tenant_id]
   end
 
-  def require_webmaster
-    unless current_user && current_user.is_webmaster?
-      redirect_to root_path, notice: 'Webmaster Only'
-    end
-  end
-
   private
 
   def reload_rails_admin

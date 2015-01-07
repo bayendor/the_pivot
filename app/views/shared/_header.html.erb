@@ -5,12 +5,12 @@
   <%= link_to(image_tag("corner_user.png", :alt => "Register"), new_user_path) %></div>
   <% end %>
 
-  <% if current_user && !current_user.is_a_tenant? %>
+  <% if current_user && !current_user.tenant? %>
   <div class="corner-register">
   <%= link_to(image_tag("corner_store.png", :alt => "Borrow"), new_tenant_path) %></div>
   <% end %>
 
-  <% if current_user && current_user.is_a_tenant? %>
+  <% if current_user && current_user.tenant? %>
   <div class="corner-mystore">
   <%= link_to(image_tag("button_mystore.png", :alt => "My Store"), tenant_path(current_user.tenant.slug)) %></div>
   <% end %>

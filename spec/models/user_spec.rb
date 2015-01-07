@@ -22,17 +22,6 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
-  it 'assigns username to first name if username is not present' do
-    user1 = User.create(first_name: 'Jim',
-                        last_name: 'Jones',
-                        email: 'test@jones.com',
-                        password: 'password',
-                        password_confirmation: 'password'
-                       )
-    expect(user1.username).to eq('Jim')
-    expect(user1).to be_valid
-  end
-
   it 'is invalid if username is too short' do
     user.username = 'A'
     expect(user).to_not be_valid
@@ -71,18 +60,6 @@ RSpec.describe User, type: :model do
   it 'is invalid if password does not match confirmation' do
     user.password = 'foobar'
     expect(user).to_not be_valid
-  end
-
-  it "assigns first name to username if username isn't given" do
-    user = User.create(first_name: 'Jim',
-                       last_name: 'Jones',
-                       email: 'test@jones.com',
-                       username: nil,
-                       password: 'password',
-                       password_confirmation: 'password'
-                      )
-
-    expect(user.username).to eq('Jim')
   end
 
   it 'is associated with a role' do

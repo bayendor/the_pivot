@@ -1,7 +1,5 @@
-function loanClicked() {
-  $(document).ready(function(){
-    $('input').click(function(){
-      $(this).addClass('loan-clicked');
-    });
+$(document).ready(function(){
+  $('.loan-button').click(function(){
+    $(this).addClass('loan-clicked');
   });
-};
+});

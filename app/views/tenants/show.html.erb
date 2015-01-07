@@ -10,7 +10,7 @@
 <div class="store">
   <h3>Loan Requests:</h3>
 
-  <%= form_tag '/cart' do %>
+  <%= form_tag '/cart', remote: true do %>
     <% @tenant.loan_requests.each do |loan_request| %>
       <div class="loan_request">
         <p style="font-weight: bold">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
@@ -25,8 +25,8 @@
 
         <% if !current_tenant  %>
           <% if loan_request.status == 'open' %>
-            <%= check_box_tag "loan_requests[]", loan_request.id %>
-            <%= label_tag("loan_request_#{loan_request.id}", "<-- Yes, I want to Loan!") %>
+            <%= hidden_field_tag "loan_request", loan_request.id %>
+            <%= submit_tag "Loan $25", name: "loan_request_#{loan_request.id}", class: 'loan-button' %>
           <% else %>
             <p><em>Fully funded!</em></p>
           <% end %>
@@ -34,9 +34,6 @@
       </div>
     <% end %>
     <div style="clear:both"></div>
-  <% if !current_tenant %>
-    <%= submit_tag "Add selected Loans to Cart" %>
-  <% end %>
 <% end %>
 </div>
 <div style="clear:both"></div>
