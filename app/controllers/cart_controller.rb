@@ -36,9 +36,9 @@ class CartController < ApplicationController
   private
 
   def assign_funding(lr_id, funding)
-    loan_request = LoanRequest.find_by(id: lr_id)
+    loan_request = LoanRequest.find_by("id = ?", lr_id)
     loan_request.increment!(:amount_funded, funding.to_i)
-    loan_request.funded! if loan_request.is_funded?
+    loan_request.mark_as_funded! if loan_request.is_fulfilled?
   end
 
   def cart

@@ -30,11 +30,11 @@ class LoanRequest < ActiveRecord::Base
     categories.map(&:name)
   end
 
-  def is_funded?
+  def is_fulfilled?
     amount_funded == borrowing_amount
   end
 
-  def funded!
+  def mark_as_funded!
     self.status = 'closed'
     save!
   end

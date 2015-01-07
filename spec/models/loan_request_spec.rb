@@ -80,8 +80,8 @@ RSpec.describe LoanRequest do
     it 'can change the status to closed' do
       expect(loan_request.status).to eq("open")
       loan_request.amount_funded = 10_000
-      expect(loan_request.is_funded?).to eq(true)
-      loan_request.funded!
+      expect(loan_request.is_fulfilled?).to eq(true)
+      loan_request.mark_as_funded!
       expect(loan_request.status).to eq("closed")
     end
   end

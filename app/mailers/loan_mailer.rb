@@ -18,7 +18,6 @@ class LoanMailer < ActionMailer::Base
   end
 
   def get_loan_request_object_from_id(loan_request_id)
-    loan_request = LoanRequest.find_by(id: loan_request_id)
+    loan_request = LoanRequest.find_by("id = ?", loan_request_id)
   end
 end
-

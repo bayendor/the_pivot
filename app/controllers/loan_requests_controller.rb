@@ -25,7 +25,7 @@ class LoanRequestsController < ApplicationController
   end
 
   def show
-    @loan_request = LoanRequest.find_by(id: params[:id])
+    @loan_request = LoanRequest.find_by("id = ?", params[:id])
   end
 
   def edit
@@ -46,6 +46,6 @@ class LoanRequestsController < ApplicationController
   end
 
   def set_loan_request
-    @loan_requests = LoanRequest.find_by(id: params[:id])
+    @loan_requests = LoanRequest.find_by("id = ?", params[:id])
   end
 end
