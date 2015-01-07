@@ -3,27 +3,23 @@ class CartController < ApplicationController
 
   def index
     if cart.loans.empty?
-      redirect_to root_path, notice: "Your cart is empty."
+      redirect_to root_path, notice: 'Your cart is empty.'
     end
   end
 
   def create
-    if params["loan_requests"] != nil
-      params["loan_requests"].each { |lr_id| cart.add_loan(lr_id) }
-      if current_user
-        redirect_to cart_index_path
-      else
-        redirect_to cart_index_path, notice: "Cart created. Please log in."
-      end
+    if params['loan_request']
+      cart.add_loan(params['loan_request'])
+      redirect_to cart_index_path if current_user
     else
-      redirect_to :back, notice: "Please add some loans."
+      redirect_to :back, notice: 'Please add some loans.'
     end
   end
 
   def update
     @checkout_loans = []
     @checkout_amounts = []
-    cart.add_amounts_to_loans(params["amounts"])
+    cart.add_amounts_to_loans(params['amounts'])
     cart.loans.each do |lr_id, funding|
       assign_funding(lr_id, funding)
       Loan.create!(user_id: current_user.id, loan_request_id: lr_id, amount: funding)
