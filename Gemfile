@@ -20,6 +20,7 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'cancancan', '~> 1.9'
 gem 'rails_admin', '~> 0.6.6'
+gem 'sucker_punch', '~> 1.0'
 
 group :development, :test do
   gem 'simplecov', require: false, group: :test
