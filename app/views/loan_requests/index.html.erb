@@ -6,7 +6,7 @@
   <%= link_to 'all', loan_requests_path %> loan requests.</p>
   <div style="clear:both"></div>
   <br>
-  <%= link_to_if session['cart'].empty?, 'Take me to my cart!', cart_path %>
+  <%= link_to_unless session['cart'].nil?, 'Take me to my cart!', cart_path %>
 
 <% @loan_requests.each do |loan_request| %>
   <%= form_tag '/cart' do %>
