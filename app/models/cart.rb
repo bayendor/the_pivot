@@ -12,9 +12,9 @@ class Cart
   end
 
   def find_loan_request
-    loans.map do |key, value|
-      LoanRequest.where("id = ?", key)
-    end.flatten
+    loans.map do |loan_request_id, amount|
+      LoanRequest.find_by("id = ?", loan_request_id)
+    end
   end
 
   def add_loan(id)
