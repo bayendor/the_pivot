@@ -14,7 +14,7 @@
       <p><%= "Requested by: #{loan_request.requested_by_date.strftime('%m/%d/%Y')}" %></p>
       <p><%= "Loan Term: #{loan_request.loan_term}" %> months</p>
       <p><%= "Repayment Rate: #{number_to_currency(loan_request.repayment_rate, precision: 0)}" %> / month</p>
-      <p>Categories: <% loan_request.get_categories(loan_request).each do |name| %><%= "#{name } " %> | <% end %></p>
+      <p><%= "Categories: #{loan_request.category_names.join(" | ")}" %></p>
       <p><%= "Status: #{loan_request.status}" %></p>
       <% if loan_request.status == 'open' %>
         <%= check_box_tag "loan_requests[]", loan_request.id %>
