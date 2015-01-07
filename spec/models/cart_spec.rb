@@ -18,21 +18,21 @@ RSpec.describe Cart do
   it "can add a loan" do
     cart.add_loan(loan_1)
 
-    expect(cart.session).to eq("cart" => {"loans"=>{1=>nil}})
+    expect(cart.session).to eq("cart" => {"loans"=>{1=>"0"}})
   end
 
   it "can add multiple loans" do
     cart.add_loan(loan_1)
-    expect(cart.session).to eq("cart" => {"loans"=>{1=>nil}})
+    expect(cart.session).to eq("cart" => {"loans"=>{1=>"0"}})
 
     cart.add_loan(loan_2)
-    expect(cart.session).to eq("cart" => {"loans"=>{1=>nil, 2=>nil}})
+    expect(cart.session).to eq("cart" => {"loans"=>{1=>"0", 2=>"0"}})
   end
 
   it "can add amounts to multiple loans" do
     cart.add_loan(loan_1)
     cart.add_loan(loan_2)
-    expect(cart.session).to eq("cart" => {"loans"=>{1=>nil, 2=>nil}})
+    expect(cart.session).to eq("cart" => {"loans"=>{1=>"0", 2=>"0"}})
 
     cart.add_amounts_to_loans(amounts)
     expect(cart.session).to eq("cart" => {"loans"=>{1=>50, 2=>500}})
