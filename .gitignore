@@ -3,4 +3,4 @@ log/*
 .DS_STORE
 coverage
 .env
-.bundle
+.bundle/
