@@ -3,11 +3,10 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :users
+  resources :users, except: [:destroy]
 
   post '/cart',          to: 'cart#create'
   put '/cart_update',   to: 'cart#update'
-  delete '/cart',        to: 'cart#remove_item'
 
   resources :cart, only: [:index]
   resources :loans, only: [:index]
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
 
   delete "loan_requests/:id/cart", to: 'cart#remove_loan_request', as: :cart_item
 
-  resources :categories, as: :category, path: 'categories', param: :slug
+  resources :categories, as: :category, path: 'categories', param: :slug, only: [:show, :edit, :index]
 
   get '/login',  to: 'sessions#new'
   post '/login',  to: 'sessions#create'
@@ -24,6 +23,6 @@ Rails.application.routes.draw do
   get 'tenants', to: 'tenants#index'
   post 'tenants', to: 'tenants#create'
 
-  resources :tenants, as: :tenant, path: '', param: :slug
+  resources :tenants, as: :tenant, path: '', param: :slug, except: [:destroy]
 
 end
