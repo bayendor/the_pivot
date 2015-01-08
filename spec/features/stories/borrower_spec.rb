@@ -10,7 +10,7 @@ describe 'Borrower Interactions', type: :feature do
       fill_in 'Password', with: borrower.password
       click_button 'Log In'
       visit new_tenant_path
-      fill_in 'Business Name', with: 'Aperture Labs'
+      fill_in 'Store Name', with: 'Aperture Labs'
       click_button 'Apply'
     end
 
