@@ -130,11 +130,11 @@ footer {
 }
 
 #order_summary {
-  width: 80%;
+  width: 95%;
   position: center;
   text-align: left;
 }
 
 #order_summary td {
-  padding-right: 150px;
+  padding-right: 175px;
 }
