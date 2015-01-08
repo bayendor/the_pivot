@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   put '/cart_update',   to: 'cart#update'
 
   resources :cart, only: [:index]
+
   resources :loans, only: [:index]
+  get '/order_summary', to: 'loans#order_summary', as: :order_summary
+
   resources :loan_requests, only: [:index, :new, :show, :create, :update, :edit]
 
   delete "loan_requests/:id/cart", to: 'cart#remove_loan_request', as: :cart_item
