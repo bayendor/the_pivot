@@ -6,6 +6,14 @@ class LoansController < ApplicationController
   def order_summary
     @order_count = session['cart']['loans'].keys.count
     @loans = Loan.where("user_id = ?", current_user.id).includes(:loan_request)
-    # session['cart'] = nil
+    get_total
+    session['cart'] = nil
+  end
+
+  def get_total
+    @total = 0
+    @loans.reverse.take(@order_count).each do |loan|
+      @total += loan.amount
+    end
   end
 end
