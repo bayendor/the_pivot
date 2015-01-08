@@ -1,8 +1,7 @@
 <h2><%= @tenant.name %></h2>
 
 <% if can? :update, @tenant %>
-  <p><%= link_to "edit my store", edit_tenant_path %></p>
-  <p><%= link_to 'Create new loan request', new_loan_request_path %></p>
+  <p class="note"><%= link_to "edit my store", edit_tenant_path %> |  <%= link_to 'Create new loan request', new_loan_request_path %></p>
 <% end %>
 <p><%= @tenant.description %></p>
 

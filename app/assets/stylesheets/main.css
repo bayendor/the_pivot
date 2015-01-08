@@ -4,12 +4,36 @@ html {
 }
 
 body {
-  border-top: 15px solid #7AB317;
   background: #EBE7E0;
   margin: 0;
   padding: 0;
-  font-family: Verdana, sans-serif;
+  font-family: Georgia, serif;
   font-size: .8em;
+}
+
+.header {
+  width:95%;
+  border-left: 10px solid #7AB317;
+  border-right: 10px solid #7AB317;
+  border-bottom: 10px solid #7AB317;
+  border-radius: 15px;
+  background-image: url("wheat.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% 250%;
+  height: 300px;
+  margin-top: -15px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 25px;
+}
+
+.biggreen {
+  color: #7AB317;
+  font-size: 1.6em;
+  font-weight: bold;
+  font-family: Helvetica, sans-serif;
+  padding-left: 10px;
 }
 
 .content {
@@ -18,9 +42,10 @@ body {
   margin-left: auto;
   margin-right: auto;
   border-radius: 0 0 25px 25px;
-  border: 10px solid #7AB317;
+  border-left: 1px solid #7AB317;
+  border-right: 1px solid #7AB317;
+  border-bottom: 5px solid #7AB317;
   padding: 10px 10px 60px 10px;
-  margin-top: -10px;
   background-image: url("footer_icon.png");
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -35,14 +60,20 @@ a {
   color: #7AB317;
 }
 
-.corner-register {
-  float:right;
-  margin-top: -32px;
-  margin-right: -11px;
+a:hover {
+  color: #5d8e07;
+}
+
+.corner-button {
+  float: right;
+  margin-top: -150px;
+  margin-right: 20px;
 }
 
 .corner-mystore {
   float:right;
+  margin-top: -150px;
+  margin-right: 20px;
 }
 
 h1 {
@@ -53,8 +84,16 @@ h1 {
 
 nav {
   background: #EBE7E0;
-  border-radius:10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   height: 40px;
+  width: 800px;
+  margin-left: 35px;
+  margin-top: -53px;
+}
+
+nav ul {
+  list-style: none;
 }
 
 nav li {
@@ -63,16 +102,50 @@ nav li {
   padding-left: 20px;
   padding-right: 20px;
   font-size: 1.5em;
-  border-right: 1px solid #ccc;
   text-transform: uppercase;
+  margin-top: -31px;
+}
+
+nav a:hover {
+  background: #fff;
 }
 
 subnav {
   color: #858585;
+  float: right;
+  margin-right: 10px;
+}
+
+.logo {
+  background: #fff;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  height: 110px;
+  width: 600px;
+  margin-top: 175px;
+  margin-left: 25px;
+  padding-top: 15px;
+  padding-left: 5px;
+}
+
+.showcase-container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .showcase {
   background: #fff;
+  border: 1px solid #EBE7E0;
+  border-radius: 15px;
+  width: 22%;
+  padding: 6px;
+  margin: 5px 5px 20px 5px;
+  float: left;
+}
+
+.showcase2 {
+  background: #e1f5c4;
   border: 1px solid #EBE7E0;
   border-radius: 15px;
   width: 23%;
@@ -82,13 +155,31 @@ subnav {
 }
 
 .borrower {
-  border: 1px solid #EBE7E0;
+  border-top: 1px solid #EBE7E0;
+  border-left: 1px solid #EBE7E0;
+  border-right: 4px solid #e1f5c4;
+  border-bottom: 4px solid #e1f5c4;
   border-radius: 15px;
   padding: 10px;
-  width: 30%;
+  width: 28%;
   margin: 10px;
   float: left;
   height: 150px;
+}
+
+.category {
+  border-top: 1px solid #EBE7E0;
+  border-left: 1px solid #EBE7E0;
+  border-right: 4px solid #bdb8ad;
+  border-bottom: 4px solid #bdb8ad;
+  border-radius: 15px;
+  padding: 10px 10px 10px 20px;
+  width: 20%;
+  margin: 10px;
+  float: left;
+  height: 150px;
+  font-weight: bold;
+  font-size: 2em;
 }
 
 .store {
@@ -112,10 +203,34 @@ subnav {
   background: #fff;
   border: 1px solid #EBE7E0;
   border-radius: 15px;
+  height: 410px;
   width: 30%;
   padding: 5px;
   margin: 5px;
   float: left;
+}
+
+.loan_request_title {
+  font-weight: bold;
+  padding-bottom:2px;
+  border-bottom: 1px solid #EBE7E0;
+}
+
+.tenant {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.blurb {
+  font-weight: bold;
+  font-weight: italic;
+  font-size: 1.3em;
+}
+
+.note {
+  color: #bdb8ad;
+  font-size:.9em;
+  text-transform: uppercase;
 }
 
 footer {
@@ -124,8 +239,16 @@ footer {
   font-style: italic;
 }
 
+.cart-button {
+  background: #bada5f;
+  border-radius: 25px;
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 120px;
+}
+
 .loan-clicked {
-  background-color: lime;
+  background-color: #bada5f;
   margin-bottom: -5px;
 }
 
@@ -141,4 +264,134 @@ footer {
 
 #total {
   text-align: right;
+}
+
+/*flash alert styles*/
+
+.flash {
+  position: fixed;
+  top: 1%;
+  left: 5%;
+  width: 300px;
+  height: 20px;
+  padding: 10px;
+  margin-top: 20px;
+  background: #feb851;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: #fff solid 2px;
+  z-index: 10;
+}
+
+/*HOMEPAGE PORTHOLE STYLING*/
+
+.portholes {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -10px;
+  height: 190px;
+  background: #fdd396;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-left: 35px;
+}
+
+.view {
+  width: 20%;
+  height: 150px;
+  margin: 10px;
+  float: left;
+  border: 10px solid #fff;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  box-shadow: 1px 1px 2px #e6e6e6;
+  cursor: default;
+}
+.view .mask, .view .content {
+  width: 100%;
+  height: 150px;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0
+}
+.view img {
+  display: block;
+  position: relative
+}
+.view h2 {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  font-size: 15px;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.8);
+  margin: 20px 0 0 0
+}
+.view p {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 12px;
+  position: relative;
+  color: #fff;
+  padding: 5px 5px 5px;
+  text-align: center
+}
+.view a.info {
+  display: inline-block;
+  text-decoration: none;
+  padding: 7px 14px;
+  background: #7ab317;
+  color: #fff;
+  text-transform: uppercase;
+  box-shadow: 0 0 1px #4d7605
+}
+.view a.info:hover {
+  box-shadow: 0 0 5px #4d7605
+}
+.view-tenth img {
+  transform: scaleY(1);
+  transition: all 0.7s ease-in-out;
+}
+.view-tenth .mask {
+  background-color: #fdc065;
+  transition: all 0.5s linear;
+  opacity: 0;
+}
+.view-tenth h2{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  background: transparent;
+  margin: 20px 40px 0px 40px;
+  transform: scale(0);
+  color: #333;
+  transition: all 0.5s linear;
+  opacity: 0;
+}
+.view-tenth p {
+  color: #333;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.5s linear;
+}
+.view-tenth a.info {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.5s linear;
+}
+.view-tenth:hover img {
+  transform: scale(10);
+  opacity: 0;
+}
+.view-tenth:hover .mask {
+  opacity: 1;
+}
+.view-tenth:hover h2,
+.view-tenth:hover p,
+.view-tenth:hover a.info{
+  transform: scale(1);
+  opacity: 1;
 }

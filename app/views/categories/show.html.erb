@@ -5,7 +5,7 @@
 <% @category.loan_requests.each do |loan_request| %>
   <%= form_tag '/cart', remote: true do %>
     <div class="loan_request">
-      <p style="font-weight: bold">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
+      <p class="loan_request_title">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
       <p><%= image_tag loan_request.image.url(:thumb) %>
       <p>Borrower: <%= loan_request.user.tenant.name %>
       <p><%= loan_request.blurb %> <%= link_to "Learn more.", loan_request_path(loan_request) %></p>
@@ -16,15 +16,15 @@
       <p><%= "Repayment Rate: #{number_to_currency(loan_request.repayment_rate, precision: 0)}" %> / month</p>
       <p><%= "Categories: #{loan_request.category_names.join(" | ")}" %></p>
       <p><%= "Status: #{loan_request.status}" %></p>
-      <% if loan_request.status == 'open' %>
-        <%= hidden_field_tag "loan_request", loan_request.id %>
-        <%= submit_tag "Loan $25", name: "loan_request_#{loan_request.id}", class: "loan-button" %>
-      <% else %>
-        <p><em>Fully funded!</em></p>
-      <% end %>
+        <% if loan_request.status == 'open' %>
+          <%= hidden_field_tag "loan_request", loan_request.id %>
+          <%= submit_tag "Loan $25", name: "loan_request_#{loan_request.id}", class: "loan-button" %>
+        <% else %>
+          <p><em>Fully funded!</em></p>
+        <% end %>
   </div>
   <% end %>
-  <div style="clear:both"></div>
 <% end %>
+<div style="clear:both"></div>
 </div>
 <div style="clear:both;"></div>

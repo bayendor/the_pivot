@@ -2,9 +2,9 @@
 
 <% @tenants.each do |t| %>
 <div class="borrower">
-  <p><strong><%= link_to "#{t.name}", tenant_path(t.slug) %></strong></p>
+  <p class="tenant"><%= link_to "#{t.name}", tenant_path(t.slug) %></p>
   <p><%= t.blurb %></p>
-  <p><%= link_to "Learn more", tenant_path(t.slug) %></p>
+  <p><%= link_to "Learn more about this borrower", tenant_path(t.slug) %></p>
 </div>
 
 <% end %>
