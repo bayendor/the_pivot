@@ -6,7 +6,7 @@ RailsAdmin.config do |config|
 
   config.actions do
     dashboard do
-      statistics false
+      statistics
     end
     index
     new
@@ -14,6 +14,5 @@ RailsAdmin.config do |config|
     show
     edit
     delete
-    show_in_app
   end
 end
