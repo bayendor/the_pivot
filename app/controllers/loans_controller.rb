@@ -11,9 +11,9 @@ class LoansController < ApplicationController
   end
 
   def get_total
-    @total = 0
-    @loans.reverse.take(@order_count).each do |loan|
-      @total += loan.amount
-    end
+    @loans.reverse.take(@order_count).map do |loan|
+      loan.amount
+    end.inject(:+)
   end
+
 end
