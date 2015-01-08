@@ -1,6 +1,6 @@
 <h2>Category: <%= @category.name %></h2>
-
 <p>Description: <%= @category.description %></p>
+<p class="cart-button"><%= link_to 'Take me to my cart!', cart_path %></p>
 
 <% @category.loan_requests.each do |loan_request| %>
   <%= form_tag '/cart', remote: true do %>

@@ -8,6 +8,7 @@
 
 <div class="store">
   <h3>Loan Requests:</h3>
+   <p class="cart-button"><%= link_to 'Take me to my cart!', cart_path %></p>
     <% @tenant.loan_requests.each do |loan_request| %>
       <%= form_tag '/cart', remote: true do %>
       <div class="loan_request">
@@ -33,5 +34,5 @@
     <% end %>
 <% end %>
     <div style="clear:both"></div>
-</div>
+  </div>
 <div style="clear:both"></div>

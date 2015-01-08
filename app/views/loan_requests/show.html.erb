@@ -1,24 +1,25 @@
 <h2>Loan Request for <strong><%= "#{@loan_request.title.titleize}" %></strong></h2>
-
+<%= form_tag '/cart', remote: true do %>
 <p>Borrower: <%= @loan_request.user.tenant.name %>
 
 <p><%= image_tag @loan_request.image.url(:main) %>
 <p class="blurb"><%= @loan_request.blurb %>
 <p><%= @loan_request.description %></p>
-<p>Borrowing Amount: <%= number_to_currency(@loan_request.borrowing_amount, precision: 0) %></p>
-<p>Amount Funded: <%= number_to_currency(@loan_request.amount_funded, precision: 0) %></p>
-<p>Requested by: <%= @loan_request.requested_by_date.strftime('%m/%d/%Y') %></p>
-<p>Payment Start Date: <%= @loan_request.payments_begin_date.strftime('%m/%d/%Y') %></p>
-<p>Payment End Date: <%= @loan_request.payments_end_date.strftime('%m/%d/%Y') %></p>
-<p>Repayment Rate: <%= number_to_currency(@loan_request.repayment_rate, precision: 0) %> / month</p>
-<p><%= "Categories: #{@loan_request.category_names.join(" | ")}" %></p>
+  <p>Borrowing Amount: <%= number_to_currency(@loan_request.borrowing_amount, precision: 0) %></p>
+  <p>Amount Funded: <%= number_to_currency(@loan_request.amount_funded, precision: 0) %></p>
+  <p>Requested by: <%= @loan_request.requested_by_date.strftime('%m/%d/%Y') %></p>
+  <p>Payment Start Date: <%= @loan_request.payments_begin_date.strftime('%m/%d/%Y') %></p>
+  <p>Payment End Date: <%= @loan_request.payments_end_date.strftime('%m/%d/%Y') %></p>
+  <p>Repayment Rate: <%= number_to_currency(@loan_request.repayment_rate, precision: 0) %> / month</p>
+  <p><%= "Categories: #{@loan_request.category_names.join(" | ")}" %></p>
 <% if !current_tenant  %>
   <p><% if @loan_request.status == 'open' %>
-  <%= check_box_tag "loan_requests[]", @loan_request.id %>
-  <%= label_tag("loan_request_#{@loan_request.id}", "<-- Yes, I want to Loan!") %>
+      <%= hidden_field_tag "loan_request", @loan_request.id %>
+      <%= submit_tag "Loan $25", name: "loan_request_#{@loan_request.id}", class: 'loan-button' %>
 <% else %>
   <p><em>Fully funded!</em></p>
 <% end %>
-<div style="clear:both;"></div>
-<%= submit_tag "Add selected Loans to Cart" %>
+  <div style="clear:both;"></div>
+<% end %>
+  <p class="cart-button"><%= link_to 'Take me to my cart!', cart_path %></p>
 <% end %>
