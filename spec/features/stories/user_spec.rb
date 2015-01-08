@@ -15,7 +15,7 @@ describe 'User Interactions', type: :feature do
         tenant_count = Tenant.count
         visit '/new'
         expect(page).to have_content('Apply to Become a Borrower!')
-        fill_in 'Business Name', with: 'Aperture Labs'
+        fill_in 'Store Name', with: 'Aperture Labs'
         click_button 'Apply'
         expect(page).to have_content('Thanks for creating your store')
         expect(Tenant.count).to eq(tenant_count + 1)
