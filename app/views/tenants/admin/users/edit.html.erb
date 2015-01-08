@@ -1,7 +1,0 @@
-<div class="row"> 
-  <br>
-  <div class="large-6 columns"><h1>Editing <%= "#{@user.first_name} #{@user.last_name}" %></h1></div>
-  <div class="large-6 columns"><%= link_to 'View User', admin_user_path(@user) %> | <%= link_to 'Back to all Users', admin_users_path %></div>
-</div>
-
-<%= render 'form' %>
