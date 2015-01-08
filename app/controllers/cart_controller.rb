@@ -1,6 +1,8 @@
 class CartController < ApplicationController
   helper_method :cart
 
+  attr_reader :order_count
+
   def index
     if cart.loans.empty?
       redirect_to root_path, notice: 'Your cart is empty.'
@@ -24,8 +26,7 @@ class CartController < ApplicationController
                    amount: funding)
     end
     send_emails_to_lenders_and_borrowers
-    session['cart'] = nil
-    redirect_to loans_path, notice: 'Thanks for your order.'
+    redirect_to order_summary_path, notice: 'Thanks for your order.'
   end
 
   def remove_loan_request

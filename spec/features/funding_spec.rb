@@ -22,7 +22,6 @@ describe "Funding" do
     FactoryGirl.create(:user)
   end
 
-
   let(:tenant) do
     FactoryGirl.create(:tenant) do |tenant|
       tenant.users << user
@@ -42,7 +41,12 @@ describe "Funding" do
 
       select "475", from: "amounts_"
       click_button "Checkout"
-      expect(page).to have_content("Status: closed")
+      click_link "Make A Loan"
+
+      within("div#loan_request_#{loan_request.id}") do
+        expect(page).to have_content("Status: closed")
+        expect(page).to_not have_content("Status: open")
+      end
     end
   end
 end

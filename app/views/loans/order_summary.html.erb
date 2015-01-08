@@ -1,0 +1,28 @@
+<h2>Your Order Summary</h2>
+
+<div class="loan" id="order_summary">
+  <table>
+    <tr>
+      <td><strong>Borrower</strong></td>
+      <td><strong>Loan Title</strong></td>
+      <td><strong>Amount You Funded This Order</strong></td>
+    </tr>
+    <% @loans.reverse.take(@order_count).each do |t| %>
+        <tr>
+          <td> <%= t.loan_request.user.tenant.name %></td>
+          <td> <%= t.loan_request.title %></td>
+          <td> <%= number_to_currency(t.amount, precision: 0) %></td>
+        </tr>
+    <%end%>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr>
+          <td></td>
+          <td id="total"><strong>Total</strong></td>
+          <td><%= number_to_currency(@total, precision: 0) %></td>
+        </tr>
+  </table>
+</div>
+
+<div style="clear:both;"></div>

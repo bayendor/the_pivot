@@ -10,7 +10,7 @@
 
 <% @loan_requests.each do |loan_request| %>
   <%= form_tag '/cart', remote: true do %>
-    <div class="loan_request">
+    <div class="loan_request", id=<%="loan_request_#{loan_request.id}"%>>
       <p style="font-weight: bold">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
       <p><%= image_tag loan_request.image.url(:thumb) %>
       <p>Borrower: <%= loan_request.user.tenant.name %>

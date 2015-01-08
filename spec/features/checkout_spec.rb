@@ -51,7 +51,9 @@ describe "Checkout" do
       find("input[name='loan_request_#{LoanRequest.first.id}']").click
       click_link_or_button "Take me to my cart!"
       click_link_or_button "Checkout"
-      expect(page).to have_content("Amount You Funded This Order: $25")
+      expect(page).to have_content("Amount You Funded This Order")
+      expect(page).to have_content("$25")
+
     end
 
     it "can't make loan request without a title" do

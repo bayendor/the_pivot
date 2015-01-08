@@ -303,7 +303,7 @@ class Seed
 
     amigos.loan_requests.create!(
           user_id:             amigos.id,
-          title:               'Ranch Parnership',
+          title:               'Ranch Partnership',
           blurb:               'Help Los Amigos Gordos purchase a partnership agreement with a Colorado Ranch to serve responsibly-raised beef.',
           description:         'This loan would help Los Amigos Gordos purchase a partnership with Craig Angus Ranch, a family-owned Colorado farm specializing in grass-fed black angus beef that has no antibiotics or hormones. The Amigos would serve Craig Angus beef exclusively, supporting the community while delivering a superior product to their burrito-loving customers.',
           borrowing_amount:    rand(40..60) * 25.to_i,
