@@ -6,7 +6,7 @@ class LoansController < ApplicationController
   def order_summary
     @order_count = session['cart']['loans'].keys.count
     @loans = Loan.where("user_id = ?", current_user.id).includes(:loan_request)
-    get_total
+    @total = get_total
     session['cart'] = nil
   end
 
