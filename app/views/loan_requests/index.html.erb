@@ -1,17 +1,16 @@
 <h2>Loan Requests</h2>
 
-<p>Show
+<p class="note">Show
   <%= link_to 'open', 'loan_requests?status=open' %>,
   <%= link_to 'closed', 'loan_requests?status=closed' %> or
   <%= link_to 'all', loan_requests_path %> loan requests.</p>
-  <div style="clear:both"></div>
-  <br>
-  <%= link_to 'Take me to my cart!', cart_path %>
+
+  <p class="cart-button"><%= link_to 'Take me to my cart!', cart_path %></p>
 
 <% @loan_requests.each do |loan_request| %>
   <%= form_tag '/cart', remote: true do %>
     <div class="loan_request", id=<%="loan_request_#{loan_request.id}"%>>
-      <p style="font-weight: bold">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
+      <p class="loan_request_title">Title: <%= link_to "#{loan_request.title.titleize}", loan_request_path(loan_request) %></p>
       <p><%= image_tag loan_request.image.url(:thumb) %>
       <p>Borrower: <%= loan_request.user.tenant.name %>
       <p><%= loan_request.blurb %> <%= link_to "Learn more.", loan_request_path(loan_request) %></p>

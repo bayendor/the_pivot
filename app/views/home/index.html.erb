@@ -1,28 +1,67 @@
-<h2>Loans that change lives.</h2>
-<div class="showcase">
-<p><strong>Micro-lending is a powerful tool for social progress.</strong> Keevahh is a non-profit organization with a mission to connect people through lending to alleviate poverty. Leveraging the internet and a worldwide network of microfinance institutions, Keevahh lets individuals lend as little as $25 to help create opportunity around the world.</p>
-<h2>How it works:</h2>
+<div class="portholes">
+  <div class="view view-tenth">
+    <img src="assets/tenants/maria/maria.jpg" />
+    <div class="mask">
+      <h2>El Salvador</h2>
+      <p>Help Maria grow her business</p>
+      <a href="san-miguel-market" class="info">Read her story</a>
+    </div>
+  </div>
+
+  <div class="view view-tenth">
+    <img src="assets/tenants/burma/villagers.jpg" />
+    <div class="mask">
+      <h2>MYANMAR</h2>
+      <p>Help widows farm and garden</p>
+      <a href="the-widows-of-tu-myaung-village" class="info">Read their story</a>
+    </div>
+  </div>
+
+  <div class="view view-tenth">
+    <img src="assets/tenants/shukri/shukri.jpg" />
+    <div class="mask">
+      <h2>KOSOVO</h2>
+      <p>Help Shukri repair his home</p>
+      <a href="shukri-from-kosovo" class="info">Read his story</a>
+    </div>
+  </div>
+
+  <div class="view view-tenth">
+    <img src="assets/tenants/vietnam_fish/vietnamfish.jpg" />
+    <div class="mask">
+      <h2>VIETNAM</h2>
+      <p>Help a fishery stay afloat</p>
+      <a href="nhom-fishery" class="info">Read their story</a>
+    </div>
+  </div>
 </div>
 
-<div class="showcase">
-  <h2><%= link_to "Choose A Borrower", tenants_path %></h2>
-  <p>Read through borrower stories of people looking for loans to grow businesses, go to school, switch to clean energy and more.</p>
-  <p><strong>Find someone who connects with you.</strong> </p>
-  <%= link_to(image_tag("arrowbutton.png", :alt => "Choose A Borrower"), tenants_path) %>
-</div>
 
-<div class="showcase">
-  <h2><%= link_to "Make A Loan", loan_requests_path %></h2>
-  <p>Make a loan to the borrower of your choice. Each borrower is vetted and works closely with Keevahh.</p>
-  <p><strong>Find a loan request to support.</strong></p>
-  <%= link_to(image_tag("arrowbutton.png", :alt => "Make A Loan"), loan_requests_path) %>
-</div>
+<div class="showcase-container">
+  <div class="showcase">
+      <p><strong>Micro-lending is a powerful tool for social progress.</strong> Keevahh is a non-profit organization with a mission to connect people through lending to alleviate poverty. Leveraging the internet and a worldwide network of microfinance institutions, Keevahh lets individuals lend as little as $25 to help create opportunity around the world.</p>
+      <h2>How it works:</h2>
+  </div>
 
-<div class="showcase">
-  <h2>Get Repaid</h2>
-  <p>Get updates as the borrowers you support succeed and repay their loans.</p>
-  <h2>Repeat</h2>
-  <p>When borrowers repay, you can use that money to support a new loan and empower another person! You can also choose to donate or withdraw your funds. </p>
-</div>
+  <div class="showcase2">
+      <h2><%= link_to "Choose A Borrower", tenants_path %></h2>
+      <p>Read through stories of people looking for loans to grow businesses, go to school, switch to clean energy and more.</p>
+      <p><strong>Find someone you connect with.</strong> </p>
+      <%= link_to(image_tag("arrowbutton.png", :alt => "Choose A Borrower"), tenants_path) %>
+  </div>
 
+  <div class="showcase2">
+      <h2><%= link_to "Make A Loan", loan_requests_path %></h2>
+      <p>Make a loan to the borrower of your choice. Each borrower is vetted and works closely with Keevahh.</p>
+      <p><strong>Find a loan request to support.</strong></p>
+      <%= link_to(image_tag("arrowbutton.png", :alt => "Make A Loan"), loan_requests_path) %>
+  </div>
+
+  <div class="showcase">
+      <h2>Get Repaid</h2>
+      <p>Get updates as the borrowers you support succeed and repay their loans.</p>
+      <h2>Repeat</h2>
+      <p>When borrowers repay, you can use that money to support a new loan and empower another person! You can also choose to donate or withdraw your funds. </p>
+  </div>
+</div>
 <div style="clear:both;"></div>

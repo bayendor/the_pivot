@@ -10,10 +10,15 @@
 </head>
 
 <body>
+  <% flash.each do |name, msg| %>
+  <div class="flash"><%= content_tag :div, msg, class: name %></div>
+  <% end %>
+
   <div style="clear:both;"></div>
 
-  <div class="content">
     <div class="header"><%= render partial: "shared/header" %></div>
+    <div class="content">
+
     <div style="clear:both;"></div>
 
     <%= yield %>

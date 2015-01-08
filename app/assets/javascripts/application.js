@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require_tree .
 
+setTimeout(function(){
+  $(".flash").fadeOut("slow");
+}, 1500 );
