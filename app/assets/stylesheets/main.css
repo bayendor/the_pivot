@@ -128,3 +128,13 @@ footer {
   background-color: lime;
   margin-bottom: -5px;
 }
+
+#order_summary {
+  width: 80%;
+  position: center;
+  text-align: left;
+}
+
+#order_summary td {
+  padding-right: 150px;
+}

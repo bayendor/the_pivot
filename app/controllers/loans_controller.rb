@@ -5,8 +5,7 @@ class LoansController < ApplicationController
 
   def order_summary
     @order_count = session['cart']['loans'].keys.count
-    binding.pry
     @loans = Loan.where("user_id = ?", current_user.id).includes(:loan_request)
-    session['cart'] = nil
+    # session['cart'] = nil
   end
 end
