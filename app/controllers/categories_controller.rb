@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
 
   before_action :set_category, only: [:show, :edit, :index]
 
+  # cancan
   def index
     # @categories = Category.all
   end

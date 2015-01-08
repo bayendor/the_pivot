@@ -1,7 +1,14 @@
 <div>
-  <h1>Your Cart</h1>
+  <h2>Your Cart</h2>
+    <%= form_tag '/cart_update', method: :put, id: "my-form" do |f| %>
+    <% unless current_user %>
+      <h3>Please log in above to complete your order.</h3>
+    <% else %>
+      <%= submit_tag "Checkout", :id => "submit" %>
+    <%end%>
+    <br>
+    <br>
 
-  <%= form_tag '/cart_update', method: :put, id: "my-form" do |f| %>
     <% cart.find_loan_request.each do |lr| %>
       <div class="loan_request">
         <p style="font-weight: bold"><%= "Title: #{lr.title.titleize}" %></p>
@@ -26,13 +33,7 @@
       </div>
     <% end %>
 
-
     <div style="clear:both"></div>
-    <% unless current_user %>
-      <h3>Please log in above to complete your order.</h3>
-    <% else %>
-      <%= submit_tag "Checkout", :id => "submit" %>
-    <%end%>
   <% end %>
 </div>
 

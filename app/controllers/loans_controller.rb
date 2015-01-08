@@ -10,10 +10,11 @@ class LoansController < ApplicationController
     session['cart'] = nil
   end
 
+  private
+
   def get_total
     @loans.reverse.take(@order_count).map do |loan|
       loan.amount
     end.inject(:+)
   end
-
 end
