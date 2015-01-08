@@ -43,7 +43,10 @@ describe "Funding" do
       click_button "Checkout"
       click_link "Make A Loan"
 
-      # expect(page).to have_content("Status: closed")
+      within("div#loan_request_#{loan_request.id}") do
+        expect(page).to have_content("Status: closed")
+        expect(page).to_not have_content("Status: open")
+      end
     end
   end
 end
