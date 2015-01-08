@@ -1624,7 +1624,7 @@ class Seed
 
 
     rachel = User.find_by(email: "demo+rachel@jumpstartlab.com")
-    20.times do |i|
+    5.times do |i|
       LoanRequest.create!(
           user_id:             rachel.id,
           title:               Faker::Company.bs,
@@ -1647,7 +1647,7 @@ class Seed
     end
 
     jeff = User.find_by(email: "demo+jeff@jumpstartlab.com")
-    20.times do |i|
+    5.times do |i|
       LoanRequest.create!(
           user_id:             jeff.id,
           title:               Faker::Company.bs,
@@ -1670,7 +1670,7 @@ class Seed
     end
 
     jorge = User.find_by(email: "demo+jorge@jumpstartlab.com")
-    20.times do |i|
+    5.times do |i|
       LoanRequest.create!(
           user_id:             jorge.id,
           title:               Faker::Company.bs,
@@ -1693,7 +1693,7 @@ class Seed
     end
 
     steve = User.find_by(email: "demo+steve@jumpstartlab.com")
-    20.times do |i|
+    5.times do |i|
       LoanRequest.create!(
           user_id:             steve.id,
           title:               Faker::Company.bs,
@@ -1716,7 +1716,7 @@ class Seed
     end
 
     ben = User.find_by(email: "demo+ben@jumpstartlab.com")
-    20.times do |i|
+    5.times do |i|
       LoanRequest.create!(
           user_id:             ben.id,
           title:               Faker::Company.bs,
