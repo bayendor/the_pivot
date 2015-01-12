@@ -2,5 +2,4 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 
-
 Rails.application.config.assets.precompile += %w( loan_handler.js )
