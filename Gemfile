@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-ruby '2.1.5'
-gem 'rails', '4.1.9'
+ruby '2.2.0'
+gem 'rails', '4.2.0'
 
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'sass-rails', '~> 4.0.3'
