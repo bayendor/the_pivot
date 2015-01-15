@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Keevahh
   class Application < Rails::Application
-    config.serve_static_assets = true
+    config.serve_static_files = true
     config.assets.version = '1.1'
 
     config.action_mailer.delivery_method = :smtp
