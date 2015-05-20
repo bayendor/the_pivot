@@ -40,7 +40,9 @@ describe "Checkout" do
       fill_in 'loan_request_payments_end_date',   with: DateTime.now.months_since(7)
       find("#loan_request_category_ids_#{agriculture.id}").set(true)
       find("#loan_request_category_ids_#{healthcare.id}").set(true)
+      find("#loan_request_category_ids_#{women.id}").set(false)
       click_link_or_button "Submit"
+
       expect(page).to have_content("Categories: Agriculture | Healthcare")
 
       within("nav") do
