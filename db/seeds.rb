@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class Seed
   def initialize
     generate_users_and_roles
@@ -1748,12 +1747,17 @@ class Seed
     Tenant.all.each do |tenant|
       2.times do |i|
       loan_request = LoanRequest.all.sample
-      user = User.all.sample
-      loan = Loan.create!(user:         user,
-                          loan_request: loan_request,
-                          amount:       (Faker::Commerce.price * 100).to_i,
-                          status:       status.sample
-                         )
+        user = User.create!(first_name: Faker::Name.first_name,
+                            last_name:  Faker::Name.last_name,
+                            email:      Faker::Internet.safe_email("#{i} #{Faker::Internet.user_name}"),
+                            password:   'password'
+                           )
+
+        loan = Loan.create!(user:         user,
+                            loan_request: loan_request,
+                            amount:       (Faker::Commerce.price * 100).to_i,
+                            status:       status.sample
+                           )
       end
     end
 

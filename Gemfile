@@ -18,11 +18,10 @@ gem 'compass-rails'
 gem 'faker'
 gem 'bcrypt', '~> 3.1.7'
 gem 'paperclip'
-gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk'
 gem 'cancancan', '~> 1.9'
 gem 'rails_admin', '~> 0.6.6'
 gem 'sucker_punch', '~> 1.0'
-gem 'skylight', group: :production
 
 group :development, :test do
   gem 'simplecov', require: false, group: :test

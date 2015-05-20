@@ -15,7 +15,6 @@ class LoanRequestsController < ApplicationController
     @loan_request = LoanRequest.new(loan_request_params)
     @loan_request.user_id = current_user.id
     if @loan_request.save
-      @loan_request.categories += categories
       redirect_to tenant_path(current_user.tenant.slug), notice: 'Loan Request created.'
     else
       render :new
@@ -42,12 +41,8 @@ class LoanRequestsController < ApplicationController
                                          :borrowing_amount, :amount_funded,
                                          :requested_by_date,
                                          :payments_begin_date,
-                                         :payments_end_date, :image
-                                        )
-  end
-
-  def categories
-    Category.where(id: params[:loan_request][:category_ids].reject(&:blank?))
+                                         :payments_end_date, :image,
+                                         category_ids: [])
   end
 
   def set_loan_request
