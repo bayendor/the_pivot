@@ -4,8 +4,6 @@
 
 [Github Repo: git@github.com:bayendor/the_pivot.git](https://github.com/bayendor/the_pivot)
 
-[Heroku Site: https://keevah-pivot.herokuapp.com](https://keevah-pivot.herokuapp.com)
-
 #The Pivot
 
 ##Learning Goals
